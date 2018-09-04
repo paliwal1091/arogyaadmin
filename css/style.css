@@ -1352,7 +1352,7 @@ h1.paragraph-agileits-w3layouts a:hover {
 .form-body-w3-agile .form-control {
 	display: block;
 	width: 100%;
-	padding: 0.7em 1em;
+	/*padding: 0.7em 1em;*/
 	margin: .5em 0em 1.5em;
 	font-size: 15px;
 	letter-spacing: 1px;
