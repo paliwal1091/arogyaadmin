@@ -4,7 +4,6 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
-<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,41 +50,70 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <span>M</span>
             </div>
             <div class="profile-bg"></div>
-            
-          <?php
-          if($_SESSION['userbean']['user_role']=='DOCTOR'){
-               include_once './doctor/_tree_doctor.php';
-          }else if($_SESSION['userbean']['user_role']=='ACCOUNTANT'){
-               include_once './accountant/_tree_accountant.php';
-          }else if($_SESSION['userbean']['user_role']=='ADMIN'){
-               include_once './admin/_tree_admin.php';
-          }else if($_SESSION['userbean']['user_role']=='LAB'){
-               include_once './lab/_tree_lab.php';
-          }else if($_SESSION['userbean']['user_role']=='OPD'){
-               include_once './opd/_tree_opd.php';
-          }else if($_SESSION['userbean']['user_role']=='PHARMACIST'){
-               include_once './pharmacist/_tree_pharmacist.php';
-          }else if($_SESSION['userbean']['user_role']=='TRANSPORT'){
-               include_once './transport/_tree_transport.php';
-          }else if($_SESSION['userbean']['user_role']=='WARD'){
-               include_once './ward/_tree_ward.php';
-          }
-          
-          
-          ?>
+          <?php include_once './_tree.php'; ?>
         </nav>
 
         <!-- Page Content Holder -->
         <div id="content">
             <!-- top-bar -->
-           <?php include_once './_top_bar.php';?>
+            <nav class="navbar navbar-default mb-xl-5 mb-4">
+                <div class="container-fluid">
+
+                    <div class="navbar-header">
+                        <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                    </div>
+                   
+                    <ul class="top-icons-agileits-w3layouts float-right">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <i class="far fa-bell"></i>
+                                <span class="badge">4</span>
+                            </a>
+                          
+                        </li>
+                        
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <i class="far fa-user"></i>
+                            </a>
+                            <div class="dropdown-menu drop-3">
+                                <div class="profile d-flex mr-o">
+                                    <div class="profile-l align-self-center">
+                                        <img src="images/profile.jpg" class="img-fluid mb-3" alt="Responsive image">
+                                    </div>
+                                    <div class="profile-r align-self-center">
+                                        <h3 class="sub-title-w3-agileits">Will Smith</h3>
+                                        <a href="mailto:info@example.com">info@example.com</a>
+                                    </div>
+                                </div>
+                                <a href="#" class="dropdown-item mt-3">
+                                    <h4>
+                                        <i class="far fa-user mr-3"></i>My Profile</h4>
+                                </a>
+                                
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="logout.php">Logout</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
             <!--// top-bar -->
 
             <!-- main-heading -->
             <!--// main-heading -->
             <!-- Page Content -->
             <div class="blank-page-content">
-               <?php echo '<tt><pre>' . var_export($_SESSION['userbean'], TRUE) . '</pre></tt>';?>
+
+                
+                
+                
+                
+
             </div>
 
             <!--// Page Content -->

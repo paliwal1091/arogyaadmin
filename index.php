@@ -1,14 +1,9 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
     <head>
-        <title>Modernize an Admin Panel Category Bootstrap Responsive Web Template | Login :: w3layouts</title>
+        <title></title>
         <!-- Meta Tags -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="utf-8">
@@ -36,10 +31,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <!--// Fontawesome Css -->
         <!--// Style-sheets -->
 
-        <!--web-fonts-->
-        <link href="//fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
-        <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-        <!--//web-fonts-->
+
     </head>
 
     <body>
@@ -55,21 +47,32 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <?php
                             include './DB.php';
                             if (isset($_POST['btnLogin'])) {
-                                
+
                                 if ($_POST['user_role'] == 'DOCTOR') {
-                                     $sql = "SELECT * FROM hms_doctor WHERE nic = '".$_POST['btnLogin']."' AND pword = PASSWORD('".$_POST['pword']."') AND status_code = 'ACTIVE'";
-                                }else {
-                                     $sql = "SELECT * FROM hms_user WHERE nic = '".$_POST['btnLogin']."' AND pword = PASSWORD('".$_POST['pword']."') AND status_code = 'ACTIVE' ";
+                                    $sql = "SELECT * FROM hms_doctor WHERE nic = '" . $_POST['nic'] . "' AND pword = PASSWORD('" . $_POST['pword'] . "') AND status_code = 'ACTIVE'";
+
+                                    $result = getData($sql);
+                                    if ($result) {
+                                        foreach ($result as $value) {
+                                            $_SESSION['userbean'] = $value;
+                                        }
+                                        header("Location:home.php");
+                                    } else {
+                                        echo '<p class="text-danger">Invlaid username or password</p>';
+                                    }
+                                } else {
+                                    $sql = "SELECT * FROM hms_user WHERE nic = '" . $_POST['nic'] . "' AND pword = PASSWORD('" . $_POST['pword'] . "') AND status_code = 'ACTIVE' ";
+
+                                    $result = getData($sql);
+                                    if ($result) {
+                                        foreach ($result as $value) {
+                                            $_SESSION['userbean'] = $value;
+                                        }
+                                        header("Location:home.php");
+                                    } else {
+                                        echo '<p class="text-danger">Invlaid username or password</p>';
+                                    }
                                 }
-                                
-                                echo $sql;
-                                $result = getData($sql);
-                                if($result){
-                                    
-                                }else{
-                                    echo 'invlaid username or password';
-                                }
-                                
                             }
                             ?>
                             <label>Login As</label>

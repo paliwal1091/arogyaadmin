@@ -6,7 +6,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <title>Arogya</title>
     <!-- Meta Tags -->
@@ -38,8 +37,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <link href="css/fontawesome-all.css" rel="stylesheet">
     <!--// Fontawesome Css -->
     <!--// Style-sheets -->
-
-   
 </head>
 
 <body>
