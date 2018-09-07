@@ -3,7 +3,7 @@
 <html lang="en">
 
     <head>
-        <title></title>
+        <title>Arogya</title>
         <!-- Meta Tags -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="utf-8">
@@ -19,7 +19,7 @@
         </script>
         <!-- //Meta Tags -->
 
-        <!-- Style-sheets -->
+ <!-- Style-sheets -->
         <!-- Bootstrap Css -->
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
         <!-- Bootstrap Css -->
@@ -30,7 +30,10 @@
         <link href="css/fontawesome-all.css" rel="stylesheet">
         <!--// Fontawesome Css -->
         <!--// Style-sheets -->
-
+        <!--web-fonts-->
+        <link href="//fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
+        <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+        <!--//web-fonts-->
 
     </head>
 
@@ -55,6 +58,7 @@
                                     if ($result) {
                                         foreach ($result as $value) {
                                             $_SESSION['userbean'] = $value;
+                                            $_SESSION['sitename'] = 'arogyaadmin';
                                         }
                                         header("Location:home.php");
                                     } else {
@@ -64,9 +68,11 @@
                                     $sql = "SELECT * FROM hms_user WHERE nic = '" . $_POST['nic'] . "' AND pword = PASSWORD('" . $_POST['pword'] . "') AND status_code = 'ACTIVE' ";
 
                                     $result = getData($sql);
+                                     $base_url="http://".$_SERVER['SERVER_NAME'].dirname($_SERVER["REQUEST_URI"].'?').'/';
                                     if ($result) {
                                         foreach ($result as $value) {
                                             $_SESSION['userbean'] = $value;
+                                            $_SESSION['sitename'] = 'arogyaadmin';
                                         }
                                         header("Location:home.php");
                                     } else {
@@ -86,7 +92,7 @@
                                 <option value="OPD">OPD</option>
                                 <option value="WARD">WARD</option>
                                 <option value="LAB">LAB</option>
-                                <option value="ADMIN">Administrator</option>
+                                <option value="ADMIN" selected="">Administrator</option>
                             </select>
                         </div>
                         <div class="form-group">

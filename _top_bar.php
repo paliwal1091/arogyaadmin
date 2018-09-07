@@ -25,8 +25,6 @@
 
             </li>
 
-
-
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true"
                    aria-expanded="false">
@@ -35,20 +33,20 @@
                 <div class="dropdown-menu drop-3">
                     <div class="profile d-flex mr-o">
                         <div class="profile-l align-self-center">
-                            <img src="images/profile.jpg" class="img-fluid mb-3" alt="Responsive image">
+                            <img src="../images/profile.jpg" class="img-fluid mb-3" alt="Responsive image">
                         </div>
                         <div class="profile-r align-self-center">
                             <h3 class="sub-title-w3-agileits"><?php echo $_SESSION['userbean']['first_name']; ?></h3>
                             <a href="<?php echo $_SESSION['userbean']['email']; ?>"><?php echo $_SESSION['userbean']['email']; ?></a>
                         </div>
                     </div>
-                    <a href="profile.php" class="dropdown-item mt-3">
+                    <a href="../profile.php" class="dropdown-item mt-3">
                         <h4>
                             <i class="far fa-user mr-3"></i>My Profile</h4>
                     </a>
 
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="logout.php">Logout</a>
+                    <a class="dropdown-item" href="../logout.php">Logout</a>
                 </div>
             </li>
         </ul>

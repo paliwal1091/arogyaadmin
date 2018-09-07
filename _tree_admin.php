@@ -1,6 +1,6 @@
   <ul class="list-unstyled components">
                 <li>
-                    <a href="index.html">
+                    <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/home.php">
                         <i class="fas fa-th-large"></i>
                         Dashboard
                     </a>
@@ -19,9 +19,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="grids.html">
+                    <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/admin/user-registration.php">
                         <i class="fas fa-th"></i>
-                        Grid Layouts
+                        User Registration x
                     </a>
                 </li>
                 <li class="active">

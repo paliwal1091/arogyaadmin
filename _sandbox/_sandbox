@@ -4,3 +4,14 @@
 <p class="text-info">...</p>
 <p class="text-warning">...</p>
 <p class="text-danger">...</p>
+
+
+                            <?php
+                            if (isset($_POST['submit'])) {
+                                ?>
+                                <script>
+                                    window.location.replace("<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/admin/user-registration.php");
+                                </script>
+                                <?php
+                            }
+                            ?>

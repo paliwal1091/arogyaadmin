@@ -31,11 +31,10 @@ function setData($sql, $flag) {
     }
     if (mysqli_query($conn, $sql)) {
         $last_id = mysqli_insert_id($conn);
-        $username = 'LEC' . $last_id;
         if ($flag)
             echo '<p class="bg-success msg-success">New record created successfully<p>';
     } else {
-        echo " Invalid Input ";
+        echo " Invalid or Duplicate Input ";
     }
 
     mysqli_close($conn);
