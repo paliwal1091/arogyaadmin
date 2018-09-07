@@ -59,7 +59,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
           }else if($_SESSION['userbean']['user_role']=='ACCOUNTANT'){
                include_once './_tree_accountant.php';
           }else if($_SESSION['userbean']['user_role']=='ADMIN'){
-               include_once './admin/_tree_admin.php';
+               include_once './_tree_admin.php';
           }else if($_SESSION['userbean']['user_role']=='LAB'){
                include_once './_tree_lab.php';
           }else if($_SESSION['userbean']['user_role']=='OPD'){
