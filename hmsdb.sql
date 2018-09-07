@@ -223,9 +223,11 @@ CREATE TABLE `hms_patient` (
   `created_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `NewIndex1_email` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `hms_patient` */
+
+insert  into `hms_patient`(`id`,`first_name`,`last_name`,`telephone`,`dob`,`email`,`pword`,`status_code`,`user_role`,`created_date`) values (1,'Ravinath','Fernando','012544444','16666','a@gmail.com','*23AE809DDACAF96AF0FD78ED04B6A265E05AA257','ACTIVE','PATIENT','2018-09-07 22:28:15');
 
 /*Table structure for table `hms_purchase` */
 
@@ -280,7 +282,7 @@ CREATE TABLE `hms_user` (
 
 /*Data for the table `hms_user` */
 
-insert  into `hms_user`(`id`,`first_name`,`last_name`,`nic`,`pword`,`user_role`,`telephone`,`email`,`empno`,`status_code`,`created_date`,`created_user`) values (1,'kumara','pathirana','88','*23AE809DDACAF96AF0FD78ED04B6A265E05AA257','ADMIN','0111','admin@gmail.com','2255','ACTIVE','2018-07-27 21:20:34',1),(2,'Shalinqx','Tha','89','*23AE809DDACAF96AF0FD78ED04B6A265E05AA257','OPD','02244','','2266','ACTIVE','2018-08-02 12:01:43',1),(3,'Gayaxxs','Sirix','90','*23AE809DDACAF96AF0FD78ED04B6A265E05AA257','ACCOUNTANT','','','2267','ACTIVE','2018-08-06 12:04:25',1),(5,'Nuwax','Perd','92','*23AE809DDACAF96AF0FD78ED04B6A265E05AA257','LAB','dd@g.com','','2269','ACTIVE','2018-08-06 12:06:43',1),(6,'KK','ii','93','*23AE809DDACAF96AF0FD78ED04B6A265E05AA257','TRANSPORT','011','ravi@gm','2270','ACTIVE','2018-08-06 16:03:16',1),(7,'kx','lklklxxs','94','*23AE809DDACAF96AF0FD78ED04B6A265E05AA257','PHARMACIST','055','dads@gm.l','6633','ACTIVE','2018-08-07 12:38:30',1),(8,'Rasintha','kjkjk','95','*23AE809DDACAF96AF0FD78ED04B6A265E05AA257','WARD','07155544','',NULL,'ACTIVE','2018-08-07 16:23:25',1);
+insert  into `hms_user`(`id`,`first_name`,`last_name`,`nic`,`pword`,`user_role`,`telephone`,`email`,`empno`,`status_code`,`created_date`,`created_user`) values (1,'kumara','pathirana','88','*667F407DE7C6AD07358FA38DAED7828A72014B4E','ADMIN','0111','admin@gmail.com','2255','ACTIVE','2018-07-27 21:20:34',1),(2,'Shalinqx','Tha','89','*23AE809DDACAF96AF0FD78ED04B6A265E05AA257','OPD','02244','','2266','ACTIVE','2018-08-02 12:01:43',1),(3,'Gayaxxs','Sirix','90','*23AE809DDACAF96AF0FD78ED04B6A265E05AA257','ACCOUNTANT','','','2267','ACTIVE','2018-08-06 12:04:25',1),(5,'Nuwax','Perd','92','*23AE809DDACAF96AF0FD78ED04B6A265E05AA257','LAB','dd@g.com','','2269','ACTIVE','2018-08-06 12:06:43',1),(6,'KK','ii','93','*23AE809DDACAF96AF0FD78ED04B6A265E05AA257','TRANSPORT','011','ravi@gm','2270','ACTIVE','2018-08-06 16:03:16',1),(7,'kx','lklklxxs','94','*23AE809DDACAF96AF0FD78ED04B6A265E05AA257','PHARMACIST','055','dads@gm.l','6633','ACTIVE','2018-08-07 12:38:30',1),(8,'Rasintha','kjkjk','95','*23AE809DDACAF96AF0FD78ED04B6A265E05AA257','WARD','07155544','',NULL,'ACTIVE','2018-08-07 16:23:25',1);
 
 /*Table structure for table `hms_user_role` */
 
