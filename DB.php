@@ -13,7 +13,6 @@ function getDBConnection() {
     $password = "123";
     $db = "hmsdb";
 
-
 // Create connection
     $conn = mysqli_connect($servername, $username, $password, $db);
 // Check connection
@@ -34,7 +33,7 @@ function setData($sql, $flag) {
         if ($flag)
             echo '<p class="bg-success msg-success">New record created successfully<p>';
     } else {
-        echo " Invalid or Duplicate Input ";
+        echo ' <p class="bg-danger msg-error"> Invalid or Duplicate Input</p> ';
     }
 
     mysqli_close($conn);
@@ -87,9 +86,9 @@ function setDelete($sql) {
     }
 
     if (mysqli_query($conn, $sql)) {
-        //echo "Record deleted successfully";
+        echo '<p class="bg-success msg-success">Record deleted successfully</p>';
     } else {
-        // echo "Error deleting record: " . mysqli_error($conn);
+         echo "Error deleting record: " . mysqli_error($conn);
     }
 
     mysqli_close($conn);

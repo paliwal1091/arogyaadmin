@@ -1,4 +1,9 @@
-
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
 <?php
 session_start();
 include '../DB.php';
@@ -68,107 +73,124 @@ include '../DB.php';
                 <!--// main-heading -->
                 <!-- Page Content -->
                 <div class="blank-page-content">
-                    <h4>User Registration</h4>
+                    <h4>  Doctor Registration </h4>
                     <hr>
-                    <div class="row">
-                        <div class="col-md-8">
-
-                            <?php
-                            if (isset($_POST['btnReg'])) {
-                                $sql = " INSERT INTO `hmsdb`.`hms_user`
+                    
+                    <?php
+                        if (isset($_POST['btnDocReg'])) {
+                            $sql = "INSERT INTO hms_doctor
             (`first_name`,
              `last_name`,
              `nic`,
              `pword`,
-             `user_role`,
-             `telephone`,
              `email`,
-             `empno`,
+             `telephone`,
+             `degree`,
+             `specialist_id`,
+             `doc_fee`,
+             `slmc_no`,
              `status_code`,
+             `category`,
              `created_user`)
 VALUES ('" . $_POST['first_name'] . "',
         '" . $_POST['last_name'] . "',
         '" . $_POST['nic'] . "',
         PASSWORD('" . $_POST['nic'] . "'),
-        '" . $_POST['user_role'] . "',
-        '" . $_POST['telephone'] . "',
         '" . $_POST['email'] . "',
-        '" . $_POST['empno'] . "',
-        '" . $_POST['status_code'] . "',
-        '" . $_SESSION['userbean']['id'] . "'); ";
-//                                echo $sql;
-                                setData($sql, TRUE);
-                            }
-                            ?>
-                            <form class="form-horizontal" action="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/admin/user-registration.php" method="post">
+        '" . $_POST['telephone'] . "',
+        '" . $_POST['degree'] . "',
+        '" . $_POST['specialist_id'] . "',
+        '" . $_POST['doc_fee'] . "',
+        '" . $_POST['slmc_no'] . "',
+        'ACTIVE',
+        '" . $_POST['opd'] . "',
+        '" . $_SESSION['userbean']['id'] . "');";
+                            echo $sql;
+                            setData($sql, TRUE);
+                        }
+                        
+                        ?>
+                    <div class="row">
+
+                        
+
+
+                        <div class="col-md-8">
+
+                            <form class="form-horizontal"  action="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/admin/doctor-registration.php" method="post" >
                                 <span class="mando-msg">* fields are mandatory</span>
                                 <div class="form-group">
-                                    <label for="text" class="control-label col-xs-4">First Name <span class="mando-msg">*</span></label> 
+                                    <label for="first_name" class="control-label col-xs-4">First Name <span class="mando-msg">*</span></label> 
                                     <div class="col-xs-8">
-                                        <input id="text" name="first_name" type="text"  required="" class="form-control">
+                                        <input required="" id="first_name" name="first_name" type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="text1" class="control-label col-xs-4">Last Name <span class="mando-msg">*</span></label> 
+                                    <label for="last_name" class="control-label col-xs-4">Last Name <span class="mando-msg">*</span></label> 
                                     <div class="col-xs-8">
-                                        <input id="text1" name="last_name" type="text" required="" class="form-control">
+                                        <input required="" id="last_name" name="last_name" type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="text2" class="control-label col-xs-4">NIC <span class="mando-msg">*</span></label> 
+                                    <label for="nic" class="control-label col-xs-4">NIC <span class="mando-msg">*</span></label> 
                                     <div class="col-xs-8">
-                                        <input id="text2" name="nic" type="text" required="" class="form-control">
+                                        <input required="" id="nic" name="nic" type="text" class="form-control">
+                                        Default password will be same as the NIC address
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="select" class="control-label col-xs-4">User Role <span class="mando-msg">*</span></label> 
+                                    <label for="nic" class="control-label col-xs-4"></label> 
+                                    <div class="col-xs-4">
+                                        <span class="mando-msg">*</span><input id="email" name="email"  required="" type="email" class="form-control" placeholder="Email">
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <span class="mando-msg">*</span> <input id="telephone" required="" name="telephone" type="text" class="form-control" placeholder="Telephone">
+                                    </div>
+                                    <div class="col-xs-1">
+                                        <input type="checkbox" name="opd" value="OPD"> OPD
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="degree" class="control-label col-xs-4">Degree <span class="mando-msg">*</span></label> 
                                     <div class="col-xs-8">
-                                        <select id="select" name="user_role" required="" class="select form-control">
+                                        <input  required="" id="degree" name="degree" type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="specialist_id" class="control-label col-xs-4">Specialist</label> 
+                                    <div class="col-xs-8">
+                                        <select id="specialist_id"  name="specialist_id" class="select form-control">
                                             <option value="">--select--</option>
                                             <?php
-                                            $sql = "SELECT * FROM hms_user_role WHERE user_role != 'PATIENT'  AND user_role != 'DOCTOR'";
+                                            $sql = "SELECT * FROM hms_specialist";
                                             $data = getData($sql);
                                             foreach ($data as $value) {
-                                                ?> <option   value="<?php echo $value['user_role'] ?>"><?php echo $value['description'] ?></option> <?php
+                                                ?> 
+                                                <option value="<?php echo $value['id'] ?>"><?php echo $value['specialist'] ?></option> <?php
                                             }
                                             ?>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="text3" class="control-label col-xs-4">Telephone</label> 
+                                    <label for="slmc_no" class="control-label col-xs-4">SLMCS No <span class="mando-msg">*</span></label> 
                                     <div class="col-xs-8">
-                                        <input id="text3" name="telephone" type="text" class="form-control">
+                                        <input id="slmc_no" required="" name="slmc_no" type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="text4" class="control-label col-xs-4">Email</label> 
+                                    <label for="doc_fee" class="control-label col-xs-4">Doctor Fee <span class="mando-msg">*</span></label> 
                                     <div class="col-xs-8">
-                                        <input id="text4" name="email" type="text" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="text5" class="control-label col-xs-4">Employee/SLMS NO <span class="mando-msg">*</span></label> 
-                                    <div class="col-xs-8">
-                                        <input id="text5" name="empno" type="text" required="" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="select1" class="control-label col-xs-4">Status</label> 
-                                    <div class="col-xs-8">
-                                        <select id="select1" name="status_code" class="select form-control">
-                                            <option value="ACTIVE">ACTIVE</option>
-                                            <option value="DEACTIVE">DEACTIVE</option>
-                                        </select>
+                                        <input id="doc_fee" name="doc_fee" type="number" class="form-control">
                                     </div>
                                 </div> 
                                 <div class="form-group row">
                                     <div class="col-xs-offset-4 col-xs-8">
-                                        <button name="btnReg" type="submit" class="btn btn-primary">Submit</button>
+                                        <button name="btnDocReg" type="submit" class="btn btn-primary">Submit</button>
                                     </div>
                                 </div>
                             </form>
-
 
                         </div>
                         <div class="col-md-4"></div>
@@ -185,7 +207,6 @@ VALUES ('" . $_POST['first_name'] . "',
                                 <th>User Role</th>
                                 <th>Telephone</th>
                                 <th>Email</th>
-                                <th>EMPNO</th>
                                 <th>Status</th>
                                 <th>Date Created</th>
                                 <th></th>
@@ -193,12 +214,11 @@ VALUES ('" . $_POST['first_name'] . "',
                         </thead>
                         <tbody>
                             <?php
-                            $sql = " SELECT * FROM hms_user ";
+                            $sql = " SELECT * FROM hms_doctor ";
                             $resultx = getData($sql);
                             if ($resultx != FALSE) {
                                 while ($row = mysqli_fetch_assoc($resultx)) {
                                     ?>
-
                                     <tr>
                                         <td><?= $row['first_name'] ?></td>
                                         <td><?= $row['last_name'] ?></td>
@@ -206,10 +226,9 @@ VALUES ('" . $_POST['first_name'] . "',
                                         <td><?= $row['user_role'] ?></td>
                                         <td><?= $row['telephone'] ?></td>
                                         <td><?= $row['email'] ?></td>
-                                        <td><?= $row['empno'] ?></td>
                                         <td><?= $row['status_code'] ?></td>
                                         <td><?= $row['created_date'] ?></td>
-                                        <td><a class="btn btn-success btn-sm" href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/admin/user-registration-update.php?id=<?= $row['id'] ?>">update</a></td>
+                                        <td><a class="btn btn-success btn-sm" href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/admin/doctor-registration-update.php?id=<?= $row['id'] ?>">update</a></td>
                                     </tr>
 
                                     <?php

@@ -6,21 +6,22 @@
         </a>
     </li>
     <li>
-        <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/admin/user-registration.php">
-            <i class="fas fa-th"></i>
-            User Registration
+        <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/doctor/my-availability.php">
+              <i class="fas fa-user-md"></i>
+            My Availability
         </a>
     </li>
     <li>
-        <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/admin/doctor-registration.php">
+        <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/doctor/appointment-list.php">
             <i class="fas fa-user-md"></i>
-            Doctor Registration
+           View Appointments
         </a>
     </li>
     <li>
-        <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/admin/patient-registration.php">
-           <i class="fas fa-user"></i>
-           Patient Registration
+        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
+            <i class="fas fa-laptop"></i>
+            Components
+            <i class="fas fa-angle-down fa-pull-right"></i>
         </a>
     </li>
     <li>
