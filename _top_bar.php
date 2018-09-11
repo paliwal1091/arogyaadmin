@@ -12,7 +12,37 @@
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
                    aria-expanded="false">
                     <i class="far fa-bell"></i>
-                    <span class="badge">4</span>
+                    <?php
+                    if ($_SESSION['userbean']['user_role'] == 'DOCTOR') {
+                        ?><span class="badge">
+                        <?php 
+                        $sql = "SELECT COUNT(*) AS cnt FROM hms_doctor_appointment WHERE status_code = 'OPEN' AND doctor_id = '". $_SESSION['userbean']['id']."'";
+                        $data = getData($sql);
+                        if($data != null){
+                            foreach ($data as $value) {
+                                echo $value['cnt'];
+                            }
+                        }
+                        
+                        ?>
+                        </span><?php
+                    } else if ($_SESSION['userbean']['user_role'] == 'ACCOUNTANT') {
+//                    include_once './_tree_accountant.php';
+                    } else if ($_SESSION['userbean']['user_role'] == 'ADMIN') {
+//                    include_once './_tree_admin.php';
+                    } else if ($_SESSION['userbean']['user_role'] == 'LAB') {
+//                    include_once './_tree_lab.php';
+                    } else if ($_SESSION['userbean']['user_role'] == 'OPD') {
+//                    include_once './_tree_opd.php';
+                    } else if ($_SESSION['userbean']['user_role'] == 'PHARMACIST') {
+//                    include_once './_tree_pharmacist.php';
+                    } else if ($_SESSION['userbean']['user_role'] == 'TRANSPORT') {
+//                    include_once './_tree_transport.php';
+                    } else if ($_SESSION['userbean']['user_role'] == 'WARD') {
+//                    include_once './_tree_ward.php';
+                    }
+                    ?>
+
                 </a>
 
             </li>
@@ -20,7 +50,7 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
                    aria-expanded="false">
-                       <?php echo $_SESSION['userbean']['user_role']; ?>
+<?php echo $_SESSION['userbean']['user_role']; ?>
                 </a>
 
             </li>
@@ -33,20 +63,20 @@
                 <div class="dropdown-menu drop-3">
                     <div class="profile d-flex mr-o">
                         <div class="profile-l align-self-center">
-                            <img src="../images/profile.jpg" class="img-fluid mb-3" alt="Responsive image">
+                            <img src="images/profile.jpg" class="img-fluid mb-3" alt="Responsive image">
                         </div>
                         <div class="profile-r align-self-center">
                             <h3 class="sub-title-w3-agileits"><?php echo $_SESSION['userbean']['first_name']; ?></h3>
                             <a href="<?php echo $_SESSION['userbean']['email']; ?>"><?php echo $_SESSION['userbean']['email']; ?></a>
                         </div>
                     </div>
-                    <a href="../profile.php" class="dropdown-item mt-3">
+                    <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/profile.php" class="dropdown-item mt-3">
                         <h4>
                             <i class="far fa-user mr-3"></i>My Profile</h4>
                     </a>
 
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="../logout.php">Logout</a>
+                    <a class="dropdown-item" href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/logout.php">Logout</a>
                 </div>
             </li>
         </ul>

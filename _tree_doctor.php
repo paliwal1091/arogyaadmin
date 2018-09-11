@@ -18,37 +18,18 @@
         </a>
     </li>
     <li>
-        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
-            <i class="fas fa-laptop"></i>
-            Components
-            <i class="fas fa-angle-down fa-pull-right"></i>
+        <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/doctor/patient-list.php">
+            <i class="fas fa-user-md"></i>
+           Patient List
         </a>
     </li>
     <li>
-        <a href="charts.html">
-            <i class="fas fa-chart-pie"></i>
-            Charts
+        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
+            <i class="fas fa-laptop"></i>
+            Reports
         </a>
     </li>
-
-    <li class="active">
-        <a href="#pageSubmenu1" data-toggle="collapse" aria-expanded="false">
-            <i class="far fa-file"></i>
-            Pages
-            <i class="fas fa-angle-down fa-pull-right"></i>
-        </a>
-        <ul class="collapse list-unstyled" id="pageSubmenu1">
-            <li>
-                <a href="404.html">404</a>
-            </li>
-            <li>
-                <a href="500.html">500</a>
-            </li>
-            <li>
-                <a href="blank.html">Blank</a>
-            </li>
-        </ul>
-    </li>
+    
 
 
 </ul>

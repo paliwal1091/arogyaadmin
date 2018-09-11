@@ -146,7 +146,7 @@ include '../core.php';
                                         <input type="hidden" name="status_code" value="ACCEPT"/>
                                         <input type="hidden" name="id" value="<?= $value['id'] ?>"/>
                                         <div class="form-group">
-                                            <label for="textarea" class="control-label col-xs-4">Comment</label> 
+                                            <label for="textarea" class="control-label col-xs-4">Comment (Diagnosis Detail)</label> 
                                             <div class="col-xs-8">
                                                 <textarea id="textarea"  name="doctor_comment" cols="40" rows="5" class="form-control"></textarea>
                                             </div>

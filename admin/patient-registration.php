@@ -73,7 +73,7 @@ include '../DB.php';
                 <!--// main-heading -->
                 <!-- Page Content -->
                 <div class="blank-page-content">
-                    <h4>  Doctor Registration </h4>
+                    <h4>  Patient Registration </h4>
                     <hr>
 
                     <?php
@@ -94,6 +94,17 @@ VALUES ('" . $_POST['first_name'] . "',
                         setData($sql, TRUE);
                     }
                     ?>
+                    
+                    
+                    <?php
+                    if(isset($_GET['patient_id'])){
+                        $sql = "UPDATE hms_patient SET pword = PASSWORD('".$_GET['email']."') WHERE id = '".$_GET['patient_id']."' ";
+//                       echo $sql;
+                        setUpdate($sql, TRUE);
+                    }
+                    ?>
+                    
+                    
                     <div class="row">
 
                         <div class="col-md-8">
@@ -152,7 +163,6 @@ VALUES ('" . $_POST['first_name'] . "',
                             <tr>
                                 <th>First Name</th>
                                 <th>Last Name</th>
-                                <th>NIC</th>
                                 <th>User Role</th>
                                 <th>Telephone</th>
                                 <th>Email</th>
@@ -163,7 +173,7 @@ VALUES ('" . $_POST['first_name'] . "',
                         </thead>
                         <tbody>
                             <?php
-                            $sql = " SELECT * FROM hms_doctor ";
+                            $sql = " SELECT * FROM hms_patient ";
                             $resultx = getData($sql);
                             if ($resultx != FALSE) {
                                 while ($row = mysqli_fetch_assoc($resultx)) {
@@ -171,15 +181,13 @@ VALUES ('" . $_POST['first_name'] . "',
                                     <tr>
                                         <td><?= $row['first_name'] ?></td>
                                         <td><?= $row['last_name'] ?></td>
-                                        <td><?= $row['nic'] ?></td>
                                         <td><?= $row['user_role'] ?></td>
                                         <td><?= $row['telephone'] ?></td>
                                         <td><?= $row['email'] ?></td>
                                         <td><?= $row['status_code'] ?></td>
                                         <td><?= $row['created_date'] ?></td>
-                                        <td><a class="btn btn-success btn-sm" href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/admin/doctor-registration-update.php?id=<?= $row['id'] ?>">update</a></td>
+                                        <td><a class="btn btn-success btn-sm" href="patient-registration.php?patient_id=<?= $row['id'] ?>&email=<?= $row['email'] ?>">reset password</a></td>
                                     </tr>
-
                                     <?php
                                 }
                             }
