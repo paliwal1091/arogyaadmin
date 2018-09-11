@@ -1,15 +1,14 @@
   <ul class="list-unstyled components">
                 <li>
-                    <a href="index.html">
+                    <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/home.php">
                         <i class="fas fa-th-large"></i>
                         Dashboard
                     </a>
                 </li>
                 <li>
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
+                    <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/pharmacist/drug-manage.php" >
                         <i class="fas fa-laptop"></i>
-                        Components
-                        <i class="fas fa-angle-down fa-pull-right"></i>
+                        Manage Drugs
                     </a>
                 </li>
                 <li>
