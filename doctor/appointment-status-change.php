@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 include '../DB.php';
@@ -71,7 +70,7 @@ include '../DB.php';
                     <h4>  My Availability</h4>
                     <hr>
                     <div class="row">
-                        <div class="col-md-4">.col-md-4</div>
+                        <div class="col-md-4"></div>
                         <div class="col-md-4">
                             <?php
                             if (isset($_POST['btnStatusChange'])) {
@@ -80,7 +79,7 @@ include '../DB.php';
                             }
                             ?>
                         </div>
-                        <div class="col-md-4">.col-md-8</div>
+                        <div class="col-md-4"></div>
                     </div>
                 </div>
 
