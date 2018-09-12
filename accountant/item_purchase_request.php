@@ -70,7 +70,14 @@ include '../DB.php';
                 <div class="blank-page-content">
                     <h4>Item Purchase</h4>
                     <hr>
-
+                    <?php
+                    if (isset($_POST['btnAccept'])) {
+                        $sql = "UPDATE FROM hms_purchase SET amount = '".$_POST['amount']."',updated_by='".$_SESSION['userbean']['id']."' WHERE id = '".$_POST['id']."'";
+                    }
+                    if (isset($_POST['btnReject'])) {
+                        $sql = "UPDATE FROM hms_purchase SET comment = '".$_POST['comment']."',updated_by='".$_SESSION['userbean']['id']."' WHERE id = '".$_POST['id']."'";
+                    }
+                    ?>
 
                     <table id="example" class="display" cellspacing="0" width="100%">
                         <thead>
@@ -78,9 +85,9 @@ include '../DB.php';
                                 <th>Item Name</th>
                                 <th>qty</th>
                                 <th>status_code</th>
+                                <th></th>
                                 <th>amount</th>
                                 <th>created_date</th>
-                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -91,20 +98,26 @@ include '../DB.php';
                                 foreach ($data as $value) {
                                     ?>
                                     <tr>
-                                    <td><?= $value['purchasing_item'] ?></td>
-                                    <td><?= $value['qty'] ?></td>
-                                    <td><?= $value['status_code'] ?></td>
-                                    <td><?php if ($value['status_code'] == 'PENDING') {
-                                        ?> 
-                        <form action="item_purchase_request.php" method="post">
-                            <input type="text" name="amount" />
-                            <input type="submit" name="" />
-                        </form>
-                                            <?php
-                                        }
-                                        ?></td>
-                                    <td><?= $value['status_code'] ?></td>
-                                    <td><?= $value['status_code'] ?></td>
+                                        <td><?= $value['purchasing_item'] ?></td>
+                                        <td><?= $value['qty'] ?></td>
+                                        <td><?= $value['status_code'] ?></td>
+                                        <td><?php if ($value['status_code'] == 'PENDING') {
+                                ?> 
+                                                <form action="item_purchase_request.php" method="post">
+                                                    <input type="text" name="amount" required="" placeholder="amount" />
+                                                    <input type="hidden" name="id" value="<?= $value['id'] ?>" />
+                                                    <input type="submit" name="btnAccept" class="btn-sm btn-success" />
+                                                </form>
+                                                <form action="item_purchase_request.php" method="post">
+                                                    <input type="hidden" name="id" value="<?= $value['id'] ?>" />
+                                                    <input type="text" name="comment" required="" placeholder="Reject Reson" />
+                                                    <input type="submit" name="btnReject" class="btn-sm btn-danger" />
+                                                </form>
+                                                <?php
+                                            }
+                                            ?></td>
+                                        <td><?= $value['amount'] ?></td>
+                                        <td><?= $value['created_date'] ?></td>
                                     </tr>
                                     <?php
                                 }

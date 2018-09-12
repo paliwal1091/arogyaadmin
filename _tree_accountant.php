@@ -6,7 +6,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/pharmacist/item_purchase_request.php" >
+                    <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/accountant/item_purchase_request.php" >
                         <i class="fas fa-laptop"></i>
                        Item Requests
                     </a>
