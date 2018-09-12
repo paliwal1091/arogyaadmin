@@ -6,9 +6,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/pharmacist/drug-manage.php" >
+                    <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/pharmacist/item_purchase_request.php" >
                         <i class="fas fa-laptop"></i>
-                        Manage Drugs
+                       Item Requests
                     </a>
                 </li>
              
@@ -18,8 +18,5 @@
                        Reports
                     </a>
                 </li>
-                
-                
-               
             </ul>
 

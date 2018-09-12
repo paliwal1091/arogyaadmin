@@ -52,7 +52,7 @@ include './DB.php';?>
                 if ($_SESSION['userbean']['user_role'] == 'DOCTOR') {
                     include_once './_tree_doctor.php';
                 } else if ($_SESSION['userbean']['user_role'] == 'ACCOUNTANT') {
-//                    include_once './_tree_accountant.php';
+                    include_once './_tree_accountant.php';
                 } else if ($_SESSION['userbean']['user_role'] == 'ADMIN') {
                     include_once './_tree_admin.php';
                 } else if ($_SESSION['userbean']['user_role'] == 'LAB') {

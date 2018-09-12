@@ -125,13 +125,15 @@ CREATE TABLE `hms_drug` (
   `id` int(5) NOT NULL AUTO_INCREMENT,
   `drug_name` varchar(50) DEFAULT NULL,
   `qty` int(5) DEFAULT NULL,
-  `price` decimal(10,2) DEFAULT NULL,
+  `unit` varchar(5) DEFAULT NULL,
+  `unit_price` decimal(10,2) DEFAULT NULL,
+  `date_expiry` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `hms_drug` */
 
-insert  into `hms_drug`(`id`,`drug_name`,`qty`,`price`) values (1,'ghghghgh',200,'588.00'),(2,'Penisileen',250,'600.00'),(3,'ointment ',250,'2335.00');
+insert  into `hms_drug`(`id`,`drug_name`,`qty`,`unit`,`unit_price`,`date_expiry`) values (1,'ghghghgh',150,'g','500.00','2018-09-01'),(2,'Penisileen',250,NULL,NULL,NULL),(3,'ointment ',250,NULL,NULL,NULL);
 
 /*Table structure for table `hms_employee_salary` */
 
@@ -256,16 +258,16 @@ CREATE TABLE `hms_purchase` (
   `purchasing_item` varchar(50) DEFAULT NULL,
   `qty` int(5) DEFAULT NULL,
   `status_code` varchar(20) DEFAULT 'PENDING',
-  `request_by` int(5) DEFAULT NULL,
+  `updated_by` int(5) DEFAULT NULL,
   `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_user` int(5) DEFAULT NULL,
-  `amount` double(10,2) DEFAULT NULL,
+  `amount` double(10,2) DEFAULT 0.00,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 /*Data for the table `hms_purchase` */
 
-insert  into `hms_purchase`(`id`,`purchasing_item`,`qty`,`status_code`,`request_by`,`created_date`,`created_user`,`amount`) values (1,'sdsdsdsd',33,NULL,5,'2018-08-28 20:41:20',5,NULL),(2,'jhkjhjh',4545,'REJECT',8,'2018-08-28 21:39:36',8,NULL),(3,'sample test tube ',1500,'COMPLETE',5,'2018-08-30 21:16:41',5,150.00),(4,'wsdasdsa',25,'COMPLETE',8,'2018-08-30 21:35:24',8,3578.00),(5,'dfsdfsdf',222,'PENDING',8,'2018-08-30 21:37:31',8,NULL);
+insert  into `hms_purchase`(`id`,`purchasing_item`,`qty`,`status_code`,`updated_by`,`created_date`,`created_user`,`amount`) values (1,'sdsdsdsd',33,NULL,5,'2018-08-28 20:41:20',5,NULL),(2,'jhkjhjh',4545,'REJECT',8,'2018-08-28 21:39:36',8,NULL),(3,'sample test tube ',1500,'COMPLETE',5,'2018-08-30 21:16:41',5,150.00),(4,'wsdasdsa',25,'COMPLETE',8,'2018-08-30 21:35:24',8,3578.00),(5,'dfsdfsdf',222,'PENDING',8,'2018-08-30 21:37:31',8,NULL),(6,'dsdsad',33,'PENDING',NULL,'2018-09-12 15:18:24',1,0.00),(7,'sadasdas',33,'PENDING',NULL,'2018-09-12 16:26:57',1,0.00);
 
 /*Table structure for table `hms_specialist` */
 
@@ -300,11 +302,11 @@ CREATE TABLE `hms_user` (
   `created_user` int(5) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `NewIndex1` (`nic`)
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=latin1;
 
 /*Data for the table `hms_user` */
 
-insert  into `hms_user`(`id`,`first_name`,`last_name`,`nic`,`pword`,`user_role`,`telephone`,`email`,`empno`,`status_code`,`created_date`,`created_user`) values (1,'kumaras','pathirana','88','*CE34D0F47B6A991EAD458CD049011F7611A240FC','ADMIN','0111','admin@gmail.com','2255','ACTIVE','2018-07-27 21:20:34',1);
+insert  into `hms_user`(`id`,`first_name`,`last_name`,`nic`,`pword`,`user_role`,`telephone`,`email`,`empno`,`status_code`,`created_date`,`created_user`) values (1,'kumaras','pathirana','88','*CE34D0F47B6A991EAD458CD049011F7611A240FC','ADMIN','0111','admin@gmail.com','2255','ACTIVE','2018-07-27 21:20:34',1),(43,'yohan','perera','8855','*6C39DB3F16D3F0B179A84C9D34F0553143B83684','PHARMACIST','0715833470','ravinathdopp@gmail.com','5533','ACTIVE','2018-09-12 14:28:48',1),(44,'asss','dfsdfsd','9966','*CF345199FA1C4D61CF0953078B86625DDD586B63','ACCOUNTANT','66555','as@gmail.com','9966','ACTIVE','2018-09-12 16:28:30',1);
 
 /*Table structure for table `hms_user_role` */
 

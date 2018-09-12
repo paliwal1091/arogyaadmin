@@ -24,6 +24,12 @@
         </a>
     </li>
     <li>
+        <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/admin/purchasing-item-request.php">
+           <i class="fas fa-user"></i>
+           Item Purchase
+        </a>
+    </li>
+    <li>
         <a href="charts.html">
             <i class="fas fa-chart-pie"></i>
             Reports

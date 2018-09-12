@@ -54,7 +54,7 @@ include '../DB.php';
                 </div>
                 <div class="profile-bg"></div>
                 <?php
-                include_once '../_tree_doctor.php';
+                include_once '../_tree_pharmacist.php';
                 ?>
             </nav>
 
@@ -86,6 +86,18 @@ VALUES ('" . $_POST['drug_name'] . "',
 
                         setData($sql, TRUE);
                     }
+
+
+                    if (isset($_POST['btnUpdate'])) {
+                        $sql = "UPDATE `hms_drug`
+SET 
+  `qty` = '" . $_POST['qty'] . "',
+  `unit_price` = '" . $_POST['unit_price'] . "',
+  `date_expiry` = '" . $_POST['date_expiry'] . "'
+WHERE `id` = '" . $_POST['id'] . "';";
+
+                        setData($sql, TRUE);
+                    }
                     ?>
                     <div class="row">
                         <div class="col-md-6">
@@ -99,39 +111,35 @@ VALUES ('" . $_POST['drug_name'] . "',
                                 //update part
                                 ?>
                                 <form class="form-horizontal" action="drug-manage.php" method="post">
+                                    <input type="hidden" name="id" value="<?= $_GET['id'] ?>" />
                                     <div class="form-group">
                                         <label for="text" class="control-label col-xs-4">Drug Name</label> 
                                         <div class="col-xs-8">
-                                            <input id="text" name="drug_name" type="text" value="<?= $_GET['drug_name']?>" class="form-control">
+                                            <?= $_GET['drug_name'] ?>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="text1" class="control-label col-xs-4">QTY</label> 
                                         <div class="col-xs-8">
-                                            <input id="text1" name="qty" type="text"  value="<?= $_GET['qty']?>"  class="form-control">
+                                            <input id="text1" name="qty" type="text"  value="<?= $_GET['qty'] ?>"  class="form-control">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="select" class="control-label col-xs-4"></label> 
                                         <div class="col-xs-8">
-                                            <select id="select" name="unit" class="select form-control">
-                                                <option value="">--select unit--</option>
-                                                <option value="L">L</option>
-                                                <option value="ml">lm</option>
-                                                <option value="cm">cm</option>
-                                            </select>
+                                            <?= $_GET['unit'] ?>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="text2" class="control-label col-xs-4">Unit Price</label> 
                                         <div class="col-xs-8">
-                                            <input id="text2" name="unit_price" type="text"  value="<?= $_GET['unit_price']?>" class="form-control">
+                                            <input id="text2" name="unit_price" type="text"  value="<?= $_GET['unit_price'] ?>" class="form-control">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="text3" class="control-label col-xs-4">Expiry Date</label> 
                                         <div class="col-xs-8">
-                                            <input id="text3" name="date_expiry" type="date"  value="<?= $_GET['date_expiry']?>" class="form-control">
+                                            <input id="text3" name="date_expiry" type="date"  value="<?= $_GET['date_expiry'] ?>" class="form-control">
                                         </div>
                                     </div> 
                                     <div class="form-group row">
@@ -190,25 +198,9 @@ VALUES ('" . $_POST['drug_name'] . "',
                             }
                             ?>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                         </div>
                         <div class="col-md-6">
+                            <h3>View Stock</h3>
                             <table border="0" style="width: 100%">
                                 <thead>
                                     <tr>
@@ -220,7 +212,6 @@ VALUES ('" . $_POST['drug_name'] . "',
                                     </tr>
                                 </thead>
                                 <tbody>
-
                                     <?php
                                     $sql = "SELECT * FROM hms_drug";
                                     $data = getData($sql);
@@ -233,7 +224,7 @@ VALUES ('" . $_POST['drug_name'] . "',
                                                 <td><?= $value['unit'] ?></td>
                                                 <td><?= $value['unit_price'] ?></td>
                                                 <td><?= $value['date_expiry'] ?></td>
-                                                <td><a href="drug-manage.php?id=<?= $value['id'] ?>&drug_name=<?= $value['drug_name']?>&qty=<?= $value['qty'] ?>&unit=<?= $value['unit'] ?>&unit_price=<?= $value['unit_price'] ?>&date_expiry=<?= $value['date_expiry'] ?>">update</a></td>
+                                                <td><a href="drug-manage.php?id=<?= $value['id'] ?>&drug_name=<?= $value['drug_name'] ?>&qty=<?= $value['qty'] ?>&unit=<?= $value['unit'] ?>&unit_price=<?= $value['unit_price'] ?>&date_expiry=<?= $value['date_expiry'] ?>">update</a></td>
                                             </tr>
                                             <?php
                                         }
