@@ -68,59 +68,38 @@ include '../DB.php';
                 <!--// main-heading -->
                 <!-- Page Content -->
                 <div class="blank-page-content">
-                    <h4>Item Purchase</h4>
+                    <h4>Doctor Salary payment history</h4>
                     <hr>
-                    <?php
-                    if (isset($_POST['btnAccept'])) {
-                        $sql = "UPDATE  hms_purchase SET amount = '" . $_POST['amount'] . "',status_code = 'COMPLETE',updated_by='" . $_SESSION['userbean']['id'] . "' WHERE id = '" . $_POST['id'] . "'";
-                        setUpdate($sql, TRUE);
-                    }
-                    if (isset($_POST['btnReject'])) {
-                        $sql = "UPDATE  hms_purchase SET comment = '" . $_POST['comment'] . "',status_code = 'REJECT',updated_by='" . $_SESSION['userbean']['id'] . "' WHERE id = '" . $_POST['id'] . "'";
-                        setUpdate($sql, TRUE);
-                    }
-                    ?>
-                    <table id="example" class="display" cellspacing="0" width="100%">
+
+                    <table border="1">
                         <thead>
                             <tr>
-                                <th>Item Name</th>
-                                <th>qty</th>
-                                <th>status_code</th>
-                                <th></th>
-                                <th>amount</th>
-                                <th>created_date</th>
+                                <th>Employee Name</th>
+                                <th>User Role</th>
+                                <th>Month</th>
+                                <th>Salary</th>
+                                <th>DateTime</th>
                             </tr>
                         </thead>
                         <tbody>
+
+
+
                             <?php
-                            $sql = "select * from hms_purchase";
+                            $sql = "SELECT hms_employee_salary.*,hms_user.user_role,CONCAT(hms_user.first_name,' ',hms_user.last_name) AS user_name 
+FROM hms_employee_salary INNER JOIN hms_user ON hms_employee_salary.user_id = hms_user.id
+";
+//                            echo $sql;
                             $data = getData($sql);
                             if ($data != null) {
                                 foreach ($data as $value) {
                                     ?>
                                     <tr>
-                                        <td><?= $value['purchasing_item'] ?></td>
-                                        <td><?= $value['qty'] ?></td>
-                                        <td><?= $value['status_code'] ?></td>
-                                        <td><?php if ($value['status_code'] == 'PENDING') {
-                                        ?> 
-                                                <form action="item_purchase_request.php" method="post">
-                                                    <input type="text" name="amount" required="" placeholder="amount" />
-                                                    <input type="hidden" name="id" value="<?= $value['id'] ?>" />
-                                                    <input type="submit" name="btnAccept" class="btn-sm btn-success" />
-                                                </form>
-                                                <form action="item_purchase_request.php" method="post">
-                                                    <input type="hidden" name="id" value="<?= $value['id'] ?>" />
-                                                    <input type="text" name="comment" required="" placeholder="Reject Reson" />
-                                                    <input type="submit" name="btnReject" class="btn-sm btn-danger" />
-                                                </form>
-                                                <?php
-                                            }else{
-                                                echo $value['comment'];
-                                            }
-                                            ?></td>
-                                        <td><?= $value['amount'] ?></td>
-                                        <td><?= $value['created_date'] ?></td>
+                                        <td><?= $value['salary_month']?></td>
+                                        <td><?= $value['salary_amount']?></td>
+                                        <td><?= $value['user_role']?></td>
+                                        <td><?= $value['user_name']?> </td>
+                                        <td><?= $value['created_date']?></td>
                                     </tr>
                                     <?php
                                 }
@@ -128,13 +107,6 @@ include '../DB.php';
                             ?>
                         </tbody>
                     </table>
-                    <link href="css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
-                    <script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
-                    <script type="text/javascript">
-            $(document).ready(function () {
-                $('#example').DataTable();
-            });
-                    </script>
 
 
                 </div>

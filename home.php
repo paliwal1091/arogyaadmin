@@ -56,7 +56,7 @@ include './DB.php';?>
                 } else if ($_SESSION['userbean']['user_role'] == 'ADMIN') {
                     include_once './_tree_admin.php';
                 } else if ($_SESSION['userbean']['user_role'] == 'LAB') {
-//                    include_once './_tree_lab.php';
+                    include_once './_tree_lab.php';
                 } else if ($_SESSION['userbean']['user_role'] == 'OPD') {
 //                    include_once './_tree_opd.php';
                 } else if ($_SESSION['userbean']['user_role'] == 'PHARMACIST') {
@@ -83,11 +83,11 @@ include './DB.php';?>
 if ($_SESSION['userbean']['user_role'] == 'DOCTOR') {
     include_once './doctor/home_icons.php';
 } else if ($_SESSION['userbean']['user_role'] == 'ACCOUNTANT') {
-    include_once './_tree_accountant.php';
+    include_once './accountant/home_icons.php';
 } else if ($_SESSION['userbean']['user_role'] == 'ADMIN') {
     include_once './admin/home_icons.php';
 } else if ($_SESSION['userbean']['user_role'] == 'LAB') {
-    include_once './_tree_lab.php';
+    include_once './lab/home_icons.php';
 } else if ($_SESSION['userbean']['user_role'] == 'OPD') {
     include_once './_tree_opd.php';
 } else if ($_SESSION['userbean']['user_role'] == 'PHARMACIST') {

@@ -54,7 +54,7 @@ include '../DB.php';
                 </div>
                 <div class="profile-bg"></div>
                 <?php
-                include_once '../_tree_accountant.php';
+                include_once '../_tree_lab.php';
                 ?>
             </nav>
 
@@ -68,75 +68,65 @@ include '../DB.php';
                 <!--// main-heading -->
                 <!-- Page Content -->
                 <div class="blank-page-content">
-                    <h4>Item Purchase</h4>
+                    <h4>Doctor Salary</h4>
                     <hr>
                     <?php
-                    if (isset($_POST['btnAccept'])) {
-                        $sql = "UPDATE  hms_purchase SET amount = '" . $_POST['amount'] . "',status_code = 'COMPLETE',updated_by='" . $_SESSION['userbean']['id'] . "' WHERE id = '" . $_POST['id'] . "'";
-                        setUpdate($sql, TRUE);
+                    if (isset($_POST['btnsubmit'])) {
+                        $sql = "INSERT INTO `hms_center`
+            (`center_name`)
+VALUES ('" . $_POST['center_name'] . "');";
+                        setData($sql, TRUE);
                     }
-                    if (isset($_POST['btnReject'])) {
-                        $sql = "UPDATE  hms_purchase SET comment = '" . $_POST['comment'] . "',status_code = 'REJECT',updated_by='" . $_SESSION['userbean']['id'] . "' WHERE id = '" . $_POST['id'] . "'";
-                        setUpdate($sql, TRUE);
+                    
+                    if(isset($_GET['id'])){
+                    $sql = "DELETE FROM hms_center WHERE id = '".$_GET['id']."'";    
+                    setDelete($sql);
                     }
+                    
                     ?>
-                    <table id="example" class="display" cellspacing="0" width="100%">
-                        <thead>
-                            <tr>
-                                <th>Item Name</th>
-                                <th>qty</th>
-                                <th>status_code</th>
-                                <th></th>
-                                <th>amount</th>
-                                <th>created_date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            $sql = "select * from hms_purchase";
-                            $data = getData($sql);
-                            if ($data != null) {
-                                foreach ($data as $value) {
-                                    ?>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <form class="form-horizontal" action="lab-center.php" method="post">
+                                <div class="form-group">
+                                    <label for="text" class="control-label col-xs-4">Center Name</label> 
+                                    <div class="col-xs-8">
+                                        <input id="text" name="center_name" type="text" class="form-control">
+                                    </div>
+                                </div> 
+                                <div class="form-group row">
+                                    <div class="col-xs-offset-4 col-xs-8">
+                                        <button name="btnsubmit" type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-8">
+
+                            <table border="1">
+                                <thead>
                                     <tr>
-                                        <td><?= $value['purchasing_item'] ?></td>
-                                        <td><?= $value['qty'] ?></td>
-                                        <td><?= $value['status_code'] ?></td>
-                                        <td><?php if ($value['status_code'] == 'PENDING') {
-                                        ?> 
-                                                <form action="item_purchase_request.php" method="post">
-                                                    <input type="text" name="amount" required="" placeholder="amount" />
-                                                    <input type="hidden" name="id" value="<?= $value['id'] ?>" />
-                                                    <input type="submit" name="btnAccept" class="btn-sm btn-success" />
-                                                </form>
-                                                <form action="item_purchase_request.php" method="post">
-                                                    <input type="hidden" name="id" value="<?= $value['id'] ?>" />
-                                                    <input type="text" name="comment" required="" placeholder="Reject Reson" />
-                                                    <input type="submit" name="btnReject" class="btn-sm btn-danger" />
-                                                </form>
-                                                <?php
-                                            }else{
-                                                echo $value['comment'];
-                                            }
-                                            ?></td>
-                                        <td><?= $value['amount'] ?></td>
-                                        <td><?= $value['created_date'] ?></td>
+                                        <th>Center Name</th>
                                     </tr>
+                                </thead>
+                                <tbody>
                                     <?php
-                                }
-                            }
-                            ?>
-                        </tbody>
-                    </table>
-                    <link href="css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
-                    <script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
-                    <script type="text/javascript">
-            $(document).ready(function () {
-                $('#example').DataTable();
-            });
-                    </script>
-
-
+                                    $sql = "SELECT * FROM hms_center";
+                                    $data = getData($sql);
+                                    if ($data != null) {
+                                        foreach ($data as $value) {
+                                            ?>
+                                            <tr>
+                                                <td><?= $value['center_name']?></td>
+                                                <td><a href="lab-center.php?id=<?= $value['id']?>">remove</a></td>
+                                            </tr>
+                                            <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
 
                 <!--// Page Content -->

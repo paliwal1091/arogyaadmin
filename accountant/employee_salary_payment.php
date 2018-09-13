@@ -68,74 +68,71 @@ include '../DB.php';
                 <!--// main-heading -->
                 <!-- Page Content -->
                 <div class="blank-page-content">
-                    <h4>Item Purchase</h4>
+                    <h4>Doctor Salary</h4>
                     <hr>
+
                     <?php
-                    if (isset($_POST['btnAccept'])) {
-                        $sql = "UPDATE  hms_purchase SET amount = '" . $_POST['amount'] . "',status_code = 'COMPLETE',updated_by='" . $_SESSION['userbean']['id'] . "' WHERE id = '" . $_POST['id'] . "'";
-                        setUpdate($sql, TRUE);
-                    }
-                    if (isset($_POST['btnReject'])) {
-                        $sql = "UPDATE  hms_purchase SET comment = '" . $_POST['comment'] . "',status_code = 'REJECT',updated_by='" . $_SESSION['userbean']['id'] . "' WHERE id = '" . $_POST['id'] . "'";
-                        setUpdate($sql, TRUE);
+                    if (isset($_POST['addEmpSalary'])) {
+                        $sql = "INSERT INTO `hms_employee_salary`
+            (`user_id`,
+             `salary_month`,
+             `salary_amount`,
+             `created_user`)
+VALUES ('" . $_POST['user_id'] . "',
+        '" . $_POST['salary_month'] . "',
+        '" . $_POST['salary_amount'] . "',
+        '" . $_SESSION['userbean']['id'] . "');";
+                        setData($sql, TRUE);
+                        ?>
+                        <?php
                     }
                     ?>
-                    <table id="example" class="display" cellspacing="0" width="100%">
-                        <thead>
-                            <tr>
-                                <th>Item Name</th>
-                                <th>qty</th>
-                                <th>status_code</th>
-                                <th></th>
-                                <th>amount</th>
-                                <th>created_date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            $sql = "select * from hms_purchase";
-                            $data = getData($sql);
-                            if ($data != null) {
-                                foreach ($data as $value) {
-                                    ?>
-                                    <tr>
-                                        <td><?= $value['purchasing_item'] ?></td>
-                                        <td><?= $value['qty'] ?></td>
-                                        <td><?= $value['status_code'] ?></td>
-                                        <td><?php if ($value['status_code'] == 'PENDING') {
-                                        ?> 
-                                                <form action="item_purchase_request.php" method="post">
-                                                    <input type="text" name="amount" required="" placeholder="amount" />
-                                                    <input type="hidden" name="id" value="<?= $value['id'] ?>" />
-                                                    <input type="submit" name="btnAccept" class="btn-sm btn-success" />
-                                                </form>
-                                                <form action="item_purchase_request.php" method="post">
-                                                    <input type="hidden" name="id" value="<?= $value['id'] ?>" />
-                                                    <input type="text" name="comment" required="" placeholder="Reject Reson" />
-                                                    <input type="submit" name="btnReject" class="btn-sm btn-danger" />
-                                                </form>
-                                                <?php
-                                            }else{
-                                                echo $value['comment'];
+                    <a href="employee_salary_payment_history.php">view history</a>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <form class="form-horizontal" action="employee_salary_payment.php" method="post">
+                                <div class="form-group">
+                                    <label for="select" class="control-label col-xs-4">Employee</label> 
+                                    <div class="col-xs-8">
+                                        <select id="select" name="user_id" class="select form-control">
+                                            <option value="">--select Employee--</option>
+                                            <?php
+                                            $sql = "SELECT * from hms_user";
+                                            $data = getData($sql);
+                                            if ($data != null) {
+                                                foreach ($data as $value) {
+                                                    ?>
+                                                    <option value="<?= $value['id'] ?>">[<?= $value['user_role'] ?>] <?= $value['first_name'] ?> <?= $value['last_name'] ?></option>
+                                                    <?php
+                                                }
                                             }
-                                            ?></td>
-                                        <td><?= $value['amount'] ?></td>
-                                        <td><?= $value['created_date'] ?></td>
-                                    </tr>
-                                    <?php
-                                }
-                            }
-                            ?>
-                        </tbody>
-                    </table>
-                    <link href="css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
-                    <script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
-                    <script type="text/javascript">
-            $(document).ready(function () {
-                $('#example').DataTable();
-            });
-                    </script>
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="text" class="control-label col-xs-4">Month</label> 
+                                    <div class="col-xs-8">
+                                        <input id="text" name="salary_month" type="month" class="form-control">
+                                    </div>
+                                </div> 
+                                <div class="form-group">
+                                    <label for="text" class="control-label col-xs-4">Salary Amount</label> 
+                                    <div class="col-xs-8">
+                                        <input id="text" name="salary_amount" type="text" class="form-control">
+                                    </div>
+                                </div> 
+                                <div class="form-group row">
+                                    <div class="col-xs-offset-4 col-xs-8">
+                                        <button name="addEmpSalary" type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-6">
 
+                        </div>
+                    </div>
 
                 </div>
 

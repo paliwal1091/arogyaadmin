@@ -1,4 +1,4 @@
-<h2>Doctor</h2>
+<h2>Accountant</h2>
 <table border="0" style="width: 100%;padding: 5px">
     <tbody>
         <tr style="text-align: center">
@@ -8,20 +8,20 @@
                 </a>
             </td>
             <td>
-                <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/accountant/appointment-list.php">
-                    <i class="fas fa-user-md fa-5x  tile-icon"></i>
+                <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/accountant/doctor_salary_payment.php">
+                    <i class="fas fa-users  fa-5x  tile-icon"></i>
                 </a>
             </td>
             <td>
-                <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/accountant/patient-list.php">
-                    <i class="fas fa-user fa-5x  tile-icon"></i>
+                <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/accountant/employee_salary_payment.php">
+                    <i class="fas fa-users  fa-5x  tile-icon"></i>
                 </a>
             </td>
         </tr>
         <tr style="text-align: center">
             <td>Item Requests</td>
-            <td>View Appointment</td>
-            <td>Patient List</td>
+            <td>Doctor Salary</td>
+            <td>Employee Salary</td>
         </tr>
     </tbody>
 </table>
