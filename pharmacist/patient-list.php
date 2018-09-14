@@ -57,8 +57,8 @@ include '../DB.php';
                 include_once '../_tree_pharmacist.php';
                 ?>
             </nav>
-
-            <!-- Page Content Holder -->
+   
+            <!-- Page  Content Holder -->
             <div id="content">
                 <!-- top-bar -->
                 <?php include_once '../_top_bar.php'; ?>

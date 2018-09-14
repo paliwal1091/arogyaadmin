@@ -33,7 +33,7 @@ include '../DB.php';
         <!--// Common Css -->
         <!-- Nav Css -->
         <link rel="stylesheet" href="../css/style4.css">
-        <!--// Nav Css -->
+        <!--// Nav   Css -->
         <!-- Fontawesome Css -->
         <link href="../css/fontawesome-all.css" rel="stylesheet">
         <!--// Fontawesome Css -->
