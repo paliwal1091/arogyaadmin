@@ -34,6 +34,7 @@ include './DB.php';?>
         <link href="css/fontawesome-all.css" rel="stylesheet">
         <!--// Fontawesome Css -->
         <!--// Style-sheets -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     </head>
 
     <body>
@@ -90,7 +91,7 @@ if ($_SESSION['userbean']['user_role'] == 'DOCTOR') {
 } else if ($_SESSION['userbean']['user_role'] == 'OPD') {
     include_once './_tree_opd.php';
 } else if ($_SESSION['userbean']['user_role'] == 'PHARMACIST') {
-    include_once './_tree_pharmacist.php';
+    include_once './pharmacist/home_icons.php';
 } else if ($_SESSION['userbean']['user_role'] == 'TRANSPORT') {
     include_once './_tree_transport.php';
 } else if ($_SESSION['userbean']['user_role'] == 'WARD') {

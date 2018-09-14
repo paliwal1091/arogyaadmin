@@ -83,7 +83,6 @@ include '../DB.php';
              `user_role`,
              `telephone`,
              `email`,
-             `empno`,
              `status_code`,
              `created_user`)
 VALUES ('" . $_POST['first_name'] . "',
@@ -93,7 +92,6 @@ VALUES ('" . $_POST['first_name'] . "',
         '" . $_POST['user_role'] . "',
         '" . $_POST['telephone'] . "',
         '" . $_POST['email'] . "',
-        '" . $_POST['empno'] . "',
         '" . $_POST['status_code'] . "',
         '" . $_SESSION['userbean']['id'] . "'); ";
 //                                echo $sql;
@@ -145,12 +143,6 @@ VALUES ('" . $_POST['first_name'] . "',
                                     <label for="text4" class="control-label col-xs-4">Email</label> 
                                     <div class="col-xs-8">
                                         <input id="text4" name="email" type="text" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="text5" class="control-label col-xs-4">Employee/SLMS NO <span class="mando-msg">*</span></label> 
-                                    <div class="col-xs-8">
-                                        <input id="text5" name="empno" type="text" required="" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -206,7 +198,7 @@ VALUES ('" . $_POST['first_name'] . "',
                                         <td><?= $row['user_role'] ?></td>
                                         <td><?= $row['telephone'] ?></td>
                                         <td><?= $row['email'] ?></td>
-                                        <td><?= $row['empno'] ?></td>
+                                        <td><?= $row['id'] ?></td>
                                         <td><?= $row['status_code'] ?></td>
                                         <td><?= $row['created_date'] ?></td>
                                         <td><a class="btn btn-success btn-sm" href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/admin/user-registration-update.php?id=<?= $row['id'] ?>">update</a></td>

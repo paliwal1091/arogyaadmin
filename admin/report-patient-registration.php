@@ -92,7 +92,9 @@
                             </form>
  </div>
 
-                             <a href="#" onclick="PrintElem('printdiv')">print</a>
+                            <?php if(isset($_POST['btnSubmit'])){
+                                ?>
+                            <a href="#" class="btn btn-warning btn-sm" onclick="PrintElem('printdiv')">print</a>
                              <div id="printdiv">
                                  <table border="1" style="width: 100%">
                                      <thead>
@@ -138,6 +140,9 @@
                                      </tbody>
                                  </table>
                              </div>
+                            <?php
+                            }?>
+                             
                         </div>
                     </div>
                 </div>

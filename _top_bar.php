@@ -63,7 +63,7 @@
                 <div class="dropdown-menu drop-3">
                     <div class="profile d-flex mr-o">
                         <div class="profile-l align-self-center">
-                            <img src="images/profile.jpg" class="img-fluid mb-3" alt="Responsive image">
+                            <img src="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/images/profile.jpg" class="img-fluid mb-3" alt="Responsive image">
                         </div>
                         <div class="profile-r align-self-center">
                             <h3 class="sub-title-w3-agileits"><?php echo $_SESSION['userbean']['first_name']; ?></h3>

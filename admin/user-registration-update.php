@@ -155,7 +155,7 @@ WHERE `id` = '" . $_POST['id'] . "';";
                                         <div class="form-group">
                                             <label for="text5" class="control-label col-xs-4">Employee No <span class="mando-msg">*</span></label> 
                                             <div class="col-xs-8">
-                                                <input id="text5" name="empno" readonly="" type="text" required="" class="form-control" value="<?php echo $row['empno'] ?>">
+                                                <input id="text5" name="empno" readonly="" type="text" required="" class="form-control" value="<?php echo $row['id'] ?>">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -251,7 +251,7 @@ WHERE `id` = '" . $_POST['id'] . "';";
                                         <td><?= $row['user_role'] ?></td>
                                         <td><?= $row['telephone'] ?></td>
                                         <td><?= $row['email'] ?></td>
-                                        <td><?= $row['empno'] ?></td>
+                                        <td><?= $row['id'] ?></td>
                                         <td><?= $row['status_code'] ?></td>
                                         <td><?= $row['created_date'] ?></td>
                                         <td><a class="btn btn-success btn-sm" href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/admin/user-registration-update.php?id=<?= $row['id'] ?>">update</a></td>

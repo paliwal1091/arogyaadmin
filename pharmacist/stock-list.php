@@ -21,7 +21,9 @@ include '../DB.php';
             }
         </script>
         <!-- //Meta Tags -->
-       
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
         <!-- Style-sheets -->
         <!-- Bootstrap Css -->
         <link href="../css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
@@ -52,7 +54,7 @@ include '../DB.php';
                 </div>
                 <div class="profile-bg"></div>
                 <?php
-                include_once '../_tree_admin.php';
+                include_once '../_tree_pharmacist.php';
                 ?>
             </nav>
 
@@ -66,84 +68,57 @@ include '../DB.php';
                 <!--// main-heading -->
                 <!-- Page Content -->
                 <div class="blank-page-content">
-                    <h4>Purchasing Items Request</h4>
+                    <h4>  Manage Drugs </h4>
                     <hr>
-
-                    <?php
-                    if (isset($_POST['btnAdd'])) {
-                        $sql = "INSERT INTO `hms_purchase`
-            (`purchasing_item`,
-             `qty`,
-             `created_user`)
-VALUES ('" . $_POST['purchasing_item'] . "',
-        '" . $_POST['qty'] . "',
-        '" . $_SESSION['userbean']['id'] . "');";
-                        echo $sql;
-                        setData($sql, TRUE);
-                    }
-                    ?>
+                    
                     <div class="row">
-                        <div class="col-md-4">
-                            <form class="form-horizontal" action="purchasing-item-request.php" method="post">
-                                <div class="form-group">
-                                    <label for="text" class="control-label col-xs-4">Item Name</label> 
-                                    <div class="col-xs-8">
-                                        <input id="text" name="purchasing_item" type="text" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="Qty" class="control-label col-xs-4">Qty</label> 
-                                    <div class="col-xs-8">
-                                        <input id="Qty" name="qty" type="text" class="form-control">
-                                    </div>
-                                </div> 
-                                <div class="form-group row">
-                                    <div class="col-xs-offset-4 col-xs-8">
-                                        <button name="btnAdd" type="submit" class="btn btn-primary">Submit</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="col-md-8">
-                            <h3>My Purchase Request</h3>
-
-                            <table border="0" style="width: 100%" class="table-bordered">
+                       
+                        
+                        
+                        <div class="col-md-12">
+                            <h3>View Stock</h3>
+                            <table id="example" class="display" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
-                                        <th>Item Name</th>
+                                        <th>Drug Name</th>
                                         <th>Qty</th>
-                                        <th>Status</th>
-                                        <th>Amount</th>
+                                        <th>Unit</th>
+                                        <th>Unit Price</th>
+                                        <th>Expiry Date</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $sql = "SELECT * FROM hms_purchase WHERE created_user ='" . $_SESSION['userbean']['id'] . "'";
+                                    $sql = "SELECT * FROM hms_drug";
                                     $data = getData($sql);
                                     if ($data != null) {
                                         foreach ($data as $value) {
                                             ?>
                                             <tr>
-                                                <td><?= $value['purchasing_item']?></td>
-                                                <td><?= $value['qty']?></td>
-                                                <td><?= $value['status_code']?></td>
-                                                <td><?= $value['amount']?></td>
-                                            </tr> 
+                                                <td><?= $value['drug_name'] ?></td>
+                                                <td><?= $value['qty'] ?></td>
+                                                <td><?= $value['unit'] ?></td>
+                                                <td><?= $value['unit_price'] ?></td>
+                                                <td><?= $value['date_expiry'] ?></td>
+                                                <td><a href="drug-manage.php?id=<?= $value['id'] ?>&drug_name=<?= $value['drug_name'] ?>&qty=<?= $value['qty'] ?>&unit=<?= $value['unit'] ?>&unit_price=<?= $value['unit_price'] ?>&date_expiry=<?= $value['date_expiry'] ?>">update</a></td>
+                                            </tr>
                                             <?php
                                         }
                                     }
                                     ?>
-
-
-
                                 </tbody>
                             </table>
-
+                            
+                            
+                            <link href="css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+                        <script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
+                        <script type="text/javascript">
+                            $(document).ready(function () {
+                                $('#example').DataTable();
+                            });
+                        </script>
                         </div>
-
                     </div>
-
-
                 </div>
 
                 <!--// Page Content -->

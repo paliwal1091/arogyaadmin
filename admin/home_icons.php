@@ -18,7 +18,7 @@
                 </a>
             </td>
             <td>
-                <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/admin/patient-registration.php">
+                <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/admin/purchasing-item-request.php">
                   <i class="fas fa-tags fa-5x  tile-icon"></i>
                 </a>
             </td>

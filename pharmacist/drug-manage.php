@@ -91,6 +91,7 @@ VALUES ('" . $_POST['drug_name'] . "',
                     if (isset($_POST['btnUpdate'])) {
                         $sql = "UPDATE `hms_drug`
 SET 
+  `drug_name` = '" . $_POST['drug_name'] . "',
   `qty` = '" . $_POST['qty'] . "',
   `unit_price` = '" . $_POST['unit_price'] . "',
   `date_expiry` = '" . $_POST['date_expiry'] . "'
@@ -115,7 +116,7 @@ WHERE `id` = '" . $_POST['id'] . "';";
                                     <div class="form-group">
                                         <label for="text" class="control-label col-xs-4">Drug Name</label> 
                                         <div class="col-xs-8">
-                                            <?= $_GET['drug_name'] ?>
+                                            <input id="text1" name="drug_name" required="" type="text" value="<?= $_GET['drug_name'] ?>" /> 
                                         </div>
                                     </div>
                                     <div class="form-group">
