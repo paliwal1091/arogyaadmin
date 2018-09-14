@@ -105,7 +105,7 @@ VALUES ('" . $_POST['first_name'] . "',
         'ACTIVE',
         '" . $_POST['opd'] . "',
         '" . $_SESSION['userbean']['id'] . "');";
-                            echo $sql;
+//                            echo $sql;
                             setData($sql, TRUE);
                         }
                         
@@ -161,7 +161,7 @@ VALUES ('" . $_POST['first_name'] . "',
                                     <label for="specialist_id" class="control-label col-xs-4">Specialist</label> 
                                     <div class="col-xs-8">
                                         <select id="specialist_id"  name="specialist_id" class="select form-control">
-                                            <option value="">--select--</option>
+                                            <option value="0">--select--</option>
                                             <?php
                                             $sql = "SELECT * FROM hms_specialist";
                                             $data = getData($sql);
