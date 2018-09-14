@@ -42,7 +42,7 @@ include './DB.php';?>
             <nav id="sidebar">
                 <div class="sidebar-header">
                     <h1>
-                        <a href="index.html">Arogya</a>
+                        <a href="home.php">Arogya</a>
                     </h1>
                     <span>M</span>
                 </div>
@@ -77,8 +77,7 @@ include './DB.php';?>
                 <!-- main-heading -->
                 <!--// main-heading -->
                 <!-- Page Content -->
-                <div class="blank-page-content">
-
+                <div class="blank-page-content"  style="min-height: 480px">
 <?php
 if ($_SESSION['userbean']['user_role'] == 'DOCTOR') {
     include_once './doctor/home_icons.php';
@@ -99,7 +98,6 @@ if ($_SESSION['userbean']['user_role'] == 'DOCTOR') {
 }
 ?>
 
-                    <?php echo '<tt><pre>' . var_export($_SESSION['userbean'], TRUE) . '</pre></tt>'; ?>
                 </div>
 
                 <!--// Page Content -->

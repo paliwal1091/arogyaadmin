@@ -7,7 +7,7 @@
     </li>
     <li>
         <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/admin/user-registration.php">
-            <i class="fas fa-th"></i>
+            <i class="fas fa-users "></i>
             User Registration
         </a>
     </li>
@@ -19,24 +19,24 @@
     </li>
     <li>
         <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/admin/patient-registration.php">
-           <i class="fas fa-user"></i>
-           Patient Registration
+            <i class="fas fa-user"></i>
+            Patient Registration
         </a>
     </li>
     <li>
         <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/admin/purchasing-item-request.php">
-           <i class="fas fa-user"></i>
-           Item Purchase
+            <i class="fas fa-tags"></i>
+            Item Purchase
         </a>
     </li>
     <li>
-        <a href="charts.html">
+        <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/admin/report-patient-registration.php">
             <i class="fas fa-chart-pie"></i>
             Reports
         </a>
     </li>
 
-   
+
 
 
 </ul>
