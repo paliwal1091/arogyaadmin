@@ -2,6 +2,7 @@
 <?php
 session_start();
 include '../DB.php';
+//echo 'r';
 ?>
 <!DOCTYPE html>
 <html lang="en">
