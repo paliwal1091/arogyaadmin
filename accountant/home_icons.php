@@ -17,11 +17,17 @@
                     <i class="fas fa-users  fa-5x  tile-icon"></i>
                 </a>
             </td>
+            <td>
+                <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/accountant/report-doctor-salary.php">
+                      <i class="fas fa-file-alt fa-5x  tile-icon"></i>
+                </a>
+            </td>
         </tr>
         <tr style="text-align: center">
             <td>Item Requests</td>
             <td>Doctor Salary</td>
             <td>Employee Salary</td>
+            <td>Report</td>
         </tr>
     </tbody>
 </table>

@@ -7,11 +7,7 @@
                    <i class="fas fa-pills  fa-5x  tile-icon"></i>
                 </a>
             </td>
-            <td>
-                <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/pharmacist/appointment-list.php">
-                    <i class="fas fa-calendar-minus  fa-5x  tile-icon"></i>
-                </a>
-            </td>     
+      
             <td>
                 <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/pharmacist/stock-list.php">
                   <i class="fab fa-stack-overflow fa-5x"></i>

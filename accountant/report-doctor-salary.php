@@ -109,44 +109,31 @@ include '../core.php';
                                         <thead>
                                             <tr>
                                                 <th colspan="7" style="text-align: center">Doctor Salary Report<br>
-                                                    From : <?= $_POST['from_date'] ?>
-                                                    To : <?= $_POST['to_date'] ?> 
                                                 </th>
                                             </tr>
                                         </thead>
                                         <thead>
                                             <tr>
-                                                <th>Appointment NO</th>
-                                                <th>Patient Name</th>
-                                                <th>Appointment Date</th>
-                                                <th>Status</th>
-                                                <th>Doctor Fee</th>
+                                                <th>Salary Month</th>
+                                                <th>Salary Amount</th>
                                                 <th>Created Date</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-
                                             <?php
                                             if (isset($_POST['btnSubmit'])) {
-                                                $sql = "SELECT CONCAT(hms_patient.first_name,' ',hms_patient.last_name) AS patient_name,hms_doctor_appointment.* FROM hms_doctor_appointment
-INNER JOIN hms_patient 
-ON hms_doctor_appointment.patient_id = hms_patient.id  WHERE
- DATE(hms_doctor_appointment.created_date) >= '" . $_POST['from_date'] . "' AND DATE(hms_doctor_appointment.created_date) <= '" . $_POST['to_date'] . "' 
-AND hms_doctor_appointment.doctor_id = '" . $_SESSION['userbean']['id'] . "'";
-
+                                                $sql = "SELECT * FROM hms_doctor_salary WHERE doctor_id = '".$_POST['doctor_id']."'";
                                                 $data = getData($sql);
+                                                if($data !=null){
                                                 foreach ($data as $value) {
                                                     ?>
                                                     <tr>
-                                                        <td><?= $value['id'] ?></td>
-                                                        <td><?= $value['patient_name'] ?></td>
-                                                        <td><?= $value['appointment_date'] ?></td>
-                                                        <td><?= $value['status_code'] ?></td>
-                                                        <td><?= $value['doctor_fee'] ?></td>
+                                                        <td><?= $value['salary_month'] ?></td>
+                                                        <td><?= $value['salary_amount'] ?></td>
                                                         <td><?= $value['created_date'] ?></td>
                                                     </tr>
                                                     <?php
-                                                }
+                                            }}
                                             }
                                             ?>
                                         </tbody>

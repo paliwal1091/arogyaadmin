@@ -24,7 +24,7 @@
         </a>
     </li>
                 <li>
-                    <a href="grids.html">
+                            <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/accountant/report-doctor-salary.php">
                         <i class="fas fa-th"></i>
                        Reports
                     </a>

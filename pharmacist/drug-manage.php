@@ -203,7 +203,7 @@ WHERE `id` = '" . $_POST['id'] . "';";
                         </div>
                         <div class="col-md-6">
                             <h3>View Stock</h3>
-                            <table border="0" style="width: 100%">
+                            <table border="1" style="width: 100%">
                                 <thead>
                                     <tr>
                                         <th>Drug Name</th>
@@ -226,7 +226,7 @@ WHERE `id` = '" . $_POST['id'] . "';";
                                                 <td><?= $value['unit'] ?></td>
                                                 <td><?= $value['unit_price'] ?></td>
                                                 <td><?= $value['date_expiry'] ?></td>
-                                                <td><a href="drug-manage.php?id=<?= $value['id'] ?>&drug_name=<?= $value['drug_name'] ?>&qty=<?= $value['qty'] ?>&unit=<?= $value['unit'] ?>&unit_price=<?= $value['unit_price'] ?>&date_expiry=<?= $value['date_expiry'] ?>">update</a></td>
+                                                <td><a class="btn-sm btn-warning" href="drug-manage.php?id=<?= $value['id'] ?>&drug_name=<?= $value['drug_name'] ?>&qty=<?= $value['qty'] ?>&unit=<?= $value['unit'] ?>&unit_price=<?= $value['unit_price'] ?>&date_expiry=<?= $value['date_expiry'] ?>">update</a></td>
                                             </tr>
                                             <?php
                                         }
