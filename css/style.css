@@ -15,6 +15,10 @@ body {
 	background: #fff;
 }
 
+
+.blank-page-content{
+    min-height: 480px;
+}
 .mando-msg{
     color: red;
 }

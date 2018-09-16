@@ -17,11 +17,17 @@
                     <i class="fas fa-user fa-5x  tile-icon"></i>
                 </a>
             </td>
+            <td>
+                <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/doctor/report-appointment.php">
+                  <i class="fas fa-file-alt fa-5x  tile-icon"></i>
+                </a>
+            </td>
         </tr>
         <tr style="text-align: center">
             <td>My Availability</td>
             <td>View Appointment</td>
             <td>Patient List</td>
+            <td>Report</td>
         </tr>
     </tbody>
 </table>

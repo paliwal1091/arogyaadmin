@@ -11,4 +11,10 @@ WHERE A.id = ".$appoid;
     return getData($sql);
 }
 
+
+function getDoctorList(){
+    $sql = "SELECT * FROM hms_doctor";
+     return getData($sql);
+}
+
 ?>

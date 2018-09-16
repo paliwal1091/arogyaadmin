@@ -9,7 +9,7 @@
             </td>
             <td>
                 <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/accountant/doctor_salary_payment.php">
-                    <i class="fas fa-users  fa-5x  tile-icon"></i>
+                    <i class="fas fa-user-md  fa-5x  tile-icon"></i>
                 </a>
             </td>
             <td>

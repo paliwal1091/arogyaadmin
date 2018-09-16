@@ -104,8 +104,7 @@ include '../DB.php';
                                                 <td><?= $row['created_date']; ?></td>
                                                 <td>
 
-                                                    <a href="patient-list.php?patient_id=<?= $row['id']; ?>">history</a>
-                                                    <a href="#" class=" nav-link btn-warning btn-sm">Reloead</a>
+                                                    <a  class=" nav-link btn-warning btn-sm" href="patient-list.php?patient_id=<?= $row['id']; ?>">history</a>
 
                                                 </td>
                                             </tr>
@@ -133,13 +132,14 @@ WHERE hms_doctor_appointment.patient_id =  '" . $_GET['patient_id'] . "' ORDER B
                                     foreach ($resultData as $value) {
                                         ?>
                             
-                            <table border="" style="width: 100%">
+                            <table border="1" style="width: 100%">
                                             <tbody>
                                                 <tr>
-                                                    <td><?= $value['doctor_comment'] ?></td>
+                                                    <td><?= $value['doctor_comment'] ?> </td>
                                                 </tr>
                                                 <tr>
-                                                    <td><?= $value['id'] ?> <?= $value['created_date'] ?> <?= $value['doc_name'] ?></td>
+                                                    <td><span class="btn-sm btn-primary"><?= $value['id'] ?> </span>
+                                                        <span class="btn-sm btn-info"><?= $value['created_date'] ?></span> <?= $value['doc_name'] ?></td>
                                                 </tr>
                                             </tbody>
                                         </table>

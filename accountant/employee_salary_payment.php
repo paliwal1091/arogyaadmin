@@ -87,7 +87,7 @@ VALUES ('" . $_POST['user_id'] . "',
                         <?php
                     }
                     ?>
-                    <a href="employee_salary_payment_history.php">view history</a>
+                    <a href="employee_salary_payment_history.php" class="btn-sm btn-warning">view history</a>
                     <div class="row">
                         <div class="col-md-6">
                             <form class="form-horizontal" action="employee_salary_payment.php" method="post">

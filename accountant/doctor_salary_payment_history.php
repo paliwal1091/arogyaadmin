@@ -71,7 +71,7 @@ include '../DB.php';
                     <h4>Doctor Salary payment history</h4>
                     <hr>
 
-                    <table border="1">
+                    <table border="1" style="width: 100%">
                         <thead>
                             <tr>
                                 <th>Doctor Name</th>

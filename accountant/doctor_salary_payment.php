@@ -87,7 +87,7 @@ VALUES ('" . $_POST['doctor_id'] . "',
                         <?php
                     }
                     ?>
- <a href="doctor_salary_payment_history.php">view history</a>
+ <a href="doctor_salary_payment_history.php" class="btn-sm btn-warning">view history</a>
                     <div class="row">
                         <div class="col-md-6">
                             <form class="form-horizontal" action="doctor_salary_payment.php" method="post">
@@ -125,7 +125,7 @@ VALUES ('" . $_POST['doctor_id'] . "',
                         </div>
                         <div class="col-md-6">
                             <h3>Completed Appointment</h3>
-                            <table border="1">
+                            <table border="1" style="width: 100%">
                                 <thead>
                                     <tr>
                                         <th>Date Time</th>

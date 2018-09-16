@@ -68,10 +68,10 @@ include '../DB.php';
                 <!--// main-heading -->
                 <!-- Page Content -->
                 <div class="blank-page-content">
-                    <h4>Doctor Salary payment history</h4>
+                    <h4>Employee Salary payment history</h4>
                     <hr>
 
-                    <table border="1">
+                    <table border="1" style="width: 100%">
                         <thead>
                             <tr>
                                 <th>Employee Name</th>
