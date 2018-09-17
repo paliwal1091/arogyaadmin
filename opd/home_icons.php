@@ -1,34 +1,22 @@
-<h2 style="text-align: center">Pharmacist</h2>
+<h2 style="text-align: center">OPD</h2>
 <hr>
 <table border="0" style="width: 100%;padding: 5px">
     <tbody>
         <tr style="text-align: center">
-            <td>
-                <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/pharmacist/drug-manage.php">
-                   <i class="fas fa-pills  fa-5x  tile-icon"></i>
-                </a>
-            </td>
       
             <td>
-                <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/pharmacist/stock-list.php">
-                  <i class="fab fa-stack-overflow fa-5x"></i>
+                <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/opd/opd-appointment.php">
+                  <i class="fas fa-laptop fa-5x"></i>
                 </a>
             </td>
             <td>
-                <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/pharmacist/patient-list.php">
-                    <i class="fas fa-user fa-5x  tile-icon"></i>
-                </a>
-            </td>
-            <td>
-                <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/pharmacist/stock-report.php">
+                <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/opd/report-opd-appointment.php">
                      <i class="fas fa-file-alt fa-5x  tile-icon"></i>
                 </a>
             </td>
         </tr>
         <tr style="text-align: center">
-            <td>Manage Drug</td>
-            <td>Stock</td>
-            <td>Patient List</td>
+            <td>OPD Appointment</td>
             <td>Report</td>
         </tr>
     </tbody>

@@ -73,9 +73,7 @@ include '../DB.php';
                 <!--// main-heading -->
                 <!-- Page Content -->
                 <div class="blank-page-content">
-                    <h4>  Patient Registration </h4>
-                    <hr>
-
+                 
                     <?php
                     if (isset($_POST['btnPatientReg'])) {
                         $sql = "INSERT INTO hms_patient
@@ -108,12 +106,15 @@ VALUES ('" . $_POST['first_name'] . "',
                     <div class="row">
 
                         <div class="col-md-8">
-                            <form class="form-horizontal"  action="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/admin/patient-registration.php" method="post" >
+                            <div class="panel panel-primary">
+                                <div class="panel-heading ">Patient Registration</div>
+                                <div class="panel-body">
+                                      <form class="form-horizontal"  action="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/admin/patient-registration.php" method="post" >
                                 <span class="mando-msg">* fields are mandatory</span>
                                 <div class="form-group">
                                     <label class="control-label col-xs-4" for="first_name">First Name <span class="mando-msg">*</span></label> 
                                     <div class="col-xs-8">
-                                        <input id="first_name" name="first_name" type="text" class="form-control" required="required" >
+                                        <input id="first_name" name="first_name" type="text" class="form-control" required="" >
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -131,7 +132,7 @@ VALUES ('" . $_POST['first_name'] . "',
                                 <div class="form-group">
                                     <label for="telephone" class="control-label col-xs-4">Date of Birth</label> 
                                     <div class="col-xs-8">
-                                        <input id="dob" name="dob" type="date" class="form-control">
+                                        <input id="dob" name="dob" type="date" max="<?= $_SESSION['today']?>" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -153,12 +154,19 @@ VALUES ('" . $_POST['first_name'] . "',
                                     </div>
                                 </div>
                             </form>
+                                </div>
+                            </div>
+                          
 
                         </div>
                         <div class="col-md-4"></div>
                     </div>
 
-                    <table id="example" class="display table-responsive" cellspacing="0" width="100%">
+                    
+                    <div class="panel panel-warning">
+                        <div class="panel-heading ">Patient List</div>
+                        <div class="panel-body">
+                                 <table id="example" class="display table-responsive" cellspacing="0" width="100%">
                         <thead>
                             <tr>
                                 <th>First Name</th>
@@ -194,6 +202,9 @@ VALUES ('" . $_POST['first_name'] . "',
                             ?>
                         </tbody>
                     </table>
+                        </div>
+                    </div>
+               
                 </div>
 
                 <!--// Page Content -->

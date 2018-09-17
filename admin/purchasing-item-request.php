@@ -84,17 +84,21 @@ VALUES ('" . $_POST['purchasing_item'] . "',
                     ?>
                     <div class="row">
                         <div class="col-md-4">
+                            
+                           
+                            
                             <form class="form-horizontal" action="purchasing-item-request.php" method="post">
+                                <span class="mando-msg">* fields are mandatory</span>
                                 <div class="form-group">
-                                    <label for="text" class="control-label col-xs-4">Item Name</label> 
+                                    <label for="text" class="control-label col-xs-4">Item Name<span class="mando-msg">*</span></label> 
                                     <div class="col-xs-8">
-                                        <input id="text" name="purchasing_item" type="text" class="form-control">
+                                        <input id="text" name="purchasing_item" required="" type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="Qty" class="control-label col-xs-4">Qty</label> 
+                                    <label for="Qty" class="control-label col-xs-4">Qty <span class="mando-msg">*</span></label> 
                                     <div class="col-xs-8">
-                                        <input id="Qty" name="qty" type="text" class="form-control">
+                                        <input id="Qty" name="qty" type="number" required="" class="form-control">
                                     </div>
                                 </div> 
                                 <div class="form-group row">

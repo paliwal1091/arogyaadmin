@@ -68,8 +68,6 @@ include '../DB.php';
                 <!--// main-heading -->
                 <!-- Page Content -->
                 <div class="blank-page-content">
-                    <h4>User Registration</h4>
-                    <hr>
                     <div class="row">
                         
                         <?php
@@ -130,7 +128,12 @@ VALUES ('" . $_POST['first_name'] . "',
                                 }
                             </script>
 
-                            <form class="form-horizontal"  onsubmit="return inputValidate()" action="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/admin/user-registration.php" method="post">
+                            
+                            
+                            <div class="panel panel-primary">
+                                <div class="panel-heading ">User Registration</div>
+                                <div class="panel-body">
+                                         <form class="form-horizontal"  onsubmit="return inputValidate()" action="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/admin/user-registration.php" method="post">
                                 <span class="mando-msg">* fields are mandatory</span>
                                 <div class="form-group">
                                     <label for="text" class="control-label col-xs-4">First Name <span class="mando-msg">*</span></label> 
@@ -192,6 +195,9 @@ VALUES ('" . $_POST['first_name'] . "',
                                     </div>
                                 </div>
                             </form>
+                                </div>
+                            </div>
+                       
 
 
                         </div>
@@ -199,8 +205,10 @@ VALUES ('" . $_POST['first_name'] . "',
                     </div>
 
 
-
-                    <table id="example" class="display table-responsive" cellspacing="0" width="100%">
+                    <div class="panel panel-warning">
+                        <div class="panel-heading ">User List</div>
+                        <div class="panel-body">
+                                  <table id="example" class="display table-responsive" cellspacing="0" width="100%">
                         <thead>
                             <tr>
                                 <th>First Name</th>
@@ -242,6 +250,9 @@ VALUES ('" . $_POST['first_name'] . "',
                             ?>
                         </tbody>
                     </table>
+                        </div>
+                    </div>
+              
 
 
                 </div>

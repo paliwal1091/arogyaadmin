@@ -17,4 +17,11 @@ function getDoctorList(){
      return getData($sql);
 }
 
+
+ function getDateTime() {
+        date_default_timezone_set("Asia/Colombo");
+        $dt = date("Y-m-d h:i:sa");
+        return $dt;
+    }
+    
 ?>

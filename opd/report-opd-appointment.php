@@ -78,14 +78,14 @@ include '../DB.php';
                                 <div class="form-group">
                                     <label for="text" class="control-label col-xs-4">From Date</label> 
                                     <div class="col-xs-8">
-                                        <input id="text" name="from_date" type="date" class="form-control">
+                                        <input id="text" name="from_date" type="date" required="" class="form-control">
 
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="text1" class="control-label col-xs-4">To Date</label> 
                                     <div class="col-xs-8">
-                                        <input id="text1" name="to_date" type="date" class="form-control">
+                                        <input id="text1" name="to_date" type="date" required="" class="form-control">
                                     </div>
                                 </div> 
                                 <div class="form-group row">

@@ -139,17 +139,19 @@ WHERE `id` = '" . $_SESSION['userbean']['id'] . "' AND pword = PASSWORD('" . $_P
                                 ?>
                                 <div class="panel-body">
                                     <form class="form-horizontal" action="profile.php" method="post">
+                                       
+                                        <span class="mando-msg">* fields are mandatory</span>
                                         <input type="hidden" name="id" value="<?= $_SESSION['userbean']['id'] ?>" />
                                         <div class="form-group">
-                                            <label for="text" class="control-label col-xs-4">First Name</label> 
+                                            <label for="text" class="control-label col-xs-4">First Name <span class="mando-msg">*</span></label> 
                                             <div class="col-xs-8">
-                                                <input id="text" name="first_name" type="text" class="form-control"  value="<?= $_SESSION['userbean']['first_name'] ?>">
+                                                <input id="text" name="first_name" type="text" required="" class="form-control"  value="<?= $_SESSION['userbean']['first_name'] ?>">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="text1" class="control-label col-xs-4">Last Name</label> 
+                                            <label for="text1" class="control-label col-xs-4">Last Name <span class="mando-msg">*</span></label> 
                                             <div class="col-xs-8">
-                                                <input id="text1" name="last_name" type="text" class="form-control"  value="<?= $_SESSION['userbean']['last_name'] ?>">
+                                                <input id="text1" name="last_name" type="text" required="" class="form-control"  value="<?= $_SESSION['userbean']['last_name'] ?>">
                                             </div>
                                         </div>
 
@@ -175,9 +177,9 @@ WHERE `id` = '" . $_SESSION['userbean']['id'] . "' AND pword = PASSWORD('" . $_P
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="text3" class="control-label col-xs-4">Email</label> 
+                                            <label for="text3" class="control-label col-xs-4">Email <span class="mando-msg">*</span></label> 
                                             <div class="col-xs-8">
-                                                <input id="text3" name="email" type="text" class="form-control" value="<?= $_SESSION['userbean']['email'] ?>">
+                                                <input id="text3" name="email" required="" type="text" class="form-control" value="<?= $_SESSION['userbean']['email'] ?>">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -223,7 +225,7 @@ WHERE `id` = '" . $_SESSION['userbean']['id'] . "' AND pword = PASSWORD('" . $_P
                                 <div class="form-group">
                                     <label for="text1" class="control-label col-xs-4">New Password</label> 
                                     <div class="col-xs-8">
-                                        <input id="text1" name="new_password" type="password" class="form-control">
+                                        <input id="text1" name="new_password" type="password" class="form-control" placeholder="minimum 6 characters">
                                     </div>
                                 </div>
                                 <div class="form-group">

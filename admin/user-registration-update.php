@@ -68,8 +68,7 @@ include '../DB.php';
                 <!--// main-heading -->
                 <!-- Page Content -->
                 <div class="blank-page-content">
-                    <h4>User Registration</h4>
-                    <hr>
+                    
                     <div class="row">
 
                         <?php
@@ -88,7 +87,7 @@ WHERE `id` = '" . $_POST['id'] . "';";
                             $sqlUpdate = "UPDATE hms_user
 SET `pword` = PASSWORD('" . $_POST['nic'] . "') 
 WHERE `id` = '" . $_POST['id'] . "';";
-                           // echo $sqlUpdate;
+                            // echo $sqlUpdate;
                             setUpdate($sqlUpdate, TRUE);
                         }
                         ?>
@@ -100,7 +99,10 @@ WHERE `id` = '" . $_POST['id'] . "';";
                                 $data = getData($sqlSelect);
                                 foreach ($data as $row) {
                                     ?>
-                                    <form class="form-horizontal" action="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/admin/user-registration-update.php" method="post">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">Update User</div>
+                                        <div class="panel-body">
+<form class="form-horizontal" action="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/admin/user-registration-update.php" method="post">
                                         <input type="hidden" value="<?php echo $row['id'] ?>" name="id"  />
                                         <span class="mando-msg">* fields are mandatory</span>
                                         <div class="form-group">
@@ -149,7 +151,7 @@ WHERE `id` = '" . $_POST['id'] . "';";
                                         <div class="form-group">
                                             <label for="text4" class="control-label col-xs-4">Email</label> 
                                             <div class="col-xs-8">
-                                                <input id="text4" name="email" type="text" class="form-control" value="<?php echo $row['email'] ?>">
+                                                <input id="text4" name="email" type="email" class="form-control" value="<?php echo $row['email'] ?>">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -181,6 +183,10 @@ WHERE `id` = '" . $_POST['id'] . "';";
                                             </div>
                                         </div>
                                     </form>
+                                        </div>
+                                    </div>
+
+                                    
                                     <?php
                                 }
                             }
@@ -192,13 +198,17 @@ WHERE `id` = '" . $_POST['id'] . "';";
                         </div>
 
                         <div class="col-md-4">
-                            <h3>Change Password </h3>
+                      
                             <?php
                             if (isset($_GET['id'])) {
                                 $sqlSelect = "SELECT * FROM hms_user WHERE id = " . $_GET['id'];
                                 $data = getData($sqlSelect);
                                 foreach ($data as $row) {
                                     ?>
+                            
+                                  <div class="panel panel-warning">
+                                <div class="panel-heading ">Rest Password</div>
+                                <div class="panel-body">
                                     <form class="form-horizontal" action="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/admin/user-registration-update.php"  method="post" >
                                         <input type="hidden" name="id" value="<?php echo $row['id'] ?>" />
                                         <input type="hidden" name="nic" value="<?php echo $row['nic'] ?>" />
@@ -208,6 +218,10 @@ WHERE `id` = '" . $_POST['id'] . "';";
                                             </div>
                                         </div>
                                     </form>
+                                </div>
+                            </div>
+                            
+                                    
                                     <?php
                                 }
                             }
@@ -220,8 +234,10 @@ WHERE `id` = '" . $_POST['id'] . "';";
                     </div>
 
 
-
-                    <table id="example" class="display table-responsive" cellspacing="0" width="100%">
+                    <div class="panel panel-warning">
+                        <div class="panel-heading ">User List</div>
+                        <div class="panel-body">
+                             <table id="example" class="display table-responsive" cellspacing="0" width="100%">
                         <thead>
                             <tr>
                                 <th>First Name</th>
@@ -264,6 +280,9 @@ WHERE `id` = '" . $_POST['id'] . "';";
                             ?>
                         </tbody>
                     </table>
+                        </div>
+                    </div>
+                   
 
 
                 </div>

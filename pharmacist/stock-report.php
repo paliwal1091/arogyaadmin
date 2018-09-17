@@ -75,7 +75,7 @@ include '../DB.php';
                             <div class="form-group">
                                 <label for="text" class="control-label col-xs-4">Min Stock</label> 
                                 <div class="col-xs-8">
-                                    <input id="text" name="minstock" type="text" class="form-control">
+                                    <input id="text" name="minstock" type="number" required="" class="form-control">
                                 </div>
                             </div> 
                             <div class="form-group row">

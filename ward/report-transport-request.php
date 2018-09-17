@@ -54,7 +54,7 @@ include '../DB.php';
                 </div>
                 <div class="profile-bg"></div>
                 <?php
-                include_once '../_tree_opd.php';
+                include_once '../_tree_ward.php';
                 ?>
             </nav>
 
@@ -68,7 +68,7 @@ include '../DB.php';
                 <!--// main-heading -->
                 <!-- Page Content -->
                 <div class="blank-page-content">
-                    <h4>OPD Appointment</h4>
+                    <h4>Report</h4>
                     <hr>
                     <div class="row">
                         <div class="col-md-12">

@@ -7,7 +7,7 @@
     </li>
     <li>
         <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/ward/ambulance_request.php" >
-           <i class="fas fa-laptop"></i>
+           <i class="fas fa-ambulance"></i>
            Ambulance Request
         </a>
     </li>

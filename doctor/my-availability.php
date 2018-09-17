@@ -91,6 +91,7 @@ VALUES ('" . $_SESSION['userbean']['id'] . "',
                             }
                             ?>
                             <form action="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/doctor/my-availability.php" method="post">
+                               <span class="mando-msg">* fields are mandatory</span>
                                 <table border="0">
                                     <thead>
                                         <tr>
@@ -101,7 +102,8 @@ VALUES ('" . $_SESSION['userbean']['id'] . "',
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td> <select id="day_available" name="day_available" class="select form-control">
+                                            <td><span class="mando-msg">*</span>
+                                                <select required="" id="day_available" name="day_available" class="select form-control">
                                             <option value="">--select date--</option>
                                             <option value="Sunday">Sunday</option>
                                             <option value="Monday">Monday</option>
@@ -110,8 +112,8 @@ VALUES ('" . $_SESSION['userbean']['id'] . "',
                                             <option value="Friday">Friday</option>
                                             <option value="Saturday">Saturday</option>
                                         </select></td>
-                                        <td><input type="time" name="from_time" required="" class="form-control"/></td>
-                                            <td><input type="time" name="to_time" required="" class="form-control"/></td>
+                                           <td><span class="mando-msg">*</span><input type="time" name="from_time" required="" class="form-control"/></td>
+                                            <td><span class="mando-msg">*</span><input type="time" name="to_time" required="" class="form-control"/></td>
                                             <td><input type="submit" name="btnAdd"  required="" class="btn btn-primary"/></td>
                                         </tr>
                                     </tbody>
@@ -134,7 +136,7 @@ VALUES ('" . $_SESSION['userbean']['id'] . "',
                             $sql = "SELECT * FROM hms_doctor_availability WHERE doctor_id = '" . $_SESSION['userbean']['id'] . "'";
                             $data = getData($sql);
                             ?>
-                            <table border="0">
+                            <table border="0" style="width: 100%">
                                 <thead>
                                     <tr>
                                         <th>Date</th>

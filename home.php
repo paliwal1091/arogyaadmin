@@ -35,6 +35,7 @@ include './DB.php';?>
         <!--// Fontawesome Css -->
         <!--// Style-sheets -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+   
     </head>
 
     <body>
@@ -49,6 +50,8 @@ include './DB.php';?>
                 </div>
                 <div class="profile-bg"></div>
 
+                
+           
                 <?php
                 if ($_SESSION['userbean']['user_role'] == 'DOCTOR') {
                     include_once './_tree_doctor.php';
@@ -89,13 +92,13 @@ if ($_SESSION['userbean']['user_role'] == 'DOCTOR') {
 } else if ($_SESSION['userbean']['user_role'] == 'LAB') {
     include_once './lab/home_icons.php';
 } else if ($_SESSION['userbean']['user_role'] == 'OPD') {
-    include_once './_tree_opd.php';
+    include_once './opd/home_icons.php';
 } else if ($_SESSION['userbean']['user_role'] == 'PHARMACIST') {
     include_once './pharmacist/home_icons.php';
 } else if ($_SESSION['userbean']['user_role'] == 'TRANSPORT') {
     include_once './transport/home_icons.php';
 } else if ($_SESSION['userbean']['user_role'] == 'WARD') {
-    include_once './_tree_ward.php';
+    include_once './ward/home_icons.php';
 }
 ?>
 

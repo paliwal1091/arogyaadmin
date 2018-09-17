@@ -1,4 +1,5 @@
-<h2>Accountant</h2>
+<h2 style="text-align: center">Accountant</h2>
+<hr>
 <table border="0" style="width: 100%;padding: 5px">
     <tbody>
         <tr style="text-align: center">

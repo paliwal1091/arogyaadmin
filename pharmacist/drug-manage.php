@@ -113,17 +113,18 @@ WHERE `id` = '" . $_POST['id'] . "';";
                                 //update part
                                 ?>
                                 <form class="form-horizontal" action="drug-manage.php" method="post">
+                                    <span class="mando-msg">* fields are mandatory</span>
                                     <input type="hidden" name="id" value="<?= $_GET['id'] ?>" />
                                     <div class="form-group">
-                                        <label for="text" class="control-label col-xs-4">Drug Name</label> 
+                                        <label for="text" class="control-label col-xs-4">Drug Name <span class="mando-msg">*</span></label> 
                                         <div class="col-xs-8">
                                             <input id="text1" name="drug_name" required="" type="text" value="<?= $_GET['drug_name'] ?>" /> 
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="text1" class="control-label col-xs-4">QTY</label> 
+                                        <label for="text1" class="control-label col-xs-4">QTY<span class="mando-msg">*</span></label> 
                                         <div class="col-xs-8">
-                                            <input id="text1" name="qty" type="text"  value="<?= $_GET['qty'] ?>"  class="form-control">
+                                            <input id="text1" name="qty" type="number"  value="<?= $_GET['qty'] ?>"  class="form-control">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -133,15 +134,15 @@ WHERE `id` = '" . $_POST['id'] . "';";
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="text2" class="control-label col-xs-4">Unit Price</label> 
+                                        <label for="text2" class="control-label col-xs-4">Unit Price<span class="mando-msg">*</span></label> 
                                         <div class="col-xs-8">
-                                            <input id="text2" name="unit_price" type="text"  value="<?= $_GET['unit_price'] ?>" class="form-control">
+                                            <input id="text2" name="unit_price" type="number" required=""  value="<?= $_GET['unit_price'] ?>" class="form-control">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="text3" class="control-label col-xs-4">Expiry Date</label> 
+                                        <label for="text3" class="control-label col-xs-4">Expiry Date<span class="mando-msg">*</span></label> 
                                         <div class="col-xs-8">
-                                            <input id="text3" name="date_expiry" type="date"  value="<?= $_GET['date_expiry'] ?>" class="form-control">
+                                            <input id="text3" name="date_expiry" type="date" required="" value="<?= $_GET['date_expiry'] ?>" class="form-control">
                                         </div>
                                     </div> 
                                     <div class="form-group row">
@@ -150,21 +151,23 @@ WHERE `id` = '" . $_POST['id'] . "';";
                                         </div>
                                     </div>
                                 </form>
+                            
                                 <?php
                             } else {
                                 //insert part   
                                 ?>
                                 <form class="form-horizontal" action="drug-manage.php" method="post">
+                                    <span class="mando-msg">* fields are mandatory</span>
                                     <div class="form-group">
-                                        <label for="text" class="control-label col-xs-4">Drug Name</label> 
+                                        <label for="text" class="control-label col-xs-4">Drug Name<span class="mando-msg">*</span></label> 
                                         <div class="col-xs-8">
-                                            <input id="text" name="drug_name" type="text" class="form-control">
+                                            <input id="text" name="drug_name" required="" type="text" class="form-control">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="text1" class="control-label col-xs-4">QTY</label> 
+                                        <label for="text1" class="control-label col-xs-4">QTY <span class="mando-msg">* </label> 
                                         <div class="col-xs-8">
-                                            <input id="text1" name="qty" type="text" class="form-control">
+                                            <input id="text1" name="qty" type="number" required="" class="form-control">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -179,15 +182,15 @@ WHERE `id` = '" . $_POST['id'] . "';";
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="text2" class="control-label col-xs-4">Unit Price</label> 
+                                        <label for="text2" class="control-label col-xs-4">Unit Price<span class="mando-msg">*</span></label> 
                                         <div class="col-xs-8">
-                                            <input id="text2" name="unit_price" type="text" class="form-control">
+                                            <input id="text2" name="unit_price" type="number" required="" class="form-control">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="text3" class="control-label col-xs-4">Expiry Date</label> 
+                                        <label for="text3" class="control-label col-xs-4">Expiry Date<span class="mando-msg">*</span></label> 
                                         <div class="col-xs-8">
-                                            <input id="text3" name="date_expiry" type="date" class="form-control">
+                                            <input id="text3" name="date_expiry" type="date" required=""class="form-control">
                                         </div>
                                     </div> 
                                     <div class="form-group row">

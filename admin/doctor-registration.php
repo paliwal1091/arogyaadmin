@@ -73,8 +73,7 @@ include '../DB.php';
                 <!--// main-heading -->
                 <!-- Page Content -->
                 <div class="blank-page-content">
-                    <h4>  Doctor Registration </h4>
-                    <hr>
+                  
                     
                     <?php
                         if (isset($_POST['btnDocReg'])) {
@@ -113,16 +112,18 @@ VALUES ('" . $_POST['first_name'] . "',
                     <div class="row">
 
                         
-
+                          
 
                         <div class="col-md-8">
-
-                            <form class="form-horizontal"  action="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/admin/doctor-registration.php" method="post" >
+                            <div class="panel panel-primary">
+                                 <div class="panel-heading ">Doctor Registration</div>
+                                <div class="panel-body">
+                                       <form class="form-horizontal"  action="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/admin/doctor-registration.php" method="post" >
                                 <span class="mando-msg">* fields are mandatory</span>
                                 <div class="form-group">
                                     <label for="first_name" class="control-label col-xs-4">First Name <span class="mando-msg">*</span></label> 
                                     <div class="col-xs-8">
-                                        <input required="" id="first_name" name="first_name" type="text" class="form-control">
+                                        <input required="" id="first_name"  name="first_name" type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -182,7 +183,7 @@ VALUES ('" . $_POST['first_name'] . "',
                                 <div class="form-group">
                                     <label for="doc_fee" class="control-label col-xs-4">Doctor Fee <span class="mando-msg">*</span></label> 
                                     <div class="col-xs-8">
-                                        <input id="doc_fee" name="doc_fee" type="number" class="form-control">
+                                        <input id="doc_fee" name="doc_fee" required="" type="number" class="form-control">
                                     </div>
                                 </div> 
                                 <div class="form-group row">
@@ -191,14 +192,19 @@ VALUES ('" . $_POST['first_name'] . "',
                                     </div>
                                 </div>
                             </form>
+                                </div>
+                            </div>
+                         
 
                         </div>
                         <div class="col-md-4"></div>
                     </div>
 
 
-
-                    <table id="example" class="display table-responsive" cellspacing="0" width="100%">
+                    <div class="panel panel-warning">
+                        <div class="panel-heading ">Doctor List</div>
+                        <div class="panel-body">
+                            <table id="example" class="display table-responsive" cellspacing="0" width="100%">
                         <thead>
                             <tr>
                                 <th>First Name</th>
@@ -228,7 +234,8 @@ VALUES ('" . $_POST['first_name'] . "',
                                         <td><?= $row['email'] ?></td>
                                         <td><?= $row['status_code'] ?></td>
                                         <td><?= $row['created_date'] ?></td>
-                                        <td><a class="btn btn-success btn-sm" href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/admin/doctor-registration-update.php?id=<?= $row['id'] ?>">update</a></td>
+                                        <td></td>
+                                        <!--<td><a class="btn btn-success btn-sm" href="<?php //$_SERVER['SERVER_NAME'] ?>/<?php // $_SESSION['sitename'] ?>/admin/doctor-registration-update.php?id=<?php //  $row['id'] ?>">update</a></td>-->
                                     </tr>
 
                                     <?php
@@ -237,6 +244,9 @@ VALUES ('" . $_POST['first_name'] . "',
                             ?>
                         </tbody>
                     </table>
+                        </div>
+                    </div>
+                    
 
 
                 </div>

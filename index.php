@@ -19,7 +19,7 @@
         </script>
         <!-- //Meta Tags -->
 
- <!-- Style-sheets -->
+        <!-- Style-sheets -->
         <!-- Bootstrap Css -->
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
         <!-- Bootstrap Css -->
@@ -51,6 +51,9 @@
                             include './DB.php';
                             if (isset($_POST['btnLogin'])) {
 
+                                date_default_timezone_set('Asia/Colombo');
+                                $today = date("Y-m-d", time());
+
                                 if ($_POST['user_role'] == 'DOCTOR') {
                                     $sql = "SELECT * FROM hms_doctor WHERE nic = '" . $_POST['nic'] . "' AND pword = PASSWORD('" . $_POST['pword'] . "') AND status_code = 'ACTIVE'";
 
@@ -59,6 +62,7 @@
                                         foreach ($result as $value) {
                                             $_SESSION['userbean'] = $value;
                                             $_SESSION['sitename'] = 'arogyaadmin';
+                                            $_SESSION['today'] = $today;
                                         }
                                         header("Location:home.php");
                                     } else {
@@ -68,11 +72,12 @@
                                     $sql = "SELECT * FROM hms_user WHERE nic = '" . $_POST['nic'] . "' AND pword = PASSWORD('" . $_POST['pword'] . "') AND status_code = 'ACTIVE' ";
 
                                     $result = getData($sql);
-                                     $base_url="http://".$_SERVER['SERVER_NAME'].dirname($_SERVER["REQUEST_URI"].'?').'/';
+                                    $base_url = "http://" . $_SERVER['SERVER_NAME'] . dirname($_SERVER["REQUEST_URI"] . '?') . '/';
                                     if ($result) {
                                         foreach ($result as $value) {
                                             $_SESSION['userbean'] = $value;
                                             $_SESSION['sitename'] = 'arogyaadmin';
+                                            $_SESSION['today'] = $today;
                                         }
                                         header("Location:home.php");
                                     } else {

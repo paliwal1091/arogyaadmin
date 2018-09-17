@@ -1,4 +1,5 @@
-<h2>Doctor</h2>
+<h2 style="text-align: center">Doctor</h2>
+<hr>
 <table border="0" style="width: 100%;padding: 5px">
     <tbody>
         <tr style="text-align: center">
