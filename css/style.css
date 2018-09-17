@@ -2207,4 +2207,15 @@ ul.percentg-circles-w3ls .chart .figure {
 	}
 }
 
+
+
+.msg-success{
+    color: green;
+    text-align: center;
+}
+.msg-error{
+    color: red;
+     text-align: center;
+}
+
 /*--//responsive--*/

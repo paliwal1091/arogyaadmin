@@ -1,4 +1,4 @@
- 
+
 <?php
 session_start();
 include '../DB.php';
@@ -54,11 +54,11 @@ include '../DB.php';
                 </div>
                 <div class="profile-bg"></div>
                 <?php
-                include_once '../_tree_pharmacist.php';
+                include_once '../_tree_opd.php';
                 ?>
             </nav>
-   
-            <!-- Page  Content Holder -->
+
+            <!-- Page Content Holder -->
             <div id="content">
                 <!-- top-bar -->
                 <?php include_once '../_top_bar.php'; ?>
@@ -68,35 +68,71 @@ include '../DB.php';
                 <!--// main-heading -->
                 <!-- Page Content -->
                 <div class="blank-page-content">
-                    <h4>  Patient List </h4>
+                    <h4>OPD Appointment</h4>
                     <hr>
                     <div class="row">
                         <div class="col-md-12">
 
+                            <div style="width: 50%">
+                                <form class="form-horizontal" action="report-transport-request.php" method="post">
+                                <div class="form-group">
+                                    <label for="text" class="control-label col-xs-4">From Date</label> 
+                                    <div class="col-xs-8">
+                                        <input id="text" name="from_date" type="date" class="form-control">
 
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="text1" class="control-label col-xs-4">To Date</label> 
+                                    <div class="col-xs-8">
+                                        <input id="text1" name="to_date" type="date" class="form-control">
+                                    </div>
+                                </div> 
+                                <div class="form-group row">
+                                    <div class="col-xs-offset-4 col-xs-8">
+                                        <button name="btnSubmit" type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                            </div>
                             
                             
-                            <table id="example" class="display" cellspacing="0" width="100%">
+                            <?php
+                                            if (isset($_POST['btnSubmit'])) { ?>
+                             <a href="#" class="btn btn-warning btn-sm" onclick="PrintElem('printdiv')">print</a>
+                             <div id="printdiv">
+                                 <table border="1" style="width: 100%">
                                 <thead>
                                     <tr>
-                                        <th>Patient Name</th>
-                                        <th>Telephone</th>
-                                        <th>Date of Birth</th>
-                                        <th>Email</th>
+                                        <th colspan="6"> Transport Requests</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Request Date</th>
+                                        <th>Comment</th>
+                                        <th>Status</th>
+                                        <th>Vehicle Number</th>
+                                        <th>Driver Name</th>
+                                        <th>Created DateTime</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $sql = "SELECT * FROM hms_patient";
+                                    $sql = "SELECT A.datetime_need,A.comment,A.status_code,(SELECT vehicle_number FROM hms_vehicle 
+                                        WHERE id = A.vehicle_id) AS vehicle_number,A.driver_name,A.created_time
+FROM hms_vehicle_request AS A
+WHERE A.created_user = '".$_SESSION['userbean']['id']."' AND DATE(datetime_need) >= '".$_POST['from_date']."' AND DATE(datetime_need) <= '".$_POST['to_date']."'";
+//                                    echo $sql;
                                     $data = getData($sql);
                                     if ($data != null) {
                                         foreach ($data as $value) {
                                             ?>
                                             <tr>
-                                                <td><?= $value['first_name'] ?></td>
-                                                <td><?= $value['last_name'] ?></td>
-                                                <td><?= $value['dob'] ?></td>
-                                                <td><?= $value['created_date'] ?></td>
+                                                <td><?= $value['datetime_need'] ?></td>
+                                                <td><?= $value['comment'] ?></td>
+                                                <td><?= $value['status_code'] ?></td>
+                                                <td><?= $value['vehicle_number'] ?></td>
+                                                <td><?= $value['driver_name'] ?></td>
+                                                <td><?= $value['created_time'] ?></td>
                                             </tr>
                                             <?php
                                         }
@@ -104,16 +140,32 @@ include '../DB.php';
                                     ?>
                                 </tbody>
                             </table>
-                            
-                             <link href="css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
-                            <script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
-                            <script type="text/javascript">
-                                $(document).ready(function () {
-                                    $('#example').DataTable();
-                                });
-                            </script>
-                        </div>
+                             </div>
+                                            <?php }
+                            ?>
+                          
+                             <script type="text/javascript">
+     function PrintElem(elem)
+ {
+     var mywindow = window.open('', 'PRINT', 'height=400,width=600');
 
+     mywindow.document.write('<html><head><title>' + document.title  + '</title>');
+     mywindow.document.write('</head><body >');
+     mywindow.document.write('<h1>' + document.title  + '</h1>');
+     mywindow.document.write(document.getElementById(elem).innerHTML);
+     mywindow.document.write('</body></html>');
+
+     mywindow.document.close(); // necessary for IE >= 10
+     mywindow.focus(); // necessary for IE >= 10*/
+
+     mywindow.print();
+     mywindow.close();
+
+     return true;
+ }
+                             </script>
+                            
+                        </div>
                     </div>
                 </div>
 

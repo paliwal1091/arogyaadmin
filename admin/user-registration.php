@@ -71,10 +71,14 @@ include '../DB.php';
                     <h4>User Registration</h4>
                     <hr>
                     <div class="row">
-                        <div class="col-md-8">
-
-                            <?php
+                        
+                        <?php
                             if (isset($_POST['btnReg'])) {
+
+
+
+
+
                                 $sql = " INSERT INTO `hmsdb`.`hms_user`
             (`first_name`,
              `last_name`,
@@ -98,24 +102,52 @@ VALUES ('" . $_POST['first_name'] . "',
                                 setData($sql, TRUE);
                             }
                             ?>
-                            <form class="form-horizontal" action="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/admin/user-registration.php" method="post">
+                        
+                        
+                        <div class="col-md-8">
+                            <script>
+                                function inputValidate() {
+                                    var first_name = $.trim($('#first_name').val());
+                                    var last_name = $.trim($('#last_name').val());
+                                    var nic = $.trim($('#nic').val());
+
+                                    if (first_name.length == 0) {
+                                        alert('Invalid First Name');
+                                           return false;
+                                    }
+                                    if (last_name.length == 0) {
+                                        alert('Invalid First Name');
+                                           return false;
+                                    }
+
+                                    if (nic.length >= 9 && nic.length <= 12) {
+                                    } else {
+                                        alert('Invalid NIC legnth');
+                                        return false;
+                                    }
+//                                    alert(first_name);
+                                    return true;
+                                }
+                            </script>
+
+                            <form class="form-horizontal"  onsubmit="return inputValidate()" action="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/admin/user-registration.php" method="post">
                                 <span class="mando-msg">* fields are mandatory</span>
                                 <div class="form-group">
                                     <label for="text" class="control-label col-xs-4">First Name <span class="mando-msg">*</span></label> 
                                     <div class="col-xs-8">
-                                        <input id="text" name="first_name" type="text"  required="" class="form-control">
+                                        <input id="first_name" name="first_name" type="text"  required="" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="text1" class="control-label col-xs-4">Last Name <span class="mando-msg">*</span></label> 
                                     <div class="col-xs-8">
-                                        <input id="text1" name="last_name" type="text" required="" class="form-control">
+                                        <input id="last_name" name="last_name" type="text" required="" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="text2" class="control-label col-xs-4">NIC <span class="mando-msg">*</span></label> 
                                     <div class="col-xs-8">
-                                        <input id="text2" name="nic" type="text" required="" class="form-control">
+                                        <input id="nic" name="nic" type="number" required="" class="form-control" placeholder="Without V or X"> 
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -140,13 +172,13 @@ VALUES ('" . $_POST['first_name'] . "',
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="text4" class="control-label col-xs-4">Email</label> 
+                                    <label for="text4" class="control-label col-xs-4">Email <span class="mando-msg">* </span></label> 
                                     <div class="col-xs-8">
-                                        <input id="text4" name="email" type="text" class="form-control">
+                                        <input id="text4" name="email" type="email" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="select1" class="control-label col-xs-4">Status</label> 
+                                    <label for="select1" class="control-label col-xs-4">Status <span class="mando-msg">*</span></label> 
                                     <div class="col-xs-8">
                                         <select id="select1" name="status_code" class="select form-control">
                                             <option value="ACTIVE">ACTIVE</option>
@@ -156,7 +188,7 @@ VALUES ('" . $_POST['first_name'] . "',
                                 </div> 
                                 <div class="form-group row">
                                     <div class="col-xs-offset-4 col-xs-8">
-                                        <button name="btnReg" type="submit" class="btn btn-primary">Submit</button>
+                                        <button name="btnReg" type="submit"  class="btn btn-primary">Submit</button>
                                     </div>
                                 </div>
                             </form>
@@ -229,11 +261,11 @@ VALUES ('" . $_POST['first_name'] . "',
 
         <!-- Sidebar-nav Js -->
         <script>
-            $(document).ready(function () {
-                $('#sidebarCollapse').on('click', function () {
-                    $('#sidebar').toggleClass('active');
-                });
-            });
+                                $(document).ready(function () {
+                                    $('#sidebarCollapse').on('click', function () {
+                                        $('#sidebar').toggleClass('active');
+                                    });
+                                });
         </script>
         <!--// Sidebar-nav Js -->
 

@@ -1,4 +1,4 @@
- 
+
 <?php
 session_start();
 include '../DB.php';
@@ -54,11 +54,11 @@ include '../DB.php';
                 </div>
                 <div class="profile-bg"></div>
                 <?php
-                include_once '../_tree_pharmacist.php';
+                include_once '../_tree_opd.php';
                 ?>
             </nav>
-   
-            <!-- Page  Content Holder -->
+
+            <!-- Page Content Holder -->
             <div id="content">
                 <!-- top-bar -->
                 <?php include_once '../_top_bar.php'; ?>
@@ -68,34 +68,68 @@ include '../DB.php';
                 <!--// main-heading -->
                 <!-- Page Content -->
                 <div class="blank-page-content">
-                    <h4>  Patient List </h4>
+                    <h4>OPD Appointment</h4>
                     <hr>
+                    <?php
+                    if (isset($_GET['status'])) {
+                    $sql = "UPDATE `hms_opd_appointment`
+SET 
+  `status_code` = '".$_GET['status']."',
+  `updated_user` = '".$_SESSION['userbean']['id']."'
+WHERE `id` = '".$_GET['id']."';";  
+//                    echo $sql;
+                    setUpdate($sql, TRUE);
+                    }
+                    ?>
                     <div class="row">
                         <div class="col-md-12">
-
-
-                            
-                            
                             <table id="example" class="display" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
+                                        <th>NO</th>
                                         <th>Patient Name</th>
-                                        <th>Telephone</th>
-                                        <th>Date of Birth</th>
-                                        <th>Email</th>
+                                        <th>Date Time</th>
+                                        <th>Doctor Name</th>
+                                        <th>Status</th>
+                                        <th>Fee</th>
+                                        <th>Created DateTime</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $sql = "SELECT * FROM hms_patient";
+                                    $sql = "SELECT hms_opd_appointment.*,CONCAT(hms_patient.first_name,' ',hms_patient.first_name) AS patient_name,
+CONCAT(hms_doctor.first_name,' ',hms_doctor.last_name) AS doctor_name FROM hms_opd_appointment
+INNER JOIN hms_patient
+ON hms_opd_appointment.patient_id = hms_patient.id
+INNER JOIN hms_doctor
+ON hms_opd_appointment.doctor_id = hms_doctor.id";
                                     $data = getData($sql);
                                     if ($data != null) {
                                         foreach ($data as $value) {
                                             ?>
                                             <tr>
-                                                <td><?= $value['first_name'] ?></td>
-                                                <td><?= $value['last_name'] ?></td>
-                                                <td><?= $value['dob'] ?></td>
+                                                <td><?= $value['id'] ?></td>
+                                                <td><?= $value['patient_name'] ?></td>
+                                                <td><?= $value['appointment_date'] ?></td>
+                                                <td><?= $value['doctor_name'] ?></td>
+                                                <td>
+                                                    <?php
+                                                    if ($value['status_code'] == 'OPEN') {
+                                                        ?>
+                                                        <a href="opd-appointment.php?id=<?= $value['id'] ?>&status=APPROVE" class="btn btn-sm btn-success">
+                                                            APPROVE
+                                                        </a>
+                                                        <a href="opd-appointment.php?id=<?= $value['id'] ?>&status=REJECT" class="btn btn-sm btn-danger">
+                                                            REJECT
+                                                        </a>
+                                                        <?php
+                                                    } else {
+                                                        echo $value['status_code'];
+                                                    }
+                                                    ?>
+
+                                                </td>
+                                                <td><?= $value['fee'] ?></td>
                                                 <td><?= $value['created_date'] ?></td>
                                             </tr>
                                             <?php
@@ -104,16 +138,15 @@ include '../DB.php';
                                     ?>
                                 </tbody>
                             </table>
-                            
-                             <link href="css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+
+                            <link href="css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
                             <script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
                             <script type="text/javascript">
-                                $(document).ready(function () {
-                                    $('#example').DataTable();
-                                });
+            $(document).ready(function () {
+                $('#example').DataTable();
+            });
                             </script>
                         </div>
-
                     </div>
                 </div>
 

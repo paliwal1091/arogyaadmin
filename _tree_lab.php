@@ -18,7 +18,8 @@
         </a>
     </li>
     <li>
-        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
+                <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/lab/report-lab-test.php">
+
             <i class="fas fa-laptop"></i>
             Reports
         </a>

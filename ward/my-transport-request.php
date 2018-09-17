@@ -1,4 +1,4 @@
- 
+
 <?php
 session_start();
 include '../DB.php';
@@ -54,11 +54,11 @@ include '../DB.php';
                 </div>
                 <div class="profile-bg"></div>
                 <?php
-                include_once '../_tree_pharmacist.php';
+                include_once '../_tree_ward.php';
                 ?>
             </nav>
-   
-            <!-- Page  Content Holder -->
+
+            <!-- Page Content Holder -->
             <div id="content">
                 <!-- top-bar -->
                 <?php include_once '../_top_bar.php'; ?>
@@ -68,35 +68,39 @@ include '../DB.php';
                 <!--// main-heading -->
                 <!-- Page Content -->
                 <div class="blank-page-content">
-                    <h4>  Patient List </h4>
+                    <h4>OPD Appointment</h4>
                     <hr>
                     <div class="row">
                         <div class="col-md-12">
-
-
-                            
-                            
-                            <table id="example" class="display" cellspacing="0" width="100%">
+                            <table border="1" style="width: 100%">
                                 <thead>
                                     <tr>
-                                        <th>Patient Name</th>
-                                        <th>Telephone</th>
-                                        <th>Date of Birth</th>
-                                        <th>Email</th>
+                                        <th>Request Date</th>
+                                        <th>Comment</th>
+                                        <th>Status</th>
+                                        <th>Vehicle Number</th>
+                                        <th>Driver Name</th>
+                                        <th>Created DateTime</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $sql = "SELECT * FROM hms_patient";
+                                    $sql = "SELECT A.datetime_need,A.comment,A.status_code,(SELECT vehicle_number FROM hms_vehicle 
+                                        WHERE id = A.vehicle_id) AS vehicle_number,A.driver_name,A.created_time
+FROM hms_vehicle_request AS A
+WHERE A.created_user = '".$_SESSION['userbean']['id']."'";
+//                                    echo $sql;
                                     $data = getData($sql);
                                     if ($data != null) {
                                         foreach ($data as $value) {
                                             ?>
                                             <tr>
-                                                <td><?= $value['first_name'] ?></td>
-                                                <td><?= $value['last_name'] ?></td>
-                                                <td><?= $value['dob'] ?></td>
-                                                <td><?= $value['created_date'] ?></td>
+                                                <td><?= $value['datetime_need'] ?></td>
+                                                <td><?= $value['comment'] ?></td>
+                                                <td><?= $value['status_code'] ?></td>
+                                                <td><?= $value['vehicle_number'] ?></td>
+                                                <td><?= $value['driver_name'] ?></td>
+                                                <td><?= $value['created_time'] ?></td>
                                             </tr>
                                             <?php
                                         }
@@ -104,16 +108,30 @@ include '../DB.php';
                                     ?>
                                 </tbody>
                             </table>
-                            
-                             <link href="css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
-                            <script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
-                            <script type="text/javascript">
-                                $(document).ready(function () {
-                                    $('#example').DataTable();
-                                });
-                            </script>
-                        </div>
 
+
+                            <script type="text/javascript">
+                                function PrintElem(elem)
+                                {
+                                    var mywindow = window.open('', 'PRINT', 'height=400,width=600');
+
+                                    mywindow.document.write('<html><head><title>' + document.title + '</title>');
+                                    mywindow.document.write('</head><body >');
+                                    mywindow.document.write('<h1>' + document.title + '</h1>');
+                                    mywindow.document.write(document.getElementById(elem).innerHTML);
+                                    mywindow.document.write('</body></html>');
+
+                                    mywindow.document.close(); // necessary for IE >= 10
+                                    mywindow.focus(); // necessary for IE >= 10*/
+
+                                    mywindow.print();
+                                    mywindow.close();
+
+                                    return true;
+                                }
+                            </script>
+
+                        </div>
                     </div>
                 </div>
 
@@ -132,11 +150,11 @@ include '../DB.php';
 
         <!-- Sidebar-nav Js -->
         <script>
-            $(document).ready(function () {
-                $('#sidebarCollapse').on('click', function () {
-                    $('#sidebar').toggleClass('active');
-                });
-            });
+                                 $(document).ready(function () {
+                                     $('#sidebarCollapse').on('click', function () {
+                                         $('#sidebar').toggleClass('active');
+                                     });
+                                 });
         </script>
         <!--// Sidebar-nav Js -->
 

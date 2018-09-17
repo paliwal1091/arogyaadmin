@@ -54,10 +54,10 @@ include '../DB.php';
                 </div>
                 <div class="profile-bg"></div>
                 <?php
-                include_once '../_tree_pharmacist.php';
+                include_once '../_tree_transport.php';
                 ?>
             </nav>
-   
+
             <!-- Page  Content Holder -->
             <div id="content">
                 <!-- top-bar -->
@@ -68,52 +68,94 @@ include '../DB.php';
                 <!--// main-heading -->
                 <!-- Page Content -->
                 <div class="blank-page-content">
-                    <h4>  Patient List </h4>
+                    <h4>  Transport Requests </h4>
                     <hr>
                     <div class="row">
+                        <div class="col-md-4">
+
+                            <?php
+                            if (isset($_POST['submitApprove'])) {
+                                $sql = "UPDATE hms_vehicle_request SET vehicle_id = '" . $_POST['vehicle_id'] . "', status_code='COMPLETE', driver_name ='" . $_POST['driver_name'] . "' WHERE id = '" . $_POST['id'] . "'";
+//                                echo $sql;
+                                setUpdate($sql, TRUE);
+                            }
+                            
+                            if (isset($_POST['submitReject'])) {
+                                echo  $_POST['id'];
+                               
+                                $sql = "UPDATE hms_vehicle_request SET  status_code='REJECT' WHERE id = '" . $_POST['id'] . "'";
+//                                echo $sql;
+                                setUpdate($sql, TRUE);
+                            }
+                            ?>
+
+                            <span class="mando-msg">* fields are mandatory</span>
+                        </div>
                         <div class="col-md-12">
-
-
-                            
-                            
-                            <table id="example" class="display" cellspacing="0" width="100%">
+                            <?php
+                            $sqlv = "SELECT * FROM hms_vehicle WHERE status_code = 'ACTIVE' ";
+                            $data0 = getData($sqlv);
+                            ?>
+                            <table border="1" style="width: 100%">
                                 <thead>
                                     <tr>
-                                        <th>Patient Name</th>
-                                        <th>Telephone</th>
-                                        <th>Date of Birth</th>
-                                        <th>Email</th>
+                                        <th>Date</th>
+                                        <th>Comment</th>
+                                        <th>Status</th>
+                                        <th>Response</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $sql = "SELECT * FROM hms_patient";
+                                    $sql = "SELECT A.id,A.datetime_need,A.comment,A.status_code,(SELECT vehicle_number FROM hms_vehicle WHERE id = A.vehicle_id) AS vehicle_number,A.driver_name
+FROM hms_vehicle_request AS A";
                                     $data = getData($sql);
                                     if ($data != null) {
                                         foreach ($data as $value) {
                                             ?>
                                             <tr>
-                                                <td><?= $value['first_name'] ?></td>
-                                                <td><?= $value['last_name'] ?></td>
-                                                <td><?= $value['dob'] ?></td>
-                                                <td><?= $value['created_date'] ?></td>
+                                                <td><?= $value['datetime_need'] ?></td>
+                                                <td><?= $value['comment'] ?></td>
+                                                <td><?= $value['status_code'] ?></td>
+                                                <td><?php if ($value['status_code'] == 'PENDING') {
+                                                ?>
+                                                        <form action="tansport-requests.php" method="post">
+                                                            <input type="hidden" name="id" value="<?= $value['id'] ?>" />
+                                                            <input type="hidden" name="status_code" value="COMPLETE" />
+                                                            Vehicle <select name="vehicle_id" required="">
+                                                                <option value="">--select--</option>
+                                                                <?php
+                                                                foreach ($data0 as $valuex) {
+                                                                    ?> <option value="<?= $valuex['id'] ?>"><?= $valuex['vehicle_number'] ?></option> <?php
+                                                                }
+                                                                ?>
+                                                            </select>
+                                                            <input type="text" name="driver_name" placeholder="Driver Name" required=""/>
+                                                            <button name="submitApprove" type="submit" class="btn btn-primary">COMPLETE</button>
+                                                        </form>
+
+                                                    <form action="tansport-requests.php" method="post">
+                                                            <input type="hidden" name="id" value="<?= $value['id'] ?>" />
+                                                            <input type="hidden" name="status_code" value="REJECT" />
+                                                            <button name="submitReject" type="submit" class="btn btn-primary">REJECT</button>
+                                                        </form>
+                                                        <?php }else{
+     echo $value['vehicle_number'] .' - '.$value['driver_name'];
+                                                        }
+                                                    ?></td>
                                             </tr>
                                             <?php
                                         }
                                     }
                                     ?>
+
+
                                 </tbody>
                             </table>
-                            
-                             <link href="css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
-                            <script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
-                            <script type="text/javascript">
-                                $(document).ready(function () {
-                                    $('#example').DataTable();
-                                });
-                            </script>
-                        </div>
 
+
+
+                        </div>
                     </div>
                 </div>
 

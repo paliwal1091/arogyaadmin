@@ -33,7 +33,7 @@ include '../DB.php';
         <!--// Common Css -->
         <!-- Nav Css -->
         <link rel="stylesheet" href="../css/style4.css">
-        <!--// Nav   Css -->
+        <!--// Nav Css -->
         <!-- Fontawesome Css -->
         <link href="../css/fontawesome-all.css" rel="stylesheet">
         <!--// Fontawesome Css -->
@@ -54,11 +54,11 @@ include '../DB.php';
                 </div>
                 <div class="profile-bg"></div>
                 <?php
-                include_once '../_tree_pharmacist.php';
+                include_once '../_tree_transport.php';
                 ?>
             </nav>
 
-            <!-- Page Content Holder -->
+            <!-- Page  Content Holder -->
             <div id="content">
                 <!-- top-bar -->
                 <?php include_once '../_top_bar.php'; ?>
@@ -68,76 +68,57 @@ include '../DB.php';
                 <!--// main-heading -->
                 <!-- Page Content -->
                 <div class="blank-page-content">
-                    <h4> Stock Report </h4>
+                    <h4>  Ambulance </h4>
                     <hr>
-                    <div style="width: 50%">
-                        <form class="form-horizontal" action="stock-report.php" method="post">
-                            <div class="form-group">
-                                <label for="text" class="control-label col-xs-4">Min Stock</label> 
-                                <div class="col-xs-8">
-                                    <input id="text" name="minstock" type="text" class="form-control">
-                                </div>
-                            </div> 
-                            <div class="form-group row">
-                                <div class="col-xs-offset-4 col-xs-8">
-                                    <button name="btnSub" type="submit" class="btn btn-primary">Submit</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
 
-
-                    <?php
-                    if (isset($_POST['btnSub'])) {
-                        ?>
-                        <a href="#" class="btn btn-warning btn-sm" onclick="PrintElem('printdiv')">print</a>
-                        <div id="printdiv">
-                        <table border="1" style="width: 100%">
-                            <thead>
-                                <tr>
-                                    <th colspan="5">Min Stock Report</th>
-                                </tr>
-                                <tr>
-                                    <th>Drug Name</th>
-                                    <th>Qty</th>
-                                    <th></th>
-                                    <th>Price</th>
-                                    <th>Expiry Date</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                <?php
-                                $sql = "SELECT * FROM hms_drug WHERE qty <= '" . $_POST['minstock'] . "'";
-                                $data = getData($sql);
-                                foreach ($data as $value) {
-                                    ?>
-
-
-                                    <tr>
-                                        <td><?= $value['drug_name'] ?></td>
-                                        <td><?= $value['qty'] ?></td>
-                                        <td><?= $value['unit'] ?></td>
-                                        <td><?= $value['unit_price'] ?></td>
-                                        <td><?= $value['date_expiry'] ?></td>
+                             <a href="#" class="btn btn-warning btn-sm" onclick="PrintElem('printdiv')">print</a>
+                             <div id="printdiv">
+                            <table border="1" style="width: 100%">
+                                <thead>
+                                    <tr style="text-align: center">
+                                        <th colspan="3">Vehicle Report</th>
                                     </tr>
-
+                                    <tr>
+                                        <th>Vehicle Number</th>
+                                        <th>Status</th>
+                                        <th>Created Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
 
                                     <?php
-                                }
-                                ?>
-                            </tbody>
-                        </table>
+                                        $sql = "SELECT * FROM hms_vehicle";
+                                        $data0 = getData($sql);
+                                        if ($data0 != null) {
+                                            foreach ($data0 as $value) {
+                                                ?>
+                                                <tr>
+                                                    <td><?= $value['vehicle_number']?></td>
+                                                    <td><?= $value['status_code']?></td>
+                                                    <td><?= $value['created_date']?></td>
+                                                </tr>
+                                                <?php
+                                            }
+                                        }
+                                    ?>
+                                </tbody>
+                            </table>
+</div>
                         </div>
-                            <?php
-                    }
-                    ?>
 
-
-
+                    </div>
                 </div>
-                
-                   <script type="text/javascript">
+
+                <!--// Page Content -->
+
+                <!-- Copyright -->
+                <?php include '../_footer.php'; ?>
+                <!--// Copyright -->
+            </div>
+        </div>
+        <script type="text/javascript">
                     function PrintElem(elem)
                     {
                         var mywindow = window.open('', 'PRINT', 'height=400,width=600');
@@ -158,14 +139,7 @@ include '../DB.php';
                     }
                 </script>
 
-                <!--// Page Content -->
-
-                <!-- Copyright -->
-                <?php include '../_footer.php'; ?>
-                <!--// Copyright -->
-            </div>
-        </div>
-
+        
 
         <!-- Required common Js -->
         <script src='../js/jquery-2.2.3.min.js'></script>
@@ -173,11 +147,11 @@ include '../DB.php';
 
         <!-- Sidebar-nav Js -->
         <script>
-                            $(document).ready(function () {
-                                $('#sidebarCollapse').on('click', function () {
-                                    $('#sidebar').toggleClass('active');
-                                });
-                            });
+            $(document).ready(function () {
+                $('#sidebarCollapse').on('click', function () {
+                    $('#sidebar').toggleClass('active');
+                });
+            });
         </script>
         <!--// Sidebar-nav Js -->
 

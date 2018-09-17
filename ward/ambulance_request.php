@@ -1,7 +1,8 @@
- 
+   
 <?php
 session_start();
 include '../DB.php';
+//echo 'r';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -54,11 +55,11 @@ include '../DB.php';
                 </div>
                 <div class="profile-bg"></div>
                 <?php
-                include_once '../_tree_pharmacist.php';
+                include_once '../_tree_ward.php';
                 ?>
             </nav>
-   
-            <!-- Page  Content Holder -->
+
+            <!-- Page Content Holder -->
             <div id="content">
                 <!-- top-bar -->
                 <?php include_once '../_top_bar.php'; ?>
@@ -68,53 +69,57 @@ include '../DB.php';
                 <!--// main-heading -->
                 <!-- Page Content -->
                 <div class="blank-page-content">
-                    <h4>  Patient List </h4>
+                    <h4>  Ambulance Request </h4>
                     <hr>
+
+
+                    <?php
+                    if (isset($_POST['btnsubmit'])) {
+                        
+                        $sql = "INSERT INTO `hms_vehicle_request`
+            (`request_by`,
+             `comment`,
+             `created_user`,
+             `datetime_need`)
+VALUES ('" . $_SESSION['userbean']['id'] . "',
+        '" . $_POST['comment'] . "',
+        '" . $_SESSION['userbean']['id'] . "',
+        '" . $_POST['datetime_need'] . "');";
+                        setData($sql, TRUE);
+                        
+                    }
+                    ?>
+
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-8">
+
+                            <form class="form-horizontal" action="ambulance_request.php" method="post">
+                                <div class="form-group">
+                                    <label for="datetime_need" class="control-label col-xs-4">Request Date Time</label> 
+                                    <div class="col-xs-8">
+                                        <input id="datetime_need" name="datetime_need" type="datetime-local" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="comment" class="control-label col-xs-4">comment</label> 
+                                    <div class="col-xs-8">
+                                        <textarea id="comment" name="comment" cols="40" rows="5" class="form-control"></textarea>
+                                    </div>
+                                </div> 
+                                <div class="form-group row">
+                                    <div class="col-xs-offset-4 col-xs-8">
+                                        <button name="btnsubmit" type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
 
 
-                            
-                            
-                            <table id="example" class="display" cellspacing="0" width="100%">
-                                <thead>
-                                    <tr>
-                                        <th>Patient Name</th>
-                                        <th>Telephone</th>
-                                        <th>Date of Birth</th>
-                                        <th>Email</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    $sql = "SELECT * FROM hms_patient";
-                                    $data = getData($sql);
-                                    if ($data != null) {
-                                        foreach ($data as $value) {
-                                            ?>
-                                            <tr>
-                                                <td><?= $value['first_name'] ?></td>
-                                                <td><?= $value['last_name'] ?></td>
-                                                <td><?= $value['dob'] ?></td>
-                                                <td><?= $value['created_date'] ?></td>
-                                            </tr>
-                                            <?php
-                                        }
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
-                            
-                             <link href="css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
-                            <script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
-                            <script type="text/javascript">
-                                $(document).ready(function () {
-                                    $('#example').DataTable();
-                                });
-                            </script>
                         </div>
-
+                        <div class="col-md-4">
+                        </div>
                     </div>
+
+
                 </div>
 
                 <!--// Page Content -->

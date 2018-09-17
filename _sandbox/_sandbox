@@ -5,7 +5,8 @@
 <p class="text-warning">...</p>
 <p class="text-danger">...</p>
 
-x
+                                <span class="mando-msg">* fields are mandatory</span>
+
                             <?php
                             if (isset($_POST['submit'])) {
                                 ?>
@@ -15,3 +16,30 @@ x
                                 <?php
                             }
                             ?>
+
+                                
+                                
+                                  <script>
+                                function inputValidate() {
+                                    var first_name = $.trim($('#first_name').val());
+                                    var last_name = $.trim($('#last_name').val());
+                                    var nic = $.trim($('#nic').val());
+
+                                    if (first_name.length == 0) {
+                                        alert('Invalid First Name');
+                                           return false;
+                                    }
+                                    if (last_name.length == 0) {
+                                        alert('Invalid First Name');
+                                           return false;
+                                    }
+
+                                    if (nic.length >= 9 && nic.length <= 12) {
+                                    } else {
+                                        alert('Invalid NIC legnth');
+                                        return false;
+                                    }
+//                                    alert(first_name);
+                                    return true;
+                                }
+                            </script>

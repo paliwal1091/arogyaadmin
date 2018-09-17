@@ -59,13 +59,13 @@ include './DB.php';?>
                 } else if ($_SESSION['userbean']['user_role'] == 'LAB') {
                     include_once './_tree_lab.php';
                 } else if ($_SESSION['userbean']['user_role'] == 'OPD') {
-//                    include_once './_tree_opd.php';
+                    include_once './_tree_opd.php';
                 } else if ($_SESSION['userbean']['user_role'] == 'PHARMACIST') {
                     include_once './_tree_pharmacist.php';
                 } else if ($_SESSION['userbean']['user_role'] == 'TRANSPORT') {
-//                    include_once './_tree_transport.php';
+                    include_once './_tree_transport.php';
                 } else if ($_SESSION['userbean']['user_role'] == 'WARD') {
-//                    include_once './_tree_ward.php';
+                    include_once './_tree_ward.php';
                 }
                 ?>
             </nav>
@@ -93,7 +93,7 @@ if ($_SESSION['userbean']['user_role'] == 'DOCTOR') {
 } else if ($_SESSION['userbean']['user_role'] == 'PHARMACIST') {
     include_once './pharmacist/home_icons.php';
 } else if ($_SESSION['userbean']['user_role'] == 'TRANSPORT') {
-    include_once './_tree_transport.php';
+    include_once './transport/home_icons.php';
 } else if ($_SESSION['userbean']['user_role'] == 'WARD') {
     include_once './_tree_ward.php';
 }

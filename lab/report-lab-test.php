@@ -1,4 +1,4 @@
- 
+
 <?php
 session_start();
 include '../DB.php';
@@ -33,7 +33,7 @@ include '../DB.php';
         <!--// Common Css -->
         <!-- Nav Css -->
         <link rel="stylesheet" href="../css/style4.css">
-        <!--// Nav   Css -->
+        <!--// Nav Css -->
         <!-- Fontawesome Css -->
         <link href="../css/fontawesome-all.css" rel="stylesheet">
         <!--// Fontawesome Css -->
@@ -54,7 +54,7 @@ include '../DB.php';
                 </div>
                 <div class="profile-bg"></div>
                 <?php
-                include_once '../_tree_pharmacist.php';
+                include_once '../_tree_lab.php';
                 ?>
             </nav>
 
@@ -68,76 +68,52 @@ include '../DB.php';
                 <!--// main-heading -->
                 <!-- Page Content -->
                 <div class="blank-page-content">
-                    <h4> Stock Report </h4>
+                    <h4>Lab Test Report</h4>
                     <hr>
-                    <div style="width: 50%">
-                        <form class="form-horizontal" action="stock-report.php" method="post">
-                            <div class="form-group">
-                                <label for="text" class="control-label col-xs-4">Min Stock</label> 
-                                <div class="col-xs-8">
-                                    <input id="text" name="minstock" type="text" class="form-control">
-                                </div>
-                            </div> 
-                            <div class="form-group row">
-                                <div class="col-xs-offset-4 col-xs-8">
-                                    <button name="btnSub" type="submit" class="btn btn-primary">Submit</button>
-                                </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a href="#" class="btn btn-warning btn-sm" onclick="PrintElem('printdiv')">print</a>
+                            <div id="printdiv">
+                                <table  width="100%" border="1">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="4">Lab Test Report</th>
+                                        </tr>
+                                        <tr>
+                                            <th>Center Name</th>
+                                            <th>Test Name</th>
+                                            <th>Cost</th>
+                                            <th>Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $sql = "SELECT hms_lab_test.*,hms_center.center_name FROM hms_lab_test INNER JOIN hms_center
+ON hms_lab_test.center_id = hms_center.id";
+                                        $data = getData($sql);
+                                        if ($data != null) {
+                                            foreach ($data as $value) {
+                                                ?>
+                                                <tr>
+                                                    <td><?= $value['center_name'] ?></td>
+                                                    <td><?= $value['lab_test'] ?></td>
+                                                    <td><?= $value['test_cost'] ?></td>
+                                                    <td><?= $value['description'] ?></td>
+                                                </tr>
+                                                <?php
+                                            }
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
                             </div>
-                        </form>
-                    </div>
 
-
-                    <?php
-                    if (isset($_POST['btnSub'])) {
-                        ?>
-                        <a href="#" class="btn btn-warning btn-sm" onclick="PrintElem('printdiv')">print</a>
-                        <div id="printdiv">
-                        <table border="1" style="width: 100%">
-                            <thead>
-                                <tr>
-                                    <th colspan="5">Min Stock Report</th>
-                                </tr>
-                                <tr>
-                                    <th>Drug Name</th>
-                                    <th>Qty</th>
-                                    <th></th>
-                                    <th>Price</th>
-                                    <th>Expiry Date</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                <?php
-                                $sql = "SELECT * FROM hms_drug WHERE qty <= '" . $_POST['minstock'] . "'";
-                                $data = getData($sql);
-                                foreach ($data as $value) {
-                                    ?>
-
-
-                                    <tr>
-                                        <td><?= $value['drug_name'] ?></td>
-                                        <td><?= $value['qty'] ?></td>
-                                        <td><?= $value['unit'] ?></td>
-                                        <td><?= $value['unit_price'] ?></td>
-                                        <td><?= $value['date_expiry'] ?></td>
-                                    </tr>
-
-
-                                    <?php
-                                }
-                                ?>
-                            </tbody>
-                        </table>
                         </div>
-                            <?php
-                    }
-                    ?>
-
-
-
+                    </div>
                 </div>
-                
-                   <script type="text/javascript">
+
+                <script type="text/javascript">
                     function PrintElem(elem)
                     {
                         var mywindow = window.open('', 'PRINT', 'height=400,width=600');
@@ -173,11 +149,11 @@ include '../DB.php';
 
         <!-- Sidebar-nav Js -->
         <script>
-                            $(document).ready(function () {
-                                $('#sidebarCollapse').on('click', function () {
-                                    $('#sidebar').toggleClass('active');
-                                });
-                            });
+                    $(document).ready(function () {
+                        $('#sidebarCollapse').on('click', function () {
+                            $('#sidebar').toggleClass('active');
+                        });
+                    });
         </script>
         <!--// Sidebar-nav Js -->
 
