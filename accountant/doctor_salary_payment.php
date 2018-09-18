@@ -142,7 +142,7 @@ VALUES ('" . $_POST['doctor_id'] . "',
                                     <?php
                                     $total_salary = 0;
                                     if (isset($_POST['addDocSalary'])) {
-                                        echo $_POST['month_year'];
+//                                        echo $_POST['month_year'];
                                         $sql = "SELECT * FROM hms_doctor_appointment WHERE appointment_date LIKE '%" . $_POST['month_year'] . "%' AND doctor_id = '" . $_POST['doctor_id'] . "' AND status_code = 'ACCEPT'";
 //                                        echo $sql;
                                         $data0 = getData($sql);

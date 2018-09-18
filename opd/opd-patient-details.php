@@ -38,8 +38,6 @@ include '../DB.php';
         <link href="../css/fontawesome-all.css" rel="stylesheet">
         <!--// Fontawesome Css -->
         <!--// Style-sheets -->
-                <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-
 
 
     </head>
@@ -56,7 +54,7 @@ include '../DB.php';
                 </div>
                 <div class="profile-bg"></div>
                 <?php
-                include_once '../_tree_lab.php';
+                include_once '../_tree_opd.php';
                 ?>
             </nav>
 
@@ -70,57 +68,35 @@ include '../DB.php';
                 <!--// main-heading -->
                 <!-- Page Content -->
                 <div class="blank-page-content">
-                    <h4>Add Center</h4>
+                   <h4>  Patient List </h4>
                     <hr>
-                    <?php
-                    if (isset($_POST['btnsubmit'])) {
-                        $sql = "INSERT INTO `hms_center`
-            (`center_name`)
-VALUES ('" . $_POST['center_name'] . "');";
-                        setData($sql, TRUE);
-                    }
-                    
-                    if(isset($_GET['id'])){
-                    $sql = "DELETE FROM hms_center WHERE id = '".$_GET['id']."'";    
-                    setDelete($sql);
-                    }
-                    
-                    ?>
                     <div class="row">
-                        <div class="col-md-4">
-                            <form class="form-horizontal" action="lab-center.php" method="post">
-                                 <span class="mando-msg">* fields are mandatory</span>
-                                <div class="form-group">
-                                    <label for="text" class="control-label col-xs-4">Center Name <span class="mando-msg">*</span></label> 
-                                    <div class="col-xs-8">
-                                        <input id="text" required="" name="center_name" type="text" class="form-control">
-                                    </div>
-                                </div> 
-                                <div class="form-group row">
-                                    <div class="col-xs-offset-4 col-xs-8">
-                                        <button name="btnsubmit" type="submit" class="btn btn-primary">Submit</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="col-md-8">
+                        <div class="col-md-12">
 
-                            <table border="1">
+
+                            
+                            
+                            <table id="example" class="display" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
-                                        <th>Center Name</th>
+                                        <th>Patient Name</th>
+                                        <th>Telephone</th>
+                                        <th>Date of Birth</th>
+                                        <th>Email</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $sql = "SELECT * FROM hms_center";
+                                    $sql = "SELECT * FROM hms_patient";
                                     $data = getData($sql);
                                     if ($data != null) {
                                         foreach ($data as $value) {
                                             ?>
                                             <tr>
-                                                <td><?= $value['center_name']?></td>
-                                                <td><a href="lab-center.php?id=<?= $value['id']?>">remove</a></td>
+                                                <td><?= $value['first_name'] ?></td>
+                                                <td><?= $value['last_name'] ?></td>
+                                                <td><?= $value['dob'] ?></td>
+                                                <td><?= $value['created_date'] ?></td>
                                             </tr>
                                             <?php
                                         }
@@ -128,7 +104,16 @@ VALUES ('" . $_POST['center_name'] . "');";
                                     ?>
                                 </tbody>
                             </table>
+                            
+                             <link href="css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+                            <script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
+                            <script type="text/javascript">
+                                $(document).ready(function () {
+                                    $('#example').DataTable();
+                                });
+                            </script>
                         </div>
+
                     </div>
                 </div>
 

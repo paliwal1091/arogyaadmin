@@ -70,13 +70,13 @@ include '../DB.php';
                 <!--// main-heading -->
                 <!-- Page Content -->
                 <div class="blank-page-content">
-                    <h4>Add Center</h4>
+                    <h4>Item Request</h4>
                     <hr>
                     <?php
                     if (isset($_POST['btnsubmit'])) {
-                        $sql = "INSERT INTO `hms_center`
-            (`center_name`)
-VALUES ('" . $_POST['center_name'] . "');";
+                        $sql = "INSERT INTO `hms_inventory`
+            (`item_name`,`qty`,created_user)
+VALUES ('" . $_POST['item_name'] . "','" . $_POST['qty'] . "','".$_SESSION['userbean']['id']."');";
                         setData($sql, TRUE);
                     }
                     
@@ -88,12 +88,18 @@ VALUES ('" . $_POST['center_name'] . "');";
                     ?>
                     <div class="row">
                         <div class="col-md-4">
-                            <form class="form-horizontal" action="lab-center.php" method="post">
+                            <form class="form-horizontal" action="item-request.php" method="post">
                                  <span class="mando-msg">* fields are mandatory</span>
                                 <div class="form-group">
-                                    <label for="text" class="control-label col-xs-4">Center Name <span class="mando-msg">*</span></label> 
+                                    <label for="text" class="control-label col-xs-4">Item Name<span class="mando-msg">*</span></label> 
                                     <div class="col-xs-8">
-                                        <input id="text" required="" name="center_name" type="text" class="form-control">
+                                        <input id="text" required="" name="item_name" type="text" class="form-control">
+                                    </div>
+                                </div> 
+                                <div class="form-group">
+                                    <label for="text" class="control-label col-xs-4">Qty<span class="mando-msg">*</span></label> 
+                                    <div class="col-xs-8">
+                                        <input id="text" required="" name="qty" type="number" class="form-control">
                                     </div>
                                 </div> 
                                 <div class="form-group row">
@@ -108,19 +114,24 @@ VALUES ('" . $_POST['center_name'] . "');";
                             <table border="1">
                                 <thead>
                                     <tr>
-                                        <th>Center Name</th>
+                                        <th>Item Name</th>
+                                        <th>Qty </th>
+                                        <th>Status</th>
+                                        <th>DateTime</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $sql = "SELECT * FROM hms_center";
+                                    $sql = "SELECT * FROM hms_inventory WHERE created_user = '".$_SESSION['userbean']['id']."'";
                                     $data = getData($sql);
                                     if ($data != null) {
                                         foreach ($data as $value) {
                                             ?>
                                             <tr>
-                                                <td><?= $value['center_name']?></td>
-                                                <td><a href="lab-center.php?id=<?= $value['id']?>">remove</a></td>
+                                                <td><?= $value['item_name']?></td>
+                                                <td><?= $value['qty']?></td>
+                                                <td><?= $value['status_code']?></td>
+                                                <td><?= $value['created_date']?></td>
                                             </tr>
                                             <?php
                                         }

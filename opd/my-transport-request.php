@@ -38,8 +38,6 @@ include '../DB.php';
         <link href="../css/fontawesome-all.css" rel="stylesheet">
         <!--// Fontawesome Css -->
         <!--// Style-sheets -->
-                <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-
 
 
     </head>
@@ -56,7 +54,7 @@ include '../DB.php';
                 </div>
                 <div class="profile-bg"></div>
                 <?php
-                include_once '../_tree_lab.php';
+                include_once '../_tree_opd.php';
                 ?>
             </nav>
 
@@ -70,57 +68,39 @@ include '../DB.php';
                 <!--// main-heading -->
                 <!-- Page Content -->
                 <div class="blank-page-content">
-                    <h4>Add Center</h4>
+                    <h4>My Transport Request</h4>
                     <hr>
-                    <?php
-                    if (isset($_POST['btnsubmit'])) {
-                        $sql = "INSERT INTO `hms_center`
-            (`center_name`)
-VALUES ('" . $_POST['center_name'] . "');";
-                        setData($sql, TRUE);
-                    }
-                    
-                    if(isset($_GET['id'])){
-                    $sql = "DELETE FROM hms_center WHERE id = '".$_GET['id']."'";    
-                    setDelete($sql);
-                    }
-                    
-                    ?>
                     <div class="row">
-                        <div class="col-md-4">
-                            <form class="form-horizontal" action="lab-center.php" method="post">
-                                 <span class="mando-msg">* fields are mandatory</span>
-                                <div class="form-group">
-                                    <label for="text" class="control-label col-xs-4">Center Name <span class="mando-msg">*</span></label> 
-                                    <div class="col-xs-8">
-                                        <input id="text" required="" name="center_name" type="text" class="form-control">
-                                    </div>
-                                </div> 
-                                <div class="form-group row">
-                                    <div class="col-xs-offset-4 col-xs-8">
-                                        <button name="btnsubmit" type="submit" class="btn btn-primary">Submit</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="col-md-8">
-
-                            <table border="1">
+                        <div class="col-md-12">
+                            <table border="1" style="width: 100%">
                                 <thead>
                                     <tr>
-                                        <th>Center Name</th>
+                                        <th>Request Date</th>
+                                        <th>Comment</th>
+                                        <th>Status</th>
+                                        <th>Vehicle Number</th>
+                                        <th>Driver Name</th>
+                                        <th>Created DateTime</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $sql = "SELECT * FROM hms_center";
+                                    $sql = "SELECT A.datetime_need,A.comment,A.status_code,(SELECT vehicle_number FROM hms_vehicle 
+                                        WHERE id = A.vehicle_id) AS vehicle_number,A.driver_name,A.created_time
+FROM hms_vehicle_request AS A
+WHERE A.created_user = '".$_SESSION['userbean']['id']."'";
+//                                    echo $sql;
                                     $data = getData($sql);
                                     if ($data != null) {
                                         foreach ($data as $value) {
                                             ?>
                                             <tr>
-                                                <td><?= $value['center_name']?></td>
-                                                <td><a href="lab-center.php?id=<?= $value['id']?>">remove</a></td>
+                                                <td><?= $value['datetime_need'] ?></td>
+                                                <td><?= $value['comment'] ?></td>
+                                                <td><?= $value['status_code'] ?></td>
+                                                <td><?= $value['vehicle_number'] ?></td>
+                                                <td><?= $value['driver_name'] ?></td>
+                                                <td><?= $value['created_time'] ?></td>
                                             </tr>
                                             <?php
                                         }
@@ -128,6 +108,29 @@ VALUES ('" . $_POST['center_name'] . "');";
                                     ?>
                                 </tbody>
                             </table>
+
+
+                            <script type="text/javascript">
+                                function PrintElem(elem)
+                                {
+                                    var mywindow = window.open('', 'PRINT', 'height=400,width=600');
+
+                                    mywindow.document.write('<html><head><title>' + document.title + '</title>');
+                                    mywindow.document.write('</head><body >');
+                                    mywindow.document.write('<h1>' + document.title + '</h1>');
+                                    mywindow.document.write(document.getElementById(elem).innerHTML);
+                                    mywindow.document.write('</body></html>');
+
+                                    mywindow.document.close(); // necessary for IE >= 10
+                                    mywindow.focus(); // necessary for IE >= 10*/
+
+                                    mywindow.print();
+                                    mywindow.close();
+
+                                    return true;
+                                }
+                            </script>
+
                         </div>
                     </div>
                 </div>
@@ -147,11 +150,11 @@ VALUES ('" . $_POST['center_name'] . "');";
 
         <!-- Sidebar-nav Js -->
         <script>
-            $(document).ready(function () {
-                $('#sidebarCollapse').on('click', function () {
-                    $('#sidebar').toggleClass('active');
-                });
-            });
+                                 $(document).ready(function () {
+                                     $('#sidebarCollapse').on('click', function () {
+                                         $('#sidebar').toggleClass('active');
+                                     });
+                                 });
         </script>
         <!--// Sidebar-nav Js -->
 

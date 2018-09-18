@@ -1,7 +1,8 @@
-
+   
 <?php
 session_start();
 include '../DB.php';
+//echo 'r';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,8 +39,6 @@ include '../DB.php';
         <link href="../css/fontawesome-all.css" rel="stylesheet">
         <!--// Fontawesome Css -->
         <!--// Style-sheets -->
-                <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-
 
 
     </head>
@@ -56,7 +55,7 @@ include '../DB.php';
                 </div>
                 <div class="profile-bg"></div>
                 <?php
-                include_once '../_tree_lab.php';
+                include_once '../_tree_opd.php';
                 ?>
             </nav>
 
@@ -70,30 +69,41 @@ include '../DB.php';
                 <!--// main-heading -->
                 <!-- Page Content -->
                 <div class="blank-page-content">
-                    <h4>Add Center</h4>
+                    <h4>  Ambulance Request </h4>
                     <hr>
+
+
                     <?php
                     if (isset($_POST['btnsubmit'])) {
-                        $sql = "INSERT INTO `hms_center`
-            (`center_name`)
-VALUES ('" . $_POST['center_name'] . "');";
+                        
+                        $sql = "INSERT INTO `hms_vehicle_request`
+            (`request_by`,
+             `comment`,
+             `created_user`,
+             `datetime_need`)
+VALUES ('" . $_SESSION['userbean']['id'] . "',
+        '" . $_POST['comment'] . "',
+        '" . $_SESSION['userbean']['id'] . "',
+        '" . $_POST['datetime_need'] . "');";
                         setData($sql, TRUE);
+                        
                     }
-                    
-                    if(isset($_GET['id'])){
-                    $sql = "DELETE FROM hms_center WHERE id = '".$_GET['id']."'";    
-                    setDelete($sql);
-                    }
-                    
                     ?>
+
                     <div class="row">
-                        <div class="col-md-4">
-                            <form class="form-horizontal" action="lab-center.php" method="post">
-                                 <span class="mando-msg">* fields are mandatory</span>
+                        <div class="col-md-8">
+
+                            <form class="form-horizontal" action="opd_ambulance_request.php" method="post">
                                 <div class="form-group">
-                                    <label for="text" class="control-label col-xs-4">Center Name <span class="mando-msg">*</span></label> 
+                                    <label for="datetime_need" class="control-label col-xs-4">Request Date Time</label> 
                                     <div class="col-xs-8">
-                                        <input id="text" required="" name="center_name" type="text" class="form-control">
+                                        <input id="datetime_need" required="" name="datetime_need" type="datetime-local" min="<?= $_SESSION['today']?>T00:00" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="comment" class="control-label col-xs-4">comment</label> 
+                                    <div class="col-xs-8">
+                                        <textarea id="comment" name="comment"  required="" cols="40" rows="5" class="form-control"></textarea>
                                     </div>
                                 </div> 
                                 <div class="form-group row">
@@ -102,34 +112,14 @@ VALUES ('" . $_POST['center_name'] . "');";
                                     </div>
                                 </div>
                             </form>
-                        </div>
-                        <div class="col-md-8">
 
-                            <table border="1">
-                                <thead>
-                                    <tr>
-                                        <th>Center Name</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    $sql = "SELECT * FROM hms_center";
-                                    $data = getData($sql);
-                                    if ($data != null) {
-                                        foreach ($data as $value) {
-                                            ?>
-                                            <tr>
-                                                <td><?= $value['center_name']?></td>
-                                                <td><a href="lab-center.php?id=<?= $value['id']?>">remove</a></td>
-                                            </tr>
-                                            <?php
-                                        }
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
+
+                        </div>
+                        <div class="col-md-4">
                         </div>
                     </div>
+
+
                 </div>
 
                 <!--// Page Content -->

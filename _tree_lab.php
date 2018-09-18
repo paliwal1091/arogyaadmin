@@ -18,6 +18,12 @@
         </a>
     </li>
     <li>
+        <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/lab/item-request.php">
+            <i class="fas fa-tags"></i>
+           Item Request
+        </a>
+    </li>
+    <li>
                 <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/lab/report-lab-test.php">
 
             <i class="fas fa-laptop"></i>

@@ -13,6 +13,11 @@
                     <i class="fas fa-vials  fa-5x  tile-icon"></i>
                 </a>
             </td>
+            <td>
+                <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/lab/item-request.php">
+                    <i class="fas fa-tags  fa-5x  tile-icon"></i>
+                </a>
+            </td>
              <td>
                 <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/lab/report-lab-test.php">
                      <i class="fas fa-file-alt fa-5x  tile-icon"></i>
@@ -22,6 +27,7 @@
         <tr style="text-align: center">
             <td>Lab Centers</td>
             <td>Lab Tests</td>
+            <td>Items</td>
             <td>Reports</td>
         </tr>
     </tbody>

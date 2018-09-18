@@ -10,6 +10,21 @@
                 </a>
             </td>
             <td>
+                <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/opd/opd-patient-details.php">
+                  <i class="fas fa-users fa-5x"></i>
+                </a>
+            </td>
+            <td>
+                <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/opd/opd_ambulance_request.php">
+                  <i class="fas fa-ambulance fa-5x"></i>
+                </a>
+            </td>
+            <td>
+                <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/opd/my-transport-request.php">
+                  <i class="fas fa-list fa-5x"></i>
+                </a>
+            </td>
+            <td>
                 <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/opd/report-opd-appointment.php">
                      <i class="fas fa-file-alt fa-5x  tile-icon"></i>
                 </a>
@@ -17,6 +32,9 @@
         </tr>
         <tr style="text-align: center">
             <td>OPD Appointment</td>
+            <td>Patient List</td>
+            <td>Ambulance</td>
+            <td>My Ambulance Request</td>
             <td>Report</td>
         </tr>
     </tbody>
