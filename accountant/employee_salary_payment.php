@@ -68,7 +68,7 @@ include '../DB.php';
                 <!--// main-heading -->
                 <!-- Page Content -->
                 <div class="blank-page-content">
-                    <h4>Doctor Salary</h4>
+                    <h4>Employee Salary</h4>
                     <hr>
 
                     <?php
@@ -94,7 +94,7 @@ VALUES ('" . $_POST['user_id'] . "',
                                 <div class="form-group">
                                     <label for="select" class="control-label col-xs-4">Employee</label> 
                                     <div class="col-xs-8">
-                                        <select id="select" name="user_id" class="select form-control">
+                                        <select id="select" required="" name="user_id" class="select form-control">
                                             <option value="">--select Employee--</option>
                                             <?php
                                             $sql = "SELECT * from hms_user";
@@ -113,13 +113,13 @@ VALUES ('" . $_POST['user_id'] . "',
                                 <div class="form-group">
                                     <label for="text" class="control-label col-xs-4">Month</label> 
                                     <div class="col-xs-8">
-                                        <input id="text" name="salary_month" type="month" class="form-control">
+                                        <input id="text"  required="" name="salary_month" type="month" class="form-control">
                                     </div>
                                 </div> 
                                 <div class="form-group">
                                     <label for="text" class="control-label col-xs-4">Salary Amount</label> 
                                     <div class="col-xs-8">
-                                        <input id="text" name="salary_amount" type="text" class="form-control">
+                                        <input id="text" required="" name="salary_amount" type="number" class="form-control">
                                     </div>
                                 </div> 
                                 <div class="form-group row">

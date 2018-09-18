@@ -73,14 +73,19 @@ include '../DB.php';
 
                     <?php
                     if (isset($_POST['btnPay'])) {
+                        
+                        $flag_unique = $_POST['salary_month'] . $_POST['salary_amount'];
+                        
                         $sql = "INSERT INTO `hms_doctor_salary`
             (`doctor_id`,
              `salary_month`,
              `salary_amount`,
+             `flag_unique`,
              `created_user`)
 VALUES ('" . $_POST['doctor_id'] . "',
         '" . $_POST['salary_month'] . "',
         '" . $_POST['salary_amount'] . "',
+        '" . $flag_unique. "',
         '" . $_SESSION['userbean']['id'] . "');";
                         setData($sql, TRUE);
                         ?>
@@ -94,7 +99,7 @@ VALUES ('" . $_POST['doctor_id'] . "',
                                 <div class="form-group">
                                     <label for="select" class="control-label col-xs-4">Doctor</label> 
                                     <div class="col-xs-8">
-                                        <select id="select" name="doctor_id" class="select form-control">
+                                        <select id="select" required="" name="doctor_id" class="select form-control">
                                             <option value="">--select doctor--</option>
                                             <?php
                                             $sql = "SELECT * from hms_doctor";
@@ -113,7 +118,7 @@ VALUES ('" . $_POST['doctor_id'] . "',
                                 <div class="form-group">
                                     <label for="text" class="control-label col-xs-4">Month</label> 
                                     <div class="col-xs-8">
-                                        <input id="text" name="month_year" type="month" class="form-control">
+                                        <input id="text" required="" name="month_year"  type="month" class="form-control">
                                     </div>
                                 </div> 
                                 <div class="form-group row">
@@ -124,7 +129,7 @@ VALUES ('" . $_POST['doctor_id'] . "',
                             </form>
                         </div>
                         <div class="col-md-6">
-                            <h3>Completed Appointment</h3>
+                            <h3>Payments</h3>
                             <table border="1" style="width: 100%">
                                 <thead>
                                     <tr>
