@@ -142,9 +142,10 @@ WHERE `id` = '" . $_POST['id'] . "';";
                                     <div class="form-group">
                                         <label for="text3" class="control-label col-xs-4">Expiry Date<span class="mando-msg">*</span></label> 
                                         <div class="col-xs-8">
-                                            <input id="text3" name="date_expiry" type="date" required="" value="<?= $_GET['date_expiry'] ?>" class="form-control">
+                                            <input id="text3" name="date_expiry" min="<?= $_SESSION['today']?>" type="date" required="" value="<?= $_GET['date_expiry'] ?>" class="form-control">
                                         </div>
                                     </div> 
+                                    
                                     <div class="form-group row">
                                         <div class="col-xs-offset-4 col-xs-8">
                                             <button name="btnUpdate" type="submit" class="btn btn-primary">Update</button>
@@ -190,7 +191,7 @@ WHERE `id` = '" . $_POST['id'] . "';";
                                     <div class="form-group">
                                         <label for="text3" class="control-label col-xs-4">Expiry Date<span class="mando-msg">*</span></label> 
                                         <div class="col-xs-8">
-                                            <input id="text3" name="date_expiry" type="date" required=""class="form-control">
+                                            <input id="text3" name="date_expiry" min="<?= $_SESSION['today']?>" type="date" required=""class="form-control">
                                         </div>
                                     </div> 
                                     <div class="form-group row">

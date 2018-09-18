@@ -38,6 +38,8 @@ include '../DB.php';
         <link href="../css/fontawesome-all.css" rel="stylesheet">
         <!--// Fontawesome Css -->
         <!--// Style-sheets -->
+                <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
 
 
     </head>
@@ -87,10 +89,11 @@ VALUES ('" . $_POST['center_name'] . "');";
                     <div class="row">
                         <div class="col-md-4">
                             <form class="form-horizontal" action="lab-center.php" method="post">
+                                 <span class="mando-msg">* fields are mandatory</span>
                                 <div class="form-group">
-                                    <label for="text" class="control-label col-xs-4">Center Name</label> 
+                                    <label for="text" class="control-label col-xs-4">Center Name <span class="mando-msg">*</span></label> 
                                     <div class="col-xs-8">
-                                        <input id="text" name="center_name" type="text" class="form-control">
+                                        <input id="text" required="" name="center_name" type="text" class="form-control">
                                     </div>
                                 </div> 
                                 <div class="form-group row">

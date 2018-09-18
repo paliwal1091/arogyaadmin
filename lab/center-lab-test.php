@@ -39,6 +39,8 @@ include '../DB.php';
         <!--// Fontawesome Css -->
         <!--// Style-sheets -->
 
+                <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
 
     </head>
 
@@ -94,10 +96,11 @@ VALUES ('" . $_POST['lab_test'] . "',
                     <div class="row">
                         <div class="col-md-4">
                             <form class="form-horizontal" action="center-lab-test.php" method="post">
+                                      <span class="mando-msg">* fields are mandatory</span>
                                 <div class="form-group">
-                                    <label for="text" class="control-label col-xs-4">Center Name</label> 
+                                    <label for="text" class="control-label col-xs-4">Center Name<span class="mando-msg">*</span></label> 
                                     <div class="col-xs-8">
-                                        <select id="select" name="center_id" class="select form-control">
+                                        <select id="select" required="" name="center_id" class="select form-control">
                                             <option value="">--select center--</option>
                                             <?php
                                             $sql = "SELECT * FROM hms_center";
@@ -114,9 +117,9 @@ VALUES ('" . $_POST['lab_test'] . "',
                                     </div>
                                 </div> 
                                 <div class="form-group">
-                                    <label for="text" class="control-label col-xs-4">Test Name</label> 
+                                    <label for="text" class="control-label col-xs-4">Test Name<span class="mando-msg">*</span></label> 
                                     <div class="col-xs-8">
-                                        <input id="text" name="lab_test" type="text" class="form-control">
+                                        <input id="text" required="" name="lab_test" type="text" class="form-control">
 
                                     </div>
                                 </div> 
@@ -128,9 +131,9 @@ VALUES ('" . $_POST['lab_test'] . "',
                                     </div>
                                 </div> 
                                 <div class="form-group">
-                                    <label for="text" class="control-label col-xs-4">Amount</label> 
+                                    <label for="text" class="control-label col-xs-4">Amount <span class="mando-msg">*</span></label> 
                                     <div class="col-xs-8">
-                                        <input id="text" name="test_cost" type="text" class="form-control">
+                                        <input id="text" name="test_cost" required="" type="number" class="form-control">
                                     </div>
                                 </div> 
                                 <div class="form-group row">

@@ -13,7 +13,7 @@
     </li>
     <li>
         <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/lab/center-lab-test.php">
-            <i class="fas fa-user-md"></i>
+            <i class="fas fa-vials"></i>
            Lab Test
         </a>
     </li>

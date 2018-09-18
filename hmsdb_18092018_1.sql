@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v8.55 
-MySQL - 5.5.54 : Database - hmsdb
+MySQL - 5.5.5-10.2.7-MariaDB : Database - hmsdb
 *********************************************************************
 */
 
@@ -40,7 +40,7 @@ CREATE TABLE `hms_cost` (
   `description` varchar(100) DEFAULT NULL,
   `amount` double(5,2) DEFAULT NULL,
   `txn_type` varchar(20) DEFAULT NULL,
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_user` int(5) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
@@ -58,7 +58,7 @@ CREATE TABLE `hms_doctor` (
   `first_name` varchar(100) DEFAULT NULL,
   `last_name` varchar(100) DEFAULT NULL,
   `nic` varchar(12) DEFAULT NULL,
-  `pword` text,
+  `pword` text DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
   `telephone` varchar(20) DEFAULT NULL,
   `degree` varchar(200) DEFAULT NULL,
@@ -67,7 +67,7 @@ CREATE TABLE `hms_doctor` (
   `slmc_no` varchar(20) DEFAULT NULL,
   `status_code` varchar(20) DEFAULT 'ACTIVE',
   `category` varchar(20) DEFAULT 'OPD',
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_user` int(5) DEFAULT NULL,
   `user_role` varchar(20) DEFAULT 'DOCTOR',
   PRIMARY KEY (`id`),
@@ -88,11 +88,11 @@ CREATE TABLE `hms_doctor_appointment` (
   `patient_id` int(5) DEFAULT NULL,
   `appointment_date` varchar(30) DEFAULT NULL,
   `status_code` varchar(20) DEFAULT 'OPEN',
-  `doctor_comment` text,
+  `doctor_comment` text DEFAULT NULL,
   `doctor_fee` int(5) DEFAULT NULL,
   `hospital_fee` int(5) DEFAULT NULL,
   `fee` int(5) DEFAULT NULL,
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_user` int(5) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
@@ -126,14 +126,16 @@ CREATE TABLE `hms_doctor_salary` (
   `doctor_id` int(5) DEFAULT NULL,
   `salary_month` varchar(20) DEFAULT NULL,
   `salary_amount` varbinary(10) DEFAULT NULL,
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_user` int(5) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `flag_unique` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `NewIndex1ss` (`flag_unique`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `hms_doctor_salary` */
 
-insert  into `hms_doctor_salary`(`id`,`doctor_id`,`salary_month`,`salary_amount`,`created_date`,`created_user`) values (1,1,'2018-09','5000','2018-09-16 21:42:20',44);
+insert  into `hms_doctor_salary`(`id`,`doctor_id`,`salary_month`,`salary_amount`,`created_date`,`created_user`,`flag_unique`) values (1,1,'2018-09','5000','2018-09-16 21:42:20',44,NULL);
 
 /*Table structure for table `hms_drug` */
 
@@ -162,7 +164,7 @@ CREATE TABLE `hms_employee_salary` (
   `user_id` int(5) DEFAULT NULL,
   `salary_month` varchar(20) DEFAULT NULL,
   `salary_amount` varbinary(10) DEFAULT NULL,
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_user` int(5) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `NewIndex1` (`user_id`,`salary_month`)
@@ -178,8 +180,8 @@ DROP TABLE IF EXISTS `hms_feedback`;
 
 CREATE TABLE `hms_feedback` (
   `id` int(5) NOT NULL AUTO_INCREMENT,
-  `feedback` text,
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `feedback` text DEFAULT NULL,
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_user` int(5) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
@@ -196,7 +198,7 @@ CREATE TABLE `hms_inventory` (
   `id` int(5) NOT NULL AUTO_INCREMENT,
   `item_name` varchar(50) DEFAULT NULL,
   `qty` int(5) DEFAULT NULL,
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_user` int(5) DEFAULT NULL,
   `updated_date` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -214,7 +216,7 @@ CREATE TABLE `hms_lab_test` (
   `id` int(5) NOT NULL AUTO_INCREMENT,
   `lab_test` varchar(50) DEFAULT NULL,
   `center_id` int(5) DEFAULT NULL,
-  `description` text,
+  `description` text DEFAULT NULL,
   `test_cost` decimal(10,2) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
@@ -233,7 +235,7 @@ CREATE TABLE `hms_opd_appointment` (
   `doctor_id` int(5) DEFAULT NULL,
   `appointment_date` varchar(30) DEFAULT NULL,
   `status_code` varchar(20) DEFAULT NULL,
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `created_user` int(5) DEFAULT NULL,
   `updated_user` int(5) DEFAULT NULL,
   `fee` int(5) DEFAULT NULL,
@@ -255,10 +257,10 @@ CREATE TABLE `hms_patient` (
   `telephone` varchar(20) DEFAULT NULL,
   `dob` varchar(25) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
-  `pword` text,
+  `pword` text DEFAULT NULL,
   `status_code` varchar(20) DEFAULT 'ACTIVE',
   `user_role` varchar(20) DEFAULT 'PATIENT',
-  `created_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_date` timestamp NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `NewIndex1_email` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
@@ -277,9 +279,9 @@ CREATE TABLE `hms_purchase` (
   `qty` int(5) DEFAULT NULL,
   `status_code` varchar(20) DEFAULT 'PENDING',
   `updated_by` int(5) DEFAULT NULL,
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_user` int(5) DEFAULT NULL,
-  `amount` double(10,2) DEFAULT '0.00',
+  `amount` double(10,2) DEFAULT 0.00,
   `comment` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
@@ -311,13 +313,13 @@ CREATE TABLE `hms_user` (
   `first_name` varchar(100) DEFAULT NULL,
   `last_name` varchar(100) DEFAULT NULL,
   `nic` varchar(12) DEFAULT NULL,
-  `pword` text,
+  `pword` text DEFAULT NULL,
   `user_role` varchar(20) DEFAULT NULL,
   `telephone` varchar(20) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
   `empno` varchar(10) DEFAULT NULL,
   `status_code` varchar(20) DEFAULT NULL,
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_user` int(5) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `NewIndex1` (`nic`)
@@ -349,7 +351,7 @@ CREATE TABLE `hms_vehicle` (
   `id` int(5) NOT NULL AUTO_INCREMENT,
   `vehicle_number` varchar(30) DEFAULT NULL,
   `status_code` varchar(50) DEFAULT 'ACTIVE',
-  `created_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_date` timestamp NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `NewIndex1` (`vehicle_number`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
@@ -365,10 +367,10 @@ DROP TABLE IF EXISTS `hms_vehicle_request`;
 CREATE TABLE `hms_vehicle_request` (
   `id` int(5) NOT NULL AUTO_INCREMENT,
   `request_by` int(5) DEFAULT NULL,
-  `comment` text,
+  `comment` text DEFAULT NULL,
   `status_code` varchar(20) DEFAULT 'PENDING',
-  `vehicle_id` int(5) DEFAULT '0',
-  `created_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `vehicle_id` int(5) DEFAULT 0,
+  `created_time` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_user` int(5) DEFAULT NULL,
   `datetime_need` varchar(50) DEFAULT NULL,
   `driver_name` varchar(100) DEFAULT NULL,
@@ -404,7 +406,7 @@ CREATE TABLE `hms_ward_patient` (
   `ward_id` int(5) DEFAULT NULL,
   `patient_id` int(5) DEFAULT NULL,
   `comment` varchar(250) DEFAULT NULL,
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_user` int(5) DEFAULT NULL,
   `status_code` varchar(20) DEFAULT 'ADMIT',
   PRIMARY KEY (`id`),
@@ -422,7 +424,7 @@ DROP TABLE IF EXISTS `hms_ward_staff`;
 CREATE TABLE `hms_ward_staff` (
   `ward_id` int(5) NOT NULL,
   `staff_id` int(5) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `responsibility` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`ward_id`,`staff_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
