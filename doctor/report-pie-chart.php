@@ -137,7 +137,6 @@
         $sql = "SELECT status_code,COUNT(status_code) AS cnt FROM hms_doctor_appointment
 WHERE doctor_id = '".$_SESSION['userbean']['id']."' GROUP BY status_code";
         $data = getData($sql);
-        echo $sql;
         ?>
         
          <script>

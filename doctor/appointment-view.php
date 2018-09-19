@@ -187,7 +187,7 @@ FROM hms_doctor_appointment
 INNER JOIN hms_doctor 
 ON hms_doctor_appointment.doctor_id = hms_doctor.id
 WHERE hms_doctor_appointment.patient_id =  '". $patient_id."' ORDER BY hms_doctor_appointment.id DESC " ;
-                            echo $sql;
+//                            echo $sql;
                             $resultData = getData($sql);
                             
                             if ($resultData != null)
