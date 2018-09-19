@@ -29,7 +29,7 @@ CREATE TABLE `hms_center` (
 
 /*Data for the table `hms_center` */
 
-insert  into `hms_center`(`center_name`,`id`) values ('Colombo',1),('Colombos',6),('Gampaha',2),('gampola',9),('Kurunagala',3);
+insert  into `hms_center`(`center_name`,`id`) values ('Colombo',1),('Colombos',6),('Gampaha',2),('gampola',9);
 
 /*Table structure for table `hms_cost` */
 
@@ -95,11 +95,11 @@ CREATE TABLE `hms_doctor_appointment` (
   `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_user` int(5) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 
 /*Data for the table `hms_doctor_appointment` */
 
-insert  into `hms_doctor_appointment`(`id`,`doctor_id`,`patient_id`,`appointment_date`,`status_code`,`doctor_comment`,`doctor_fee`,`hospital_fee`,`fee`,`created_date`,`created_user`) values (1,1,1,'2018-08-31','COMPLETE',' Feever record available',2500,1000,3500,'2018-08-29 14:12:36',1),(2,1,1,'2018-08-31','COMPLETE',' this is good',2500,1000,3500,'2018-08-29 16:27:14',1),(3,1,1,'2018-09-01','COMPLETE',' sadsadsadsa',2500,1000,3500,'2018-08-29 16:30:14',1),(4,1,1,'2018-08-31','REJECT',NULL,2500,1000,3500,'2018-08-30 20:47:58',1),(5,1,1,'2018-09-01','REJECT',NULL,2500,1000,3500,'2018-08-31 08:51:36',1),(6,1,1,'2018-09-08','OPEN',NULL,2500,1000,3500,'2018-08-31 14:50:49',1),(7,1,4,'','OPEN',NULL,2500,1000,3500,'2018-09-10 16:58:21',4),(8,1,4,'2018-09-04','OPEN',NULL,2500,1000,3500,'2018-09-10 17:00:55',4),(9,1,4,'2018-09-04','ACCEPT','sdsdsd',2500,1000,3500,'2018-09-10 17:07:04',4),(10,1,4,'2018-09-04','OPEN',NULL,2500,1000,3500,'2018-09-10 17:07:30',4),(11,1,4,'2018-09-04','OPEN',NULL,2500,1000,3500,'2018-09-10 17:08:59',4),(12,1,4,'2018-09-04','OPEN',NULL,2500,1000,3500,'2018-09-10 17:09:43',4),(13,1,4,'2018-09-04','OPEN',NULL,2500,1000,3500,'2018-09-10 17:09:51',4),(14,1,4,'2018-09-04','OPEN',NULL,2500,1000,3500,'2018-09-10 17:10:18',4),(15,1,4,'2018-09-04','OPEN',NULL,2500,1000,3500,'2018-09-10 17:11:01',4),(16,1,4,'2018-09-04','OPEN',NULL,2500,1000,3500,'2018-09-10 17:11:57',4),(17,1,4,'2018-09-04','OPEN',NULL,2500,1000,3500,'2018-09-10 17:19:16',4),(18,1,4,'2018-09-04','OPEN',NULL,2500,1000,3500,'2018-09-10 17:20:59',4),(19,1,4,'2018-09-04','OPEN',NULL,2500,1000,3500,'2018-09-10 17:21:56',4),(20,1,4,'2018-09-04','OPEN',NULL,2500,1000,3500,'2018-09-10 17:22:59',4),(21,1,4,'2018-09-04','ACCEPT','acccee',2500,1000,3500,'2018-09-10 17:24:29',4),(22,1,4,'2018-09-04','OPEN',NULL,2500,1000,3500,'2018-09-10 17:24:42',4),(23,1,4,'2018-09-04','OPEN',NULL,2500,1000,3500,'2018-09-10 17:26:17',4),(24,1,4,'2018-09-04','OPEN',NULL,2500,1000,3500,'2018-09-10 17:27:51',4),(25,1,4,'2018-09-04','','status change',2500,1000,3500,'2018-09-10 17:29:21',4);
+insert  into `hms_doctor_appointment`(`id`,`doctor_id`,`patient_id`,`appointment_date`,`status_code`,`doctor_comment`,`doctor_fee`,`hospital_fee`,`fee`,`created_date`,`created_user`) values (1,1,1,'2018-08-31','COMPLETE',' Feever record available',2500,1000,3500,'2018-08-29 14:12:36',1),(2,1,1,'2018-08-31','COMPLETE',' this is good',2500,1000,3500,'2018-08-29 16:27:14',1),(3,1,1,'2018-09-01','COMPLETE',' sadsadsadsa',2500,1000,3500,'2018-08-29 16:30:14',1),(4,1,1,'2018-08-31','REJECT',NULL,2500,1000,3500,'2018-08-30 20:47:58',1),(5,1,1,'2018-09-01','REJECT',NULL,2500,1000,3500,'2018-08-31 08:51:36',1),(6,1,1,'2018-09-08','OPEN',NULL,2500,1000,3500,'2018-08-31 14:50:49',1),(7,1,4,'','OPEN',NULL,2500,1000,3500,'2018-09-10 16:58:21',4),(8,1,4,'2018-09-04','OPEN',NULL,2500,1000,3500,'2018-09-10 17:00:55',4),(9,1,4,'2018-09-04','ACCEPT','sdsdsd',2500,1000,3500,'2018-09-10 17:07:04',4),(10,1,4,'2018-09-04','OPEN',NULL,2500,1000,3500,'2018-09-10 17:07:30',4),(11,1,4,'2018-09-04','OPEN',NULL,2500,1000,3500,'2018-09-10 17:08:59',4),(12,1,4,'2018-09-04','OPEN',NULL,2500,1000,3500,'2018-09-10 17:09:43',4),(13,1,4,'2018-09-04','OPEN',NULL,2500,1000,3500,'2018-09-10 17:09:51',4),(14,1,4,'2018-09-04','OPEN',NULL,2500,1000,3500,'2018-09-10 17:10:18',4),(15,1,4,'2018-09-04','OPEN',NULL,2500,1000,3500,'2018-09-10 17:11:01',4),(16,1,4,'2018-09-04','OPEN',NULL,2500,1000,3500,'2018-09-10 17:11:57',4),(17,1,4,'2018-09-04','OPEN',NULL,2500,1000,3500,'2018-09-10 17:19:16',4),(18,1,4,'2018-09-04','OPEN',NULL,2500,1000,3500,'2018-09-10 17:20:59',4),(19,1,4,'2018-09-04','OPEN',NULL,2500,1000,3500,'2018-09-10 17:21:56',4),(20,1,4,'2018-09-04','OPEN',NULL,2500,1000,3500,'2018-09-10 17:22:59',4),(21,1,4,'2018-09-04','ACCEPT','acccee',2500,1000,3500,'2018-09-10 17:24:29',4),(22,1,4,'2018-09-04','OPEN',NULL,2500,1000,3500,'2018-09-10 17:24:42',4),(23,1,4,'2018-09-04','OPEN',NULL,2500,1000,3500,'2018-09-10 17:26:17',4),(24,1,4,'2018-09-04','OPEN',NULL,2500,1000,3500,'2018-09-10 17:27:51',4),(25,1,4,'2018-09-04','','status change',2500,1000,3500,'2018-09-10 17:29:21',4),(26,4,4,'2018-09-22T04:45','OPEN',NULL,2500,1000,3500,'2018-09-18 08:59:51',4);
 
 /*Table structure for table `hms_doctor_availability` */
 
@@ -109,13 +109,13 @@ CREATE TABLE `hms_doctor_availability` (
   `doctor_id` int(5) NOT NULL,
   `day_available` varchar(60) NOT NULL,
   `from_time` varchar(50) NOT NULL,
-  `to_time` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`doctor_id`,`day_available`,`from_time`)
+  `to_time` varchar(50) NOT NULL,
+  PRIMARY KEY (`doctor_id`,`day_available`,`from_time`,`to_time`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `hms_doctor_availability` */
 
-insert  into `hms_doctor_availability`(`doctor_id`,`day_available`,`from_time`,`to_time`) values (1,'Wednesday','10:10','12:12'),(4,'Sunday','10:12','10:12');
+insert  into `hms_doctor_availability`(`doctor_id`,`day_available`,`from_time`,`to_time`) values (1,'Wednesday','10:10','12:12'),(4,'Sunday','10:12','10:12'),(8,'Sunday','10:10','11:11');
 
 /*Table structure for table `hms_doctor_salary` */
 
@@ -223,7 +223,7 @@ CREATE TABLE `hms_lab_test` (
 
 /*Data for the table `hms_lab_test` */
 
-insert  into `hms_lab_test`(`id`,`lab_test`,`center_id`,`description`,`test_cost`) values (3,'sadsad',1,'asdsad  sadsadasd          ','2500.00'),(4,'sadsadsad',2,'wqewqewqewqe                                  ','2533.00');
+insert  into `hms_lab_test`(`id`,`lab_test`,`center_id`,`description`,`test_cost`) values (4,'sadsadsad',2,'wqewqewqewqe                                  ','2533.00');
 
 /*Table structure for table `hms_opd_appointment` */
 

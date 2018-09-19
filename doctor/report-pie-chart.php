@@ -1,6 +1,5 @@
-<?php
-session_start();
-include '../DB.php';
+<?php session_start();
+ include '../DB.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,6 +19,8 @@ include '../DB.php';
             }
         </script>
         <!-- //Meta Tags -->
+
+        <!-- //Meta Tags -->
         <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">--> 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -37,8 +38,16 @@ include '../DB.php';
         <link href="../css/fontawesome-all.css" rel="stylesheet">
         <!--// Fontawesome Css -->
         <!--// Style-sheets -->
-
-
+        
+        
+        
+      <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+        
+   
+        
     </head>
 
     <body>
@@ -52,6 +61,7 @@ include '../DB.php';
                     <span>M</span>
                 </div>
                 <div class="profile-bg"></div>
+
                 <?php
                 include_once '../_tree_doctor.php';
                 ?>
@@ -67,21 +77,16 @@ include '../DB.php';
                 <!--// main-heading -->
                 <!-- Page Content -->
                 <div class="blank-page-content">
-                    <h4>  My Availability</h4>
-                    <hr>
                     <div class="row">
-                        <div class="col-md-4"></div>
-                        <div class="col-md-4">
-                            <?php
-                            if (isset($_POST['btnStatusChange'])) {
-                                $sql = "UPDATE hms_doctor_appointment SET doctor_comment='".$_POST['doctor_comment']."', status_code = '".$_POST['status_code']."' WHERE id = '".$_POST['id']."'";
-                                setUpdate($sql, TRUE);
-                            }
-                            ?>
+                        <div class="col-md-12">
+                            
+<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
                         </div>
-                        <div class="col-md-4"></div>
                     </div>
                 </div>
+                
+                
+
 
                 <!--// Page Content -->
 
@@ -126,15 +131,57 @@ include '../DB.php';
         <!-- Js for bootstrap working-->
         <script src="../js/bootstrap.min.js"></script>
         <!-- //Js for bootstrap working -->
-
-
-        <link href="../css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
-        <script src="../js/jquery.dataTables.min.js" type="text/javascript"></script>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $('#example').DataTable();
-            });
-        </script>
+        
+        
+        <?php
+        $sql = "SELECT status_code,COUNT(status_code) AS cnt FROM hms_doctor_appointment
+WHERE doctor_id = '".$_SESSION['userbean']['id']."' GROUP BY status_code";
+        $data = getData($sql);
+        echo $sql;
+        ?>
+        
+         <script>
+       
+// Build the chart
+Highcharts.chart('container', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Appointment Status-Chart'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                style: {
+                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                }
+            }
+        }
+    },
+    series: [{
+        name: 'Brands',
+        colorByPoint: true,
+        data: [ <?php if($data!=null)
+     foreach ($data as $value){?>{
+            name: '<?= $value['status_code']?>',
+            y: <?= $value['cnt']?>
+        },<?php }{
+     }?>]
+    }]
+}); 
+    </script>
+    
     </body>
 
 </html>

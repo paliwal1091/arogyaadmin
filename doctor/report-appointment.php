@@ -21,7 +21,7 @@
         <!-- //Meta Tags -->
 
         <!-- //Meta Tags -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> 
+        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">--> 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <!-- Style-sheets -->
@@ -68,8 +68,8 @@
                 <!-- Page Content -->
                 <div class="blank-page-content">
                     <div class="row">
-                        <div class="col-md-12">
- <div style="width: 50%">
+                        <div class="col-md-6">
+     
                             <form class="form-horizontal" action="report-appointment.php" method="post">
                                 <div class="form-group">
                                     <label for="text" class="control-label col-xs-4">From Date</label> 
@@ -90,8 +90,14 @@
                                     </div>
                                 </div>
                             </form>
- </div>
-
+                        </div>
+                        <div class="col-md-6">
+                            <a href="report-pie-chart.php">Chart View</a>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-12">
                             <?php if(isset($_POST['btnSubmit'])){
                                 ?>
                             <a href="#" class="btn btn-warning btn-sm" onclick="PrintElem('printdiv')">print</a>
