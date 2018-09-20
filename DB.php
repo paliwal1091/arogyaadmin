@@ -50,7 +50,7 @@ function getData($sql) {
     $result = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($result) > 0) {
-        // output data of each row
+        // output data of each row sss
         return $result;
     } else {
         return FALSE;
