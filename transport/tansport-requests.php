@@ -75,7 +75,8 @@ include '../DB.php';
 
                             <?php
                             if (isset($_POST['submitApprove'])) {
-                                $sql = "UPDATE hms_vehicle_request SET vehicle_id = '" . $_POST['vehicle_id'] . "', status_code='COMPLETE', driver_name ='" . $_POST['driver_name'] . "' WHERE id = '" . $_POST['id'] . "'";
+                                $flag_unique = $_POST['datetime_need'].'-'.$_POST['vehicle_id'];
+                                $sql = "UPDATE hms_vehicle_request SET vehicle_id = '" . $_POST['vehicle_id'] . "', status_code='COMPLETE',flag_unique = '".$flag_unique."', driver_name ='" . $_POST['driver_name'] . "' WHERE id = '" . $_POST['id'] . "'";
 //                                echo $sql;
                                 setUpdate($sql, TRUE);
                             }
@@ -122,6 +123,7 @@ FROM hms_vehicle_request AS A";
                                                         <form action="tansport-requests.php" method="post">
                                                             <input type="hidden" name="id" value="<?= $value['id'] ?>" />
                                                             <input type="hidden" name="status_code" value="COMPLETE" />
+                                                            <input type="hidden" name="datetime_need" value="<?= $value['datetime_need']?>" />
                                                             Vehicle <select name="vehicle_id" required="">
                                                                 <option value="">--select--</option>
                                                                 <?php
@@ -131,13 +133,13 @@ FROM hms_vehicle_request AS A";
                                                                 ?>
                                                             </select>
                                                             <input type="text" name="driver_name" placeholder="Driver Name" required=""/>
-                                                            <button name="submitApprove" type="submit" class="btn btn-primary">COMPLETE</button>
+                                                            <button name="submitApprove" type="submit" class="btn btn-success btn-sm">COMPLETE</button>
                                                         </form>
 
                                                     <form action="tansport-requests.php" method="post">
                                                             <input type="hidden" name="id" value="<?= $value['id'] ?>" />
                                                             <input type="hidden" name="status_code" value="REJECT" />
-                                                            <button name="submitReject" type="submit" class="btn btn-primary">REJECT</button>
+                                                            <button name="submitReject" type="submit" class="btn btn-danger btn-sm">REJECT</button>
                                                         </form>
                                                         <?php }else{
      echo $value['vehicle_number'] .' - '.$value['driver_name'];

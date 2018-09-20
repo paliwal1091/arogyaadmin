@@ -70,7 +70,7 @@ function setUpdate($sql, $MSG) {
             echo '<p class="bg-success msg-success">Record updated successfully<p>';
     } else {
         if ($MSG)
-            echo "Invalid Input";
+            echo '<p class="bg-danger msg-error"> Invalid or Duplicate Input</p>';
         $flag = FALSE;
     }
 
