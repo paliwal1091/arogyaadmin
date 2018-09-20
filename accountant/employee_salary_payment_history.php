@@ -74,10 +74,10 @@ include '../DB.php';
                     <table border="1" style="width: 100%">
                         <thead>
                             <tr>
-                                <th>Employee Name</th>
-                                <th>User Role</th>
                                 <th>Month</th>
-                                <th>Salary</th>
+                                <th>Amount</th>
+                                <th>User Role</th>
+                                <th>Employee Name</th>
                                 <th>DateTime</th>
                             </tr>
                         </thead>
