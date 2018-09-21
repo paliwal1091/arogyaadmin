@@ -85,6 +85,7 @@ include '../DB.php';
                                         <th>Unit</th>
                                         <th>Unit Price</th>
                                         <th>Expiry Date</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>

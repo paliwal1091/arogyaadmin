@@ -18,12 +18,12 @@
                         Stock Drugs 
                     </a>
                 </li>
-                <li>
+<!--                <li>
                     <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/pharmacist/patient-list.php">
                   <i class="fas fa-user"></i>
                         Patients
                     </a>
-                </li>
+                </li>-->
              
                 <li>
                     <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/pharmacist/stock-report.php">

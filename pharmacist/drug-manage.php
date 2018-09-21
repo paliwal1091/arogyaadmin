@@ -94,6 +94,7 @@ VALUES ('" . $_POST['drug_name'] . "',
 SET 
   `drug_name` = '" . $_POST['drug_name'] . "',
   `qty` = '" . $_POST['qty'] . "',
+  `unit` = '" . $_POST['unit'] . "',
   `unit_price` = '" . $_POST['unit_price'] . "',
   `date_expiry` = '" . $_POST['date_expiry'] . "'
 WHERE `id` = '" . $_POST['id'] . "';";
@@ -105,7 +106,7 @@ WHERE `id` = '" . $_POST['id'] . "';";
                         <div class="col-md-6">
 
 
-
+<?php $arrUnit = array('L','ml','g','mg')?>
 
 
                             <?php
@@ -130,7 +131,18 @@ WHERE `id` = '" . $_POST['id'] . "';";
                                     <div class="form-group">
                                         <label for="select" class="control-label col-xs-4"></label> 
                                         <div class="col-xs-8">
-                                            <?= $_GET['unit'] ?>
+                                          
+                                          <select id="select" name="unit" class="select form-control">
+                                                <option value="">--select unit--</option>
+                                                <?php 
+                                                
+                                                foreach ($arrUnit as $value) {
+                                                    ?>  <option <?php if($value == $_GET['unit'] ){echo 'selected=""';}?> value="<?= $value?>"><?= $value?></option>
+ <?php                           
+                                                                                }?>
+                                                
+                                            </select>
+                                          
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -174,11 +186,15 @@ WHERE `id` = '" . $_POST['id'] . "';";
                                     <div class="form-group">
                                         <label for="select" class="control-label col-xs-4"></label> 
                                         <div class="col-xs-8">
-                                            <select id="select" name="unit" class="select form-control">
+                                             <select id="select" name="unit" class="select form-control">
                                                 <option value="">--select unit--</option>
-                                                <option value="L">L</option>
-                                                <option value="ml">lm</option>
-                                                <option value="cm">cm</option>
+                                                <?php 
+                                                
+                                                foreach ($arrUnit as $value) {
+                                                    ?>  <option value="<?= $value?>"><?= $value?></option>
+ <?php                           
+                                                                                }?>
+                                                
                                             </select>
                                         </div>
                                     </div>
@@ -206,38 +222,7 @@ WHERE `id` = '" . $_POST['id'] . "';";
 
                         </div>
                         <div class="col-md-6">
-                            <h3>View Stock</h3>
-                            <table border="1" style="width: 100%">
-                                <thead>
-                                    <tr>
-                                        <th>Drug Name</th>
-                                        <th>Qty</th>
-                                        <th>Unit</th>
-                                        <th>Unit Price</th>
-                                        <th>Expiry Date</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    $sql = "SELECT * FROM hms_drug";
-                                    $data = getData($sql);
-                                    if ($data != null) {
-                                        foreach ($data as $value) {
-                                            ?>
-                                            <tr>
-                                                <td><?= $value['drug_name'] ?></td>
-                                                <td><?= $value['qty'] ?></td>
-                                                <td><?= $value['unit'] ?></td>
-                                                <td><?= $value['unit_price'] ?></td>
-                                                <td><?= $value['date_expiry'] ?></td>
-                                                <td><a class="btn-sm btn-warning" href="drug-manage.php?id=<?= $value['id'] ?>&drug_name=<?= $value['drug_name'] ?>&qty=<?= $value['qty'] ?>&unit=<?= $value['unit'] ?>&unit_price=<?= $value['unit_price'] ?>&date_expiry=<?= $value['date_expiry'] ?>">update</a></td>
-                                            </tr>
-                                            <?php
-                                        }
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
+                           
                         </div>
                     </div>
                 </div>

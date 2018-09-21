@@ -180,10 +180,8 @@ if ($_SESSION['userbean']['user_role'] == 'DOCTOR') {
                         <div class="header">
                             <div class="text">
                                 <img src="images/profile.jpg" class="img-fluid rounded-circle" alt="Responsive image">
-                                <h2>Matthew Scott</h2>
-                                <a href="mailto:info@example.com">
-                                    <p>@Lorem ipsum</p>
-                                </a>
+                                <h2><?= $_SESSION['userbean']['first_name']?></h2>
+                               
                             </div>
                         </div>
                         <div class="container-flud">
@@ -205,7 +203,7 @@ if ($_SESSION['userbean']['user_role'] == 'DOCTOR') {
                                 </div>
                             </div>
                         </div>
-                        <ul class="prof-widgt-content">
+<!--                        <ul class="prof-widgt-content">
                             <li class="menu">
                                 <ul>
                                     <li class="button">
@@ -259,7 +257,7 @@ if ($_SESSION['userbean']['user_role'] == 'DOCTOR') {
                                     </li>
                                 </ul>
                             </li>
-                        </ul>
+                        </ul>-->
                     </div>
                     <!--// Profile -->
                     <!-- Browser stats -->

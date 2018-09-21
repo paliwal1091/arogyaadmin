@@ -14,11 +14,11 @@
                   <i class="fab fa-stack-overflow fa-5x"></i>
                 </a>
             </td>
-            <td>
+<!--            <td>
                 <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/pharmacist/patient-list.php">
                     <i class="fas fa-user fa-5x  tile-icon"></i>
                 </a>
-            </td>
+            </td>-->
             <td>
                 <a href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/pharmacist/stock-report.php">
                      <i class="fas fa-file-alt fa-5x  tile-icon"></i>
@@ -28,7 +28,7 @@
         <tr style="text-align: center">
             <td>Manage Drug</td>
             <td>Stock</td>
-            <td>Patient List</td>
+            <!--<td>Patient List</td>-->
             <td>Report</td>
         </tr>
     </tbody>
