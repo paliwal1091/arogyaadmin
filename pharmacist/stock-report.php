@@ -110,6 +110,7 @@ include '../DB.php';
                                 <?php
                                 $sql = "SELECT * FROM hms_drug WHERE qty <= '" . $_POST['minstock'] . "'";
                                 $data = getData($sql);
+                                if($data!=null)
                                 foreach ($data as $value) {
                                     ?>
 
