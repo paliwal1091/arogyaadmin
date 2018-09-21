@@ -160,20 +160,7 @@ if ($_SESSION['userbean']['user_role'] == 'DOCTOR') {
                     
                     
                     
-                <!-- Pie-chart -->
-                    <div class="outer-w3-agile col-xl ml-xl-3 mt-xl-0 mt-3">
-                        <h4 class="tittle-w3-agileits mb-4">Pie Chart</h4>
-                        <div id="chartdiv"></div>
-                    </div>
-                    <!--// Pie-chart -->    
-                    
-                     <!-- Simple-chart -->
-            <div class="outer-w3-agile mt-3">
-                <h4 class="tittle-w3-agileits mb-4">Graph</h4>
-                <div id="Hybridgraph" class="simple-chart1">
-                </div>
-            </div>
-            <!--// Simple-chart -->
+                
 
             
 

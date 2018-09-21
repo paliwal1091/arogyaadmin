@@ -75,6 +75,7 @@ include '../DB.php';
                             <?php
                             if (isset($_POST['btnStatusChange'])) {
                                 $sql = "UPDATE hms_doctor_appointment SET doctor_comment='".$_POST['doctor_comment']."', status_code = '".$_POST['status_code']."' WHERE id = '".$_POST['id']."'";
+//                                echo $sql;
                                 setUpdate($sql, TRUE);
                             }
                             ?>

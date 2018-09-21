@@ -43,3 +43,10 @@
                                     return true;
                                 }
                             </script>
+
+
+
+
+return (function(){
+    if(confirm('want to remove?')){return true;}else{return false;}
+})();"

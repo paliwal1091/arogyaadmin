@@ -143,7 +143,7 @@ include '../core.php';
                                 if ($value['status_code'] == 'OPEN') {
                                     ?> 
                                     <form class="form-horizontal" action="appointment-status-change.php" method="post">
-                                        <input type="hidden" name="status_code" value="ACCEPT"/>
+                                        <input type="hidden" name="status_code" value="COMPLETE"/>
                                         <input type="hidden" name="id" value="<?= $value['id'] ?>"/>
                                         <div class="form-group">
                                             <label for="textarea" class="control-label col-xs-4">Comment (Diagnosis Detail)</label> 
@@ -160,8 +160,13 @@ include '../core.php';
                                     <h3>or</h3>
                                     <form class="form-horizontal" action="appointment-status-change.php" method="post">
                                         <input type="hidden" name="status_code" value="REJECT"/>
-                                        <input type="hidden" name="id" status_code ="<?= $value['id'] ?>"/>
-                                        <input type="hidden" name="doctor_comment" value=""/>
+                                        <input type="hidden" name="id" value="<?= $value['id'] ?>"/>
+                                        <div class="form-group">
+                                            <label for="textarea" class="control-label col-xs-4">Comment</label> 
+                                            <div class="col-xs-8">
+                                                <textarea id="textarea"  name="doctor_comment" cols="40" rows="5" class="form-control"></textarea>
+                                            </div>
+                                        </div> 
                                         <div class="form-group row">
                                             <div class="col-xs-offset-4 col-xs-8">
                                                 <button name="btnStatusChange" type="submit" class="btn btn-danger">Reject</button>
@@ -178,7 +183,8 @@ include '../core.php';
 
                         </div>
                         <div class="col-md-8">
-
+                            
+                            <h2>Patient Medical History</h2>
 
                             <?php
                             $sql = "SELECT hms_doctor_appointment.doctor_comment,hms_doctor_appointment.created_date,hms_doctor_appointment.id,
@@ -193,13 +199,13 @@ WHERE hms_doctor_appointment.patient_id =  '". $patient_id."' ORDER BY hms_docto
                             if ($resultData != null)
                                 foreach ($resultData as $value) {
                                     ?>
-                            <table border="">
+                            <table border="" class="table-bordered" style="width: 100%">
                                         <tbody>
                                             <tr>
                                                 <td><?= $value['doctor_comment']?></td>
                                             </tr>
                                             <tr>
-                                                <td><?= $value['id']?> <?= $value['created_date']?> <?= $value['doc_name']?></td>
+                                                <td><span class="btn-sm btn-primary"><?= $value['id']?></span> <?= $value['created_date']?> <?= $value['doc_name']?></td>
                                             </tr>
                                         </tbody>
                                 </table>

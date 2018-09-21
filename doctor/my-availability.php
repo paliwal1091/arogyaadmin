@@ -126,7 +126,7 @@ VALUES ('" . $_SESSION['userbean']['id'] . "',
 
                             <?php
                             if (isset($_GET['flag'])) {
-                                $sql = "DELETE FROM hms_doctor_availability WHERE doctor_id = '". $_SESSION['userbean']['id']."' AND day_available = '".$_GET['day_available']."'";
+                                $sql = "DELETE FROM hms_doctor_availability WHERE to_time = '".$_GET['to_time']."' AND from_time = '".$_GET['from_time']."' AND doctor_id = '". $_SESSION['userbean']['id']."' AND day_available = '".$_GET['day_available']."'";
                                 setDelete($sql);
                             }
                             ?>
@@ -154,7 +154,9 @@ VALUES ('" . $_SESSION['userbean']['id'] . "',
                                             <td><?= $value['day_available'] ?></td>
                                             <td><?= $value['from_time'] ?></td>
                                             <td><?= $value['to_time'] ?></td>
-                                            <td><a class="btn btn-danger btn-sm" href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/doctor/my-availability.php?flag=DELETE&day_available=<?= $value['day_available'] ?>">remove</a></td>
+                                            <td><a onclick="return (function(){
+    if(confirm('want to remove?')){return true;}else{return false;}
+})();" class="btn btn-danger btn-sm" href="<?php $_SERVER['SERVER_NAME'] ?>/<?= $_SESSION['sitename'] ?>/doctor/my-availability.php?from_time=<?= $value['from_time'] ?>&to_time=<?= $value['to_time'] ?>&flag=DELETE&day_available=<?= $value['day_available'] ?>">remove</a></td>
                                         </tr>
                                         <?php
                                     }

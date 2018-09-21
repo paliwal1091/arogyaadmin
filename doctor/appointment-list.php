@@ -76,15 +76,17 @@ include '../DB.php';
                             <tr>
                                 <th>NO</th>
                                 <th>Appointment Date</th>
-                                <th>Fee</th>
-                                <th>Status</th>
-                                <th>Created Date</th>
+                                <th>Patient Name</th>
+                                <th>Appointment Status</th>
                                 <th><a href="">view</a></th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                            $sql = "SELECT * FROM hms_doctor_appointment WHERE doctor_id = '" . $_SESSION['userbean']['id'] . "' ";
+//                            $sql = "SELECT * FROM hms_doctor_appointment WHERE doctor_id = '" . $_SESSION['userbean']['id'] . "' ";
+                            $sql = "SELECT hms_patient.first_name,hms_patient.last_name,hms_doctor_appointment.* FROM hms_doctor_appointment
+INNER JOIN hms_patient WHERE hms_doctor_appointment.patient_id = hms_patient.id  AND hms_doctor_appointment.doctor_id = '" . $_SESSION['userbean']['id'] . "'
+";
                             $data = getData($sql);
 
                             if ($data != null)
@@ -93,9 +95,8 @@ include '../DB.php';
                                     <tr>
                                         <td><?= $row['id']; ?></td>
                                         <td><?= $row['appointment_date']; ?></td>
-                                        <td><?= $row['fee']; ?></td>
+                                        <td><?= $row['first_name']; ?> <?= $row['last_name']; ?></td>
                                         <td><?= $row['status_code']; ?></td>
-                                        <td><?= $row['created_date']; ?></td>
                                         <td><a href="appointment-view.php?id=<?= $row['id']; ?>">view</a></td>
                                     </tr>
                                     <?php

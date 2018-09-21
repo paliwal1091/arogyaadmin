@@ -76,19 +76,19 @@ include '../DB.php';
                             <table id="example" class="display table-responsive" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
-                                        <th>NO</th>
+                                        <th>Appointment NO</th>
                                         <th>First Name</th>
                                         <th>Last Name</th>
-                                        <th>Telephone</th>
-                                        <th>Date of Birth</th>
-                                        <th>Email</th>
-                                        <th></th>
+                                        <th>Appointment Date</th>
+                                        <th>Status</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $sql = "SELECT * FROM  hms_patient ";
+                                    $sql = "SELECT hms_doctor_appointment.id,hms_doctor_appointment.appointment_date,hms_patient.id,hms_patient.first_name,hms_patient.last_name,hms_doctor_appointment.status_code FROM  hms_patient INNER JOIN hms_doctor_appointment 
+ON hms_patient.id = hms_doctor_appointment.patient_id
+WHERE hms_doctor_appointment.status_code != 'REJECT' AND hms_doctor_appointment.doctor_id = '4' ";
                                     $data = getData($sql);
 
                                     if ($data != null)
@@ -98,10 +98,8 @@ include '../DB.php';
                                                 <td><?= $row['id']; ?></td>
                                                 <td><?= $row['first_name']; ?></td>
                                                 <td><?= $row['last_name']; ?></td>
-                                                <td><?= $row['telephone']; ?></td>
-                                                <td><?= $row['dob']; ?></td>
-                                                <td><?= $row['email']; ?></td>
-                                                <td><?= $row['created_date']; ?></td>
+                                                <td><?= $row['appointment_date']; ?></td>
+                                                <td><?= $row['status_code']; ?></td>
                                                 <td>
 
                                                     <a  class=" nav-link btn-warning btn-sm" href="patient-list.php?patient_id=<?= $row['id']; ?>">history</a>
